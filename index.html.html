@@ -1,0 +1,3078 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Procedimentos da 2ª Vara do Júri</title>
+  <style>
+    :root {
+      --primary: #2c3e50;
+      --secondary: #34495e;
+      --accent: #3498db;
+      --danger: #e74c3c;
+      --bg: #f4f7f6;
+      --card-bg: #ffffff;
+      --text: #333333;
+      --border: #dcdde1;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 850px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      position: relative;
+      padding-bottom: 80px;
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--primary);
+      font-size: 26px;
+      margin-top: 0;
+      margin-bottom: 5px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: var(--secondary);
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 25px;
+      border-bottom: 2px solid #ecf0f1;
+      padding-bottom: 15px;
+    }
+
+    /* NAVEGAÇÃO POR ABAS */
+    .tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 25px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      color: var(--secondary);
+      padding: 12px 20px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      border-radius: 6px 6px 0 0;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tab-btn:hover {
+      color: var(--accent);
+      background-color: #f8f9fa;
+    }
+
+    .tab-btn.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      background-color: #eef6fc;
+    }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .form-group { margin-bottom: 20px; }
+
+    label.select-label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--secondary);
+      font-size: 15px;
+    }
+
+    input[type="text"], select, textarea {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 15px;
+      background-color: #fdfdfd;
+      transition: all 0.3s ease;
+      box-sizing: border-box;
+      color: var(--text);
+    }
+
+    input[type="text"]:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+      background-color: #fff;
+    }
+
+    select:disabled {
+      background-color: #f1f2f6;
+      color: #a4b0be;
+      cursor: not-allowed;
+      border-color: #dfe4ea;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    button.action-btn {
+      padding: 14px 20px;
+      font-size: 15px;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+    }
+
+    button.action-btn:active { transform: translateY(2px); }
+
+    .btn-danger {
+      background-color: #ff6b6b;
+      box-shadow: 0 4px 6px rgba(255, 107, 107, 0.2);
+      flex: 1;
+    }
+    .btn-danger:hover {
+      background-color: #ee5253;
+      box-shadow: 0 6px 12px rgba(255, 107, 107, 0.3);
+    }
+
+    .btn-success {
+      background-color: #2ecc71;
+      box-shadow: 0 4px 6px rgba(46, 204, 113, 0.2);
+      flex: 1;
+    }
+    .btn-success:hover {
+      background-color: #27ae60;
+      box-shadow: 0 6px 12px rgba(46, 204, 113, 0.3);
+    }
+
+    /* BOTÃO FLUTUANTE DE PDF/IMPRIMIR */
+    .btn-floating-print {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background-color: var(--accent);
+      color: white;
+      padding: 14px 22px;
+      font-size: 15px;
+      font-weight: 600;
+      border: none;
+      border-radius: 50px;
+      box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+      cursor: pointer;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+    .btn-floating-print:hover {
+      background-color: #2980b9;
+      box-shadow: 0 6px 20px rgba(52, 152, 219, 0.6);
+      transform: translateY(-2px);
+    }
+
+    /* UTILITÁRIOS WIDGET FLUTUANTE */
+    #emailRoutineWidget {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1500;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      width: 320px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .email-widget-header {
+      background-color: var(--primary);
+      color: white;
+      padding: 10px 14px;
+      font-weight: 600;
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+    .email-widget-actions {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+    .email-widget-close, .email-widget-toggle {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+      padding: 0 4px;
+    }
+    .email-widget-close:hover { color: var(--danger); }
+    .email-widget-body {
+      padding: 12px;
+      display: none;
+      max-height: 480px;
+      overflow-y: auto;
+      background-color: #fcfcfc;
+    }
+    .email-search-input {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 13px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+    .email-category-item {
+      margin-bottom: 8px;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      background: #fff;
+      overflow: hidden;
+    }
+    .email-category-title {
+      padding: 8px 10px;
+      font-weight: 600;
+      font-size: 12px;
+      color: var(--secondary);
+      cursor: pointer;
+      background-color: #f1f5f9;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .email-category-title:hover { background-color: #e2e8f0; }
+    .email-category-content {
+      display: none;
+      padding: 8px 10px;
+      font-size: 12px;
+      color: #475569;
+      border-top: 1px solid #e2e8f0;
+      background-color: #ffffff;
+    }
+    .email-list-item {
+      padding: 5px 0;
+      border-bottom: 1px dashed #f1f5f9;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .email-list-item:last-child { border-bottom: none; }
+    .email-address {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 11px;
+    }
+    .email-address:hover { text-decoration: underline; }
+
+    /* RESULTADOS DA BUSCA LIVRE */
+    .search-results {
+      margin-top: 15px;
+      max-height: 280px;
+      overflow-y: auto;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fff;
+    }
+    .search-result-item {
+      padding: 12px 15px;
+      border-bottom: 1px solid #f1f2f6;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .search-result-item:last-child { border-bottom: none; }
+    .search-result-item:hover { background-color: #f1f9ff; }
+    .search-result-title {
+      font-weight: 600;
+      color: var(--primary);
+      font-size: 14px;
+    }
+    .search-result-path {
+      font-size: 12px;
+      color: #7f8c8d;
+      margin-top: 2px;
+    }
+    .search-btn-mini {
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .search-btn-mini:hover { background-color: #2980b9; }
+    .no-results {
+      padding: 20px;
+      text-align: center;
+      color: #95a5a6;
+      font-size: 14px;
+    }
+
+    /* CHECKLIST */
+    .checklist-container {
+      margin-top: 35px;
+      background-color: #f8f9fa;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 25px;
+    }
+    .checklist-container h2 {
+      font-size: 19px;
+      color: var(--primary);
+      margin-top: 0;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      padding: 14px;
+      background-color: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 10px;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+    .checklist-item:hover { border-color: #b2bec3; }
+    .checklist-item input[type="checkbox"] {
+      margin-top: 4px;
+      margin-right: 14px;
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+      accent-color: #2ecc71;
+      flex-shrink: 0;
+    }
+    .checklist-item label {
+      margin: 0;
+      font-weight: normal;
+      cursor: default;
+      flex: 1;
+      color: #2f3640;
+      line-height: 1.5;
+      user-select: text;
+    }
+    .checklist-item.checked {
+      background-color: #e2e8f0;
+      border-color: #cbd5e1;
+      box-shadow: none;
+      opacity: 0.6;
+    }
+    .checklist-item.checked label {
+      text-decoration: line-through;
+      color: #64748b !important;
+    }
+
+    /* LINKS EXTERNOS E VIDE */
+    .vide-link {
+      color: #2980b9;
+      text-decoration: underline;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .vide-link:hover { color: #1c5980; }
+    .external-link {
+      color: #2980b9;
+      text-decoration: underline;
+      font-weight: 500;
+    }
+    .external-link:hover { color: #1c5980; }
+
+    /* MODAL FLUTUANTE (VIDE E SAJ) */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(15, 23, 42, 0.6);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-card {
+      background: #f8fafc;
+      width: 90%;
+      max-width: 650px;
+      border-radius: 12px;
+      padding: 25px 30px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      position: relative;
+      max-height: 80vh;
+      overflow-y: auto;
+      border-top: 5px solid var(--accent);
+    }
+    .modal-header-container {
+      position: sticky;
+      top: -25px;
+      background: #f8fafc;
+      padding-top: 10px;
+      padding-bottom: 15px;
+      margin: -25px -30px 20px -30px;
+      padding-left: 30px;
+      padding-right: 30px;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+    }
+    .modal-close {
+      background: #e2e8f0;
+      border: none;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      font-size: 18px; font-weight: bold;
+      color: #475569;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .modal-close:hover {
+      background: var(--danger);
+      color: white;
+    }
+    .modal-card .checklist-item {
+      background-color: #ffffff;
+      border: 1px solid #cbd5e1;
+    }
+
+    /* ACORDEÕES ROMANOS */
+    .roman-accordion {
+      margin-bottom: 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fff;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+    .roman-header {
+      padding: 14px 18px;
+      font-weight: bold;
+      cursor: pointer;
+      background-color: #eef6fc;
+      color: var(--primary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.2s;
+    }
+    .roman-header:hover { background-color: #dbeafe; }
+    .roman-content {
+      display: none;
+      padding: 15px;
+      border-top: 1px solid var(--border);
+      background-color: #fdfdfd;
+    }
+    .modal-card .roman-accordion { border: 1px solid #cbd5e1; }
+    .modal-card .roman-header { background-color: #e2e8f0; color: #1e293b; }
+    .modal-card .roman-header:hover { background-color: #cbd5e1; }
+
+    @media print {
+      .no-print { display: none !important; }
+      body { background-color: #fff; padding: 0; font-size: 12pt; }
+      .container { box-shadow: none; padding: 0; max-width: 100%; }
+      .checklist-container { border: none; background-color: transparent; }
+      .checklist-item { break-inside: avoid; border: none; padding: 8px 0; }
+      .checklist-item.checked { background-color: transparent; opacity: 1; }
+      .roman-accordion:not(:has(.roman-content[style*="display: block"])) { display: none !important; }
+      .roman-content:not([style*="display: block"]) { display: none !important; }
+      .roman-content[style*="display: block"] { display: block !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- APLICAÇÃO PRINCIPAL (SEM SENHA) -->
+  <div id="mainApp" style="display: block;">
+    
+    <!-- UTILITÁRIOS WIDGET FLUTUANTE -->
+    <div id="emailRoutineWidget" class="no-print">
+      <div class="email-widget-header" onclick="toggleEmailWidget()">
+        <span>🛠 Utilitários</span>
+        <div class="email-widget-actions">
+          <button type="button" class="email-widget-toggle" id="emailToggleBtn">▼</button>
+          <button type="button" class="email-widget-close" onclick="closeEmailWidget(event)">✖</button>
+        </div>
+      </div>
+      <div class="email-widget-body" id="emailWidgetBody">
+        <input type="text" id="emailSearchInput" class="email-search-input" placeholder="Buscar email, órgão ou modelo..." onkeyup="filterEmailRoutine()">
+        <div id="emailCategoriesContainer">
+          
+          <!-- 1. DELEGACIAS -->
+          <div class="email-category-item" data-category="Delegacias">
+            <div class="email-category-title" onclick="toggleEmailCategory(this)">
+              <span>📂 E-mails Delegacias</span>
+              <span>▼</span>
+            </div>
+            <div class="email-category-content" style="padding: 10px 6px; background-color: #f8fafc;">
+              
+              <!-- DPs -->
+              <div style="margin-bottom: 10px; border: 1px solid #cbd5e1; border-left: 4px solid var(--accent); border-radius: 6px; overflow: hidden; background: #fff;">
+                <div onclick="toggleSubCategory(this)" style="padding: 8px 10px; font-weight: 700; font-size: 11px; color: var(--secondary); cursor: pointer; background: #e2e8f0; display: flex; justify-content: space-between; align-items: center; text-transform: uppercase;">
+                  <span>🚓 Delegacias de Polícia (DPs)</span>
+                  <span>▼</span>
+                </div>
+                <div class="sub-category-content" style="display: none; padding: 6px 10px; border-top: 1px solid #e2e8f0;">
+                  <div class="email-list-item"><span>1º DP - Sé</span><a href="mailto:spaulo.dp001@policiacivil.sp.gov.br" class="email-address">spaulo.dp001@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>2º DP - Bom Retiro</span><a href="mailto:dp02.spaulo@policiacivil.sp.gov.br" class="email-address">dp02.spaulo@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>3º DP - Santa Ifigênia</span><a href="mailto:spaulo.dp003@policiacivil.sp.gov.br" class="email-address">spaulo.dp003@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>4º DP - Consolação</span><a href="mailto:spaulo.dp004@policiacivil.sp.gov.br" class="email-address">spaulo.dp004@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>5º DP - Aclimação</span><a href="mailto:spaulo.dp005@policiacivil.sp.gov.br" class="email-address">spaulo.dp005@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>6º DP - Cambuci</span><a href="mailto:spaulo.dp006@policiacivil.sp.gov.br" class="email-address">spaulo.dp006@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>7º DP - Lapa</span><a href="mailto:spaulo.dp007@policiacivil.sp.gov.br" class="email-address">spaulo.dp007@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>8º DP - Brás</span><a href="mailto:dp08.spaulo@policiacivil.sp.gov.br" class="email-address">dp08.spaulo@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>9º DP - Carandiru</span><a href="mailto:spaulo.dp009@policiacivil.sp.gov.br" class="email-address">spaulo.dp009@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>10º DP - Penha de França</span><a href="mailto:dp010.spaulo@policiacivil.sp.gov.br" class="email-address">dp010.spaulo@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>11º DP - Santo Amaro</span><a href="mailto:spaulo.dp011@policiacivil.sp.gov.br" class="email-address">spaulo.dp011@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>12º DP - Pari</span><a href="mailto:dp012.spaulo@policiacivil.sp.gov.br" class="email-address">dp012.spaulo@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>13º DP - Casa Verde</span><a href="mailto:spaulo.dp013@policiacivil.sp.gov.br" class="email-address">spaulo.dp013@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>14º DP - Pinheiros</span><a href="mailto:spaulo.dp014@policiacivil.sp.gov.br" class="email-address">spaulo.dp014@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>15º DP - Itaim Bibi</span><a href="mailto:spaulo.dp015@policiacivil.sp.gov.br" class="email-address">spaulo.dp015@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>16º DP - Vila Clementino</span><a href="mailto:spaulo.dp016@policiacivil.sp.gov.br" class="email-address">spaulo.dp016@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>17º DP - Ipiranga</span><a href="mailto:spaulo.dp017@policiacivil.sp.gov.br" class="email-address">spaulo.dp017@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>18º DP - Alto da Mooca</span><a href="mailto:dp018.spaulo@policiacivil.sp.gov.br" class="email-address">dp018.spaulo@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>19º DP - Vila Maria</span><a href="mailto:spaulo.dp019@policiacivil.sp.gov.br" class="email-address">spaulo.dp019@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>20º DP - Água Fria</span><a href="mailto:spaulo.dp020@policiacivil.sp.gov.br" class="email-address">spaulo.dp020@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>21º DP - Vila Matilde</span><a href="mailto:dp021.spaulo@policiacivil.sp.gov.br" class="email-address">dp021.spaulo@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>22º DP - São Miguel Paulista</span><a href="mailto:spaulo.dp022@policiacivil.sp.gov.br" class="email-address">spaulo.dp022@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>23º DP - Perdizes</span><a href="mailto:spaulo.dp023@policiacivil.sp.gov.br" class="email-address">spaulo.dp023@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>24º DP - Ponte Rasa</span><a href="mailto:dp024.spaulo@policiacivil.sp.gov.br" class="email-address">dp024.spaulo@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>25º DP - Parelheiros</span><a href="mailto:spaulo.dp025@policiacivil.sp.gov.br" class="email-address">spaulo.dp025@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>26º DP - Sacomã</span><a href="mailto:spaulo.dp026@policiacivil.sp.gov.br" class="email-address">spaulo.dp026@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>27º DP - Campo Belo</span><a href="mailto:spaulo.dp027@policiacivil.sp.gov.br" class="email-address">spaulo.dp027@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>28º DP - Freguesia do Ó</span><a href="mailto:spaulo.dp028@policiacivil.sp.gov.br" class="email-address">spaulo.dp028@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>29º DP - Vila Diva</span><a href="mailto:dp029.spaulo@policiacivil.sp.gov.br" class="email-address">dp029.spaulo@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>30º DP - Tatuapé</span><a href="mailto:dp030.spaulo@policiacivil.sp.gov.br" class="email-address">dp030.spaulo@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>31º DP - Vila Carrão</span><a href="mailto:dp031.spaulo@policiacivil.sp.gov.br" class="email-address">dp031.spaulo@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>32º DP - Itaquera</span><a href="mailto:spaulo.dp032@policiacivil.sp.gov.br" class="email-address">spaulo.dp032@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>33º DP - Pirituba</span><a href="mailto:spaulo.dp033@policiacivil.sp.gov.br" class="email-address">spaulo.dp033@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>34º DP - Vila Sônia</span><a href="mailto:dp034.spaulo@policiacivil.sp.gov.br" class="email-address">dp034.spaulo@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>35º DP - Jabaquara</span><a href="mailto:spaulo.dp035@policiacivil.sp.gov.br" class="email-address">spaulo.dp035@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>36º DP - Vila Mariana</span><a href="mailto:spaulo.dp036@policiacivil.sp.gov.br" class="email-address">spaulo.dp036@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>37º DP - Campo Limpo</span><a href="mailto:spaulo.dp037@policiacivil.sp.gov.br" class="email-address">spaulo.dp037@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>38º DP - Vila Amália</span><a href="mailto:spaulo.dp038@policiacivil.sp.gov.br" class="email-address">spaulo.dp038@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>39º DP - Vila Gustavo</span><a href="mailto:spaulo.dp039@policiacivil.sp.gov.br" class="email-address">spaulo.dp039@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>40º DP - Vila Santa Maria</span><a href="mailto:spaulo.dp040@policiacivil.sp.gov.br" class="email-address">spaulo.dp040@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>41º DP - Vila Rica</span><a href="mailto:dp041.spaulo@policiacivil.sp.gov.br" class="email-address">dp041.spaulo@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>42º DP - Parque São Lucas</span><a href="mailto:dp042.spaulo@policiacivil.sp.gov.br" class="email-address">dp042.spaulo@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>43º DP - Cidade Ademar</span><a href="mailto:spaulo.dp043@policiacivil.sp.gov.br" class="email-address">spaulo.dp043@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>44º DP - Parque Santo Antônio</span><a href="mailto:dp044.spaulo@policiacivil.sp.gov.br" class="email-address">dp044.spaulo@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>45º DP - Vila Brasilândia</span><a href="mailto:spaulo.dp045@policiacivil.sp.gov.br" class="email-address">spaulo.dp045@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>46º DP - Perus</span><a href="mailto:spaulo.dp046@policiacivil.sp.gov.br" class="email-address">spaulo.dp046@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>47º DP - Capão Redondo</span><a href="mailto:spaulo.dp047@policiacivil.sp.gov.br" class="email-address">spaulo.dp047@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>49º DP - São Mateus</span><a href="mailto:spaulo.dp049@policiacivil.sp.gov.br" class="email-address">spaulo.dp049@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>50º DP - Itaim Paulista</span><a href="mailto:spaulo.dp050@policiacivil.sp.gov.br" class="email-address">spaulo.dp050@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>51º DP - Butantã</span><a href="mailto:spaulo.dp051@policiacivil.sp.gov.br" class="email-address">spaulo.dp051@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>52º DP - Parque São Jorge</span><a href="mailto:dp052.spaulo@policiacivil.sp.gov.br" class="email-address">dp052.spaulo@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>53º DP - Parque do Carmo</span><a href="mailto:spaulo.dp053@policiacivil.sp.gov.br" class="email-address">spaulo.dp053@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>54º DP - Cidade Tiradentes</span><a href="mailto:spaulo.dp054@policiacivil.sp.gov.br" class="email-address">spaulo.dp054@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>55º DP - Parque São Rafael</span><a href="mailto:dp055.spaulo@policiacivil.sp.gov.br" class="email-address">dp055.spaulo@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>56º DP - Vila Alpina</span><a href="mailto:dp56.decap@policiacivil.sp.gov.br" class="email-address">dp56.decap@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>57º DP - Parque da Mooca</span><a href="mailto:dp057.spaulo@policiacivil.sp.gov.br" class="email-address">dp057.spaulo@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>58º DP - Vila Formosa</span><a href="mailto:dp058.spaulo@policiacivil.sp.gov.br" class="email-address">dp058.spaulo@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>59º DP - Jardim dos Ipês</span><a href="mailto:spaulo.dp059@policiacivil.sp.gov.br" class="email-address">spaulo.dp059@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>62º DP - Ermelino Matarazzo</span><a href="mailto:spaulo.dp062@policiacivil.sp.gov.br" class="email-address">spaulo.dp062@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>63º DP - Vila Jacuí</span><a href="mailto:spaulo.dp063@policiacivil.sp.gov.br" class="email-address">spaulo.dp063@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>64º DP - Cidade A.E. Carvalho</span><a href="mailto:spaulo.dp064@policiacivil.sp.gov.br" class="email-address">spaulo.dp064@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>65º DP - Artur Alvim</span><a href="mailto:spaulo.dp065@policiacivil.sp.gov.br" class="email-address">spaulo.dp065@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>66º DP - Vale do Aricanduva</span><a href="mailto:dp066.spaulo@policiacivil.sp.gov.br" class="email-address">dp066.spaulo@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>67º DP - Jardim Robru</span><a href="mailto:spaulo.dp067@policiacivil.sp.gov.br" class="email-address">spaulo.dp067@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>68º DP - Lajeado</span><a href="mailto:spaulo.dp068@policiacivil.sp.gov.br" class="email-address">spaulo.dp068@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>69º DP - Teotônio Vilela</span><a href="mailto:dp069.spaulo@policiacivil.sp.gov.br" class="email-address">dp069.spaulo@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>70º DP - Vila Ema</span><a href="mailto:spaulo.dp070@policiacivil.sp.gov.br" class="email-address">spaulo.dp070@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>72º DP - Vila Penteado</span><a href="mailto:spaulo.dp072@policiacivil.sp.gov.br" class="email-address">spaulo.dp072@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>73º DP - Jaçanã</span><a href="mailto:spaulo.dp073@policiacivil.sp.gov.br" class="email-address">spaulo.dp073@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>74º DP - Jaraguá</span><a href="mailto:spaulo.dp074@policiacivil.sp.gov.br" class="email-address">spaulo.dp074@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>75º DP - Jardim Arpoador</span><a href="mailto:spaulo.dp075@policiacivil.sp.gov.br" class="email-address">spaulo.dp075@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>77º DP - Santa Cecília</span><a href="mailto:spaulo.dp077@policiacivil.sp.gov.br" class="email-address">spaulo.dp077@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>78º DP - Jardins</span><a href="mailto:spaulo.dp078@policiacivil.sp.gov.br" class="email-address">spaulo.dp078@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>80º DP - Vila Joaniza</span><a href="mailto:spaulo.dp080@policiacivil.sp.gov.br" class="email-address">spaulo.dp080@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>81º DP - Belém</span><a href="mailto:dp081.spaulo@policiacivil.sp.gov.br" class="email-address">dp081.spaulo@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>83º DP - Parque Bristol</span><a href="mailto:spaulo.dp083@policiacivil.sp.gov.br" class="email-address">spaulo.dp083@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>85º DP - Jardim Mirna</span><a href="mailto:spaulo.dp085@policiacivil.sp.gov.br" class="email-address">spaulo.dp085@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>87º DP - Vila Pereira Barreto</span><a href="mailto:dp087.spaulo@policiacivil.sp.gov.br" class="email-address">dp087.spaulo@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>89º DP - Portal do Morumbi</span><a href="mailto:spaulo.dp089@policiacivil.sp.gov.br" class="email-address">spaulo.dp089@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>90º DP - Parque Novo Mundo</span><a href="mailto:spaulo.dp090@policiacivil.sp.gov.br" class="email-address">spaulo.dp090@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>91º DP - CEASA</span><a href="mailto:spaulo.dp091@policiacivil.sp.gov.br" class="email-address">spaulo.dp091@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>92º DP - Parque Santo Antônio</span><a href="mailto:spaulo.dp092@policiacivil.sp.gov.br" class="email-address">spaulo.dp092@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>93º DP - Jaguaré</span><a href="mailto:dp093.spaulo@policiacivil.sp.gov.br" class="email-address">dp093.spaulo@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>95º DP - Heliópolis</span><a href="mailto:spaulo.dp095@policiacivil.sp.gov.br" class="email-address">spaulo.dp095@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>96º DP - Monções</span><a href="mailto:spaulo.dp096@policiacivil.sp.gov.br" class="email-address">spaulo.dp096@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>97º DP - Americanópolis</span><a href="mailto:spaulo.dp097@policiacivil.sp.gov.br" class="email-address">spaulo.dp097@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>98º DP - Jardim Jabaquara</span><a href="mailto:spaulo.dp098@policiacivil.sp.gov.br" class="email-address">spaulo.dp098@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>99º DP - Campo Grande</span><a href="mailto:spaulo.dp099@policiacivil.sp.gov.br" class="email-address">spaulo.dp099@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>100º DP - Jardim Herculano</span><a href="mailto:spaulo.dp100@policiacivil.sp.gov.br" class="email-address">spaulo.dp100@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>101º DP - Jardim das Imbuias</span><a href="mailto:spaulo.dp101@policiacivil.sp.gov.br" class="email-address">spaulo.dp101@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>102º DP - Socorro</span><a href="mailto:spaulo.dp102@policiacivil.sp.gov.br" class="email-address">spaulo.dp102@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>103º DP - Itaquera</span><a href="mailto:spaulo.dp103@policiacivil.sp.gov.br" class="email-address">spaulo.dp103@policiacivil.sp.gov.br</a></div>
+                </div>
+              </div>
+
+              <!-- DDM -->
+              <div style="margin-bottom: 10px; border: 1px solid #cbd5e1; border-left: 4px solid var(--accent); border-radius: 6px; overflow: hidden; background: #fff;">
+                <div onclick="toggleSubCategory(this)" style="padding: 8px 10px; font-weight: 700; font-size: 11px; color: var(--secondary); cursor: pointer; background: #e2e8f0; display: flex; justify-content: space-between; align-items: center; text-transform: uppercase;">
+                  <span>👩 Delegacias da Mulher (DDM)</span>
+                  <span>▼</span>
+                </div>
+                <div class="sub-category-content" style="display: none; padding: 6px 10px; border-top: 1px solid #e2e8f0;">
+                  <div class="email-list-item"><span>1ª DDM - Capital (Centro)</span><a href="mailto:spaulo.ddm01@policiacivil.sp.gov.br" class="email-address">spaulo.ddm01@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>2ª DDM - Sul</span><a href="mailto:spaulo.ddm02@policiacivil.sp.gov.br" class="email-address">spaulo.ddm02@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>3ª DDM - Oeste</span><a href="mailto:spaulo.ddm03@policiacivil.sp.gov.br" class="email-address">spaulo.ddm03@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>4ª DDM - Norte</span><a href="mailto:ddm.sec04@policiacivil.sp.gov.br" class="email-address">ddm.sec04@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>5ª DDM - Leste</span><a href="mailto:ddm.sec05@policiacivil.sp.gov.br" class="email-address">ddm.sec05@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>8ª DDM - São Mateus</span><a href="mailto:ddm.sec08@policiacivil.sp.gov.br" class="email-address">ddm.sec08@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>9ª DDM - Pirituba</span><a href="mailto:spaulo.ddm09@policiacivil.sp.gov.br" class="email-address">spaulo.ddm09@policiacivil.sp.gov.br</a></div>
+                </div>
+              </div>
+
+              <!-- DHPP -->
+              <div style="margin-bottom: 10px; border: 1px solid #cbd5e1; border-left: 4px solid var(--accent); border-radius: 6px; overflow: hidden; background: #fff;">
+                <div onclick="toggleSubCategory(this)" style="padding: 8px 10px; font-weight: 700; font-size: 11px; color: var(--secondary); cursor: pointer; background: #e2e8f0; display: flex; justify-content: space-between; align-items: center; text-transform: uppercase;">
+                  <span>🎯 DHPP</span>
+                  <span>▼</span>
+                </div>
+                <div class="sub-category-content" style="display: none; padding: 6px 10px; border-top: 1px solid #e2e8f0;">
+                  <div class="email-list-item"><span>DHPP - Diretoria</span><a href="mailto:dhpp.diretoria@policiacivil.sp.gov.br" class="email-address">dhpp.diretoria@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>DHPP - Cartório Central</span><a href="mailto:dhpp.cartoriocentral@policiacivil.sp.gov.br" class="email-address">dhpp.cartoriocentral@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>DHPP - UIP</span><a href="mailto:dhpp.uip@policiacivil.sp.gov.br" class="email-address">dhpp.uip@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>1ª DP Homicídios (Geral)</span><a href="mailto:dhpp.1dh@policiacivil.sp.gov.br" class="email-address">dhpp.1dh@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>1ª DP Hom. Equipe A Sul</span><a href="mailto:dhpp.asul@policiacivil.sp.gov.br" class="email-address">dhpp.asul@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>1ª DP Hom. Equipe B Sul</span><a href="mailto:dhpp.bsul@policiacivil.sp.gov.br" class="email-address">dhpp.bsul@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>1ª DP Hom. Equipe C Sul</span><a href="mailto:dhpp.csul@policiacivil.sp.gov.br" class="email-address">dhpp.csul@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>1ª DP Hom. Equipe D Sul</span><a href="mailto:dhpp.dsul@policiacivil.sp.gov.br" class="email-address">dhpp.dsul@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>1ª DP Hom. Equipe E Sul</span><a href="mailto:dhpp.esul@policiacivil.sp.gov.br" class="email-address">dhpp.esul@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>1ª DP Hom. Equipe F Sul</span><a href="mailto:dhpp.fsul@policiacivil.sp.gov.br" class="email-address">dhpp.fsul@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>2ª DP Homicídios (Geral)</span><a href="mailto:dhpp.2dh@policiacivil.sp.gov.br" class="email-address">dhpp.2dh@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>2ª DP Hom. Equipe A Leste</span><a href="mailto:dhpp.aleste@policiacivil.sp.gov.br" class="email-address">dhpp.aleste@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>2ª DP Hom. Equipe B Leste</span><a href="mailto:dhpp.bleste@policiacivil.sp.gov.br" class="email-address">dhpp.bleste@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>2ª DP Hom. Equipe C Leste</span><a href="mailto:dhpp.cleste@policiacivil.sp.gov.br" class="email-address">dhpp.cleste@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>2ª DP Hom. Equipe D Leste</span><a href="mailto:dhpp.dleste@policiacivil.sp.gov.br" class="email-address">dhpp.dleste@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>2ª DP Hom. Equipe E Leste</span><a href="mailto:dhpp.eleste@policiacivil.sp.gov.br" class="email-address">dhpp.eleste@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>2ª DP Hom. Equipe F Leste</span><a href="mailto:dhpp.fleste@policiacivil.sp.gov.br" class="email-address">dhpp.fleste@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>3ª DP Homicídios</span><a href="mailto:dhpp.3dh@policiacivil.sp.gov.br" class="email-address">dhpp.3dh@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>4ª DP Homicídios</span><a href="mailto:dhpp.4dh@policiacivil.sp.gov.br" class="email-address">dhpp.4dh@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>5ª DP Crimes c/ Criança</span><a href="mailto:dhpp.5dh@policiacivil.sp.gov.br" class="email-address">dhpp.5dh@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>Pessoas Desaparecidas</span><a href="mailto:pessoasdesaparecidas@policiacivil.sp.gov.br" class="email-address">pessoasdesaparecidas@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>Divisão Antissequestro</span><a href="mailto:dhpp.das@policiacivil.sp.gov.br" class="email-address">dhpp.das@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>Proteção à Pessoa</span><a href="mailto:ppessoa.dhpp@policiacivil.sp.gov.br" class="email-address">ppessoa.dhpp@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>DDECRADI</span><a href="mailto:decradi@policiacivil.sp.gov.br" class="email-address">decradi@policiacivil.sp.gov.br</a></div>
+                </div>
+              </div>
+
+              <!-- GEACRIM -->
+              <div style="margin-bottom: 10px; border: 1px solid #cbd5e1; border-left: 4px solid var(--accent); border-radius: 6px; overflow: hidden; background: #fff;">
+                <div onclick="toggleSubCategory(this)" style="padding: 8px 10px; font-weight: 700; font-size: 11px; color: var(--secondary); cursor: pointer; background: #e2e8f0; display: flex; justify-content: space-between; align-items: center; text-transform: uppercase;">
+                  <span>🔍 GEACRIM</span>
+                  <span>▼</span>
+                </div>
+                <div class="sub-category-content" style="display: none; padding: 6px 10px; border-top: 1px solid #e2e8f0;">
+                  <div class="email-list-item"><span>Coordenação GEACRIM</span><a href="mailto:dhpp.coordenadoriageacrim@policiacivil.sp.gov.br" class="email-address">dhpp.coordenadoriageacrim@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>GEACRIM 01</span><a href="mailto:dhpp.geacrim01@policiacivil.sp.gov.br" class="email-address">dhpp.geacrim01@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>GEACRIM 02</span><a href="mailto:dhpp.geacrim02@policiacivil.sp.gov.br" class="email-address">dhpp.geacrim02@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>GEACRIM 03</span><a href="mailto:dhpp.geacrim03@policiacivil.sp.gov.br" class="email-address">dhpp.geacrim03@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>GEACRIM 04</span><a href="mailto:dhpp.geacrim04@policiacivil.sp.gov.br" class="email-address">dhpp.geacrim04@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>GEACRIM 05</span><a href="mailto:dhpp.geacrim05@policiacivil.sp.gov.br" class="email-address">dhpp.geacrim05@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>GEACRIM 06</span><a href="mailto:dhpp.geacrim06@policiacivil.sp.gov.br" class="email-address">dhpp.geacrim06@policiacivil.sp.gov.br</a></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- 2. IML -->
+          <div class="email-category-item" data-category="IML">
+            <div class="email-category-title" onclick="toggleEmailCategory(this)">
+              <span>🔬 E-mails IML</span>
+              <span>▼</span>
+            </div>
+            <div class="email-category-content" style="padding: 10px 6px; background-color: #f8fafc;">
+              <div style="margin-bottom: 10px; border: 1px solid #cbd5e1; border-left: 4px solid var(--accent); border-radius: 6px; overflow: hidden; background: #fff;">
+                <div onclick="toggleSubCategory(this)" style="padding: 8px 10px; font-weight: 700; font-size: 11px; color: var(--secondary); cursor: pointer; background: #e2e8f0; display: flex; justify-content: space-between; align-items: center; text-transform: uppercase;">
+                  <span>🏙️ Capital</span>
+                  <span>▼</span>
+                </div>
+                <div class="sub-category-content" style="display: none; padding: 6px 10px; border-top: 1px solid #e2e8f0;">
+                  <div class="email-list-item"><span>IML Capital (Exemplo)</span><a href="mailto:capital@iml.sp.gov.br" class="email-address">capital@iml.sp.gov.br</a></div>
+                </div>
+              </div>
+              <div style="margin-bottom: 10px; border: 1px solid #cbd5e1; border-left: 4px solid var(--accent); border-radius: 6px; overflow: hidden; background: #fff;">
+                <div onclick="toggleSubCategory(this)" style="padding: 8px 10px; font-weight: 700; font-size: 11px; color: var(--secondary); cursor: pointer; background: #e2e8f0; display: flex; justify-content: space-between; align-items: center; text-transform: uppercase;">
+                  <span>🛣️ Interior</span>
+                  <span>▼</span>
+                </div>
+                <div class="sub-category-content" style="display: none; padding: 6px 10px; border-top: 1px solid #e2e8f0;">
+                  <div class="email-list-item"><span>IML Interior (Exemplo)</span><a href="mailto:interior@iml.sp.gov.br" class="email-address">interior@iml.sp.gov.br</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. IDENTIFICAÇÃO OUTROS ESTADOS -->
+          <div class="email-category-item" data-category="Identificação">
+            <div class="email-category-title" onclick="toggleEmailCategory(this)">
+              <span>🪪 Inst. Ident. (Outros Estados)</span>
+              <span>▼</span>
+            </div>
+            <div class="email-category-content">
+               <div class="email-list-item"><span>Identificação MG (Exemplo)</span><a href="mailto:identificacao@mg.gov.br" class="email-address">identificacao@mg.gov.br</a></div>
+            </div>
+          </div>
+
+          <!-- 4. SAP -->
+          <div class="email-category-item" data-category="SAP">
+            <div class="email-category-title" onclick="toggleEmailCategory(this)">
+              <span>🏢 Secretaria Admin. Penitenciária</span>
+              <span>▼</span>
+            </div>
+            <div class="email-category-content">
+               <div class="email-list-item"><span>Ofícios SAP (Exemplo)</span><a href="mailto:oficios@sap.sp.gov.br" class="email-address">oficios@sap.sp.gov.br</a></div>
+            </div>
+          </div>
+
+          <!-- 5. TELEFONIA (Automático) -->
+          <div class="email-category-item" data-category="Telefonia">
+            <div class="email-category-title" onclick="toggleEmailCategory(this)">
+              <span>📱 Operadoras de Telefonia</span>
+              <span>▼</span>
+            </div>
+            <div class="email-category-content" id="telefoniaContent">
+               <div class="email-list-item"><span style="color:#7f8c8d; font-style:italic; font-size: 11px;">Carregando e-mails automaticamente...</span></div>
+            </div>
+          </div>
+
+          <!-- 6. MODELOS SAJ (Automático) -->
+          <div class="email-category-item" data-category="SAJ">
+            <div class="email-category-title" onclick="toggleEmailCategory(this)">
+              <span>📄 Modelos SAJ</span>
+              <span>▼</span>
+            </div>
+            <div class="email-category-content" id="sajContent" style="padding: 8px;">
+               <div class="email-list-item"><span style="color:#7f8c8d; font-style:italic; font-size: 11px;">Carregando modelos SAJ automaticamente...</span></div>
+            </div>
+          </div>
+
+          <!-- 7. INSTITUTOS DE IDENTIFICAÇÃO (SP) -->
+          <div class="email-category-item" data-category="Institutos de Identificação">
+            <div class="email-category-title" onclick="toggleEmailCategory(this)">
+              <span>🔎 Institutos de Identificação (SP)</span>
+              <span>▼</span>
+            </div>
+            <div class="email-category-content">
+              <div class="email-list-item">
+                <span>IIRGD Geral</span>
+                <a href="mailto:alvaras.iirgd@policiacivil.sp.gov.br" class="email-address">alvaras.iirgd@policiacivil.sp.gov.br</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 8. HOSPITAIS -->
+          <div class="email-category-item" data-category="Hospitais">
+            <div class="email-category-title" onclick="toggleEmailCategory(this)">
+              <span>🏥 Hospitais</span>
+              <span>▼</span>
+            </div>
+            <div class="email-category-content">
+              <div class="email-list-item">
+                <span>Hospital Exemplo</span>
+                <a href="mailto:hospital@saude.sp.gov.br" class="email-address">hospital@saude.sp.gov.br</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 9. OUTROS -->
+          <div class="email-category-item" data-category="Outros">
+            <div class="email-category-title" onclick="toggleEmailCategory(this)">
+              <span>📁 Outros</span>
+              <span>▼</span>
+            </div>
+            <div class="email-category-content">
+              <div class="email-list-item">
+                <span>Central de Pedidos</span>
+                <a href="mailto:centralpedidos@tjsp.jus.br" class="email-address">centralpedidos@tjsp.jus.br</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 10. VARAS DE EXECUÇÃO -->
+          <div class="email-category-item" data-category="Varas de Execução">
+            <div class="email-category-title" onclick="toggleEmailCategory(this)">
+              <span>⚖️ Varas de Execução</span>
+              <span>▼</span>
+            </div>
+            <div class="email-category-content" style="padding: 10px 6px; background-color: #f8fafc;">
+              
+              <!-- DECRIM -->
+              <div style="margin-bottom: 10px; border: 1px solid #cbd5e1; border-left: 4px solid var(--accent); border-radius: 6px; overflow: hidden; background: #fff;">
+                <div onclick="toggleSubCategory(this)" style="padding: 8px 10px; font-weight: 700; font-size: 11px; color: var(--secondary); cursor: pointer; background: #e2e8f0; display: flex; justify-content: space-between; align-items: center; text-transform: uppercase;">
+                  <span>🏛️ DECRIM</span>
+                  <span>▼</span>
+                </div>
+                <div class="sub-category-content" style="display: none; padding: 6px 10px; border-top: 1px solid #e2e8f0;">
+                  <div class="email-list-item" style="flex-direction: column; align-items: flex-start; gap: 4px;">
+                    <span style="font-weight: 600;">1ª VEC: Acordos de Não Persecução Penal e Penas Restritivas de Direitos.</span>
+                    <a href="mailto:decrim1vecpenasalteranativas@tjsp.jus.br" class="email-address">decrim1vecpenasalteranativas@tjsp.jus.br</a>
+                    <a href="mailto:decrim1vecmedidaseguranca@tjsp.jus.br" class="email-address">decrim1vecmedidaseguranca@tjsp.jus.br</a>
+                  </div>
+                  <div class="email-list-item" style="flex-direction: column; align-items: flex-start; gap: 4px;">
+                    <span style="font-weight: 600;">2ª VEC: Feminino - Todas as matérias menos fechado/semiaberto/segurança</span>
+                    <a href="mailto:decrim2vec@tjsp.jus.br" class="email-address">decrim2vec@tjsp.jus.br</a>
+                  </div>
+                  <div class="email-list-item" style="flex-direction: column; align-items: flex-start; gap: 4px;">
+                    <span style="font-weight: 600;">3ª VEC: Liberdade Condicional e Sursis</span>
+                    <a href="mailto:decrim3vec@tjsp.jus.br" class="email-address">decrim3vec@tjsp.jus.br</a>
+                  </div>
+                  <div class="email-list-item" style="flex-direction: column; align-items: flex-start; gap: 4px;">
+                    <span style="font-weight: 600;">4ª VEC: Regime Aberto Masculino</span>
+                    <a href="mailto:decrim4vec@tjsp.jus.br" class="email-address">decrim4vec@tjsp.jus.br</a>
+                  </div>
+                  <div class="email-list-item" style="flex-direction: column; align-items: flex-start; gap: 4px;">
+                    <span style="font-weight: 600;">5ª VEC: Gabinete</span>
+                    <a href="mailto:decrim@tjsp.jus.br" class="email-address">decrim@tjsp.jus.br</a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- DEECRIM -->
+              <div style="margin-bottom: 10px; border: 1px solid #cbd5e1; border-left: 4px solid var(--accent); border-radius: 6px; overflow: hidden; background: #fff;">
+                <div onclick="toggleSubCategory(this)" style="padding: 8px 10px; font-weight: 700; font-size: 11px; color: var(--secondary); cursor: pointer; background: #e2e8f0; display: flex; justify-content: space-between; align-items: center; text-transform: uppercase;">
+                  <span>🏢 DEECRIM</span>
+                  <span>▼</span>
+                </div>
+                <div class="sub-category-content" style="display: none; padding: 6px 10px; border-top: 1px solid #e2e8f0;">
+                  <div class="email-list-item" style="flex-direction: column; align-items: flex-start; gap: 4px;">
+                    <span>I. Regime Fechado ou Semiaberto</span>
+                    <span>II. Depende da unidade prisional em que o réu está custodiado</span>
+                    <span>III. Verificar tabela disponível no site oficial do TJ/SP: <a href="https://www.tjsp.jus.br/Corregedoria/Corregedoria/Deex" target="_blank" class="external-link" onclick="event.stopPropagation();">Acessar Tabela</a></span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTÃO FLUTUANTE DE IMPRESSÃO / PDF -->
+    <button type="button" class="btn-floating-print no-print" onclick="window.print()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+      Salvar PDF / Imprimir
+    </button>
+
+    <!-- MODAL FLUTUANTE PARA VIDE E MODELOS SAJ -->
+    <div id="videModal" class="modal-overlay" onclick="closeVideModal(event)">
+      <div class="modal-card" onclick="event.stopPropagation()">
+        <div class="modal-header-container">
+          <h3 id="modalTitle" style="color: var(--primary); margin:0; font-size:18px;"></h3>
+          <button class="modal-close" onclick="closeVideModalDirect()">&times;</button>
+        </div>
+        <div id="modalItems"></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <h1 class="no-print">Procedimentos da 2ª Vara do Júri</h1>
+      <div class="subtitle no-print">2º Ofício do Júri da Comarca da Capital</div>
+
+      <!-- ABAS -->
+      <div class="tabs no-print">
+        <button class="tab-btn active" onclick="switchTab('cascade')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+          Navegação em Cascata
+        </button>
+        <button class="tab-btn" onclick="switchTab('search')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          Busca Livre
+        </button>
+      </div>
+
+      <!-- ABA 1: CASCATA -->
+      <div id="tabCascade" class="tab-content active no-print">
+        <div class="form-group">
+          <label for="selectA" class="select-label">Fase / Tipo de Busca:</label>
+          <select id="selectA" onchange="updateB()">
+            <option value="">Selecione a opção principal...</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="selectB" class="select-label">Sistema / Ato:</label>
+          <select id="selectB" onchange="updateC()" disabled>
+            <option value="">Aguardando seleção anterior...</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="selectC" class="select-label">Subitem / Detalhe:</label>
+          <select id="selectC" disabled>
+            <option value="">Aguardando seleção anterior...</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- ABA 2: BUSCA LIVRE -->
+      <div id="tabSearch" class="tab-content no-print">
+        <div class="form-group">
+          <label for="searchInput" class="select-label">Buscar Procedimento:</label>
+          <input type="text" id="searchInput" placeholder="Ex.: Alvará, Busca e Apreensão, etc." onkeyup="handleFreeSearch()">
+        </div>
+        <div id="searchResults" class="search-results" style="display: none;"></div>
+      </div>
+
+      <!-- BOTÕES DE AÇÃO -->
+      <div class="actions no-print">
+        <button type="button" class="action-btn btn-danger" onclick="confirmClearAll()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+          Apagar Seleção
+        </button>
+        <button type="button" class="action-btn btn-success" onclick="executeSearch()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          Buscar
+        </button>
+      </div>
+
+      <!-- ÁREA DO CHECKLIST -->
+      <div class="checklist-container" id="checklistContainer" style="display: none;">
+        <h2>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          <span id="checklistTitle"></span>
+        </h2>
+        <div id="checklistItems"></div>
+
+        <div class="form-group" style="margin-top: 30px;">
+          <label for="notes" class="select-label">Anotações / Observações:</label>
+          <textarea id="notes" placeholder="Escreva aqui detalhes do processo, anotações de balcão, etc."></textarea>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Utilitários Widget Functions
+    function toggleEmailWidget() {
+      const body = document.getElementById('emailWidgetBody');
+      const btn = document.getElementById('emailToggleBtn');
+      const widget = document.getElementById('emailRoutineWidget');
+      widget.style.opacity = '1';
+      if (body.style.display === 'block') {
+        body.style.display = 'none';
+        btn.textContent = '▼';
+      } else {
+        body.style.display = 'block';
+        btn.textContent = '▲';
+      }
+    }
+
+    function closeEmailWidget(e) {
+      e.stopPropagation();
+      const body = document.getElementById('emailWidgetBody');
+      const widget = document.getElementById('emailRoutineWidget');
+      if (body.style.display === 'block') {
+        body.style.display = 'none';
+        document.getElementById('emailToggleBtn').textContent = '▼';
+      } else {
+        if (widget.style.opacity === '0.35') {
+          widget.style.opacity = '1';
+          widget.style.width = '320px';
+          widget.onclick = null;
+        } else {
+          widget.style.opacity = '0.35';
+          widget.onclick = function() {
+            widget.style.opacity = '1';
+            widget.style.width = '320px';
+            widget.onclick = null;
+          };
+        }
+      }
+    }
+
+    function toggleEmailCategory(headerEl) {
+      const content = headerEl.nextElementSibling;
+      const arrow = headerEl.querySelector('span:last-child');
+      if (content.style.display === 'block') {
+        content.style.display = 'none';
+        arrow.textContent = '▼';
+      } else {
+        content.style.display = 'block';
+        arrow.textContent = '▲';
+      }
+    }
+
+    function toggleSubCategory(headerEl) {
+      const content = headerEl.nextElementSibling;
+      const arrow = headerEl.querySelector('span:last-child');
+      if (content.style.display === 'block') {
+        content.style.display = 'none';
+        arrow.textContent = '▼';
+      } else {
+        content.style.display = 'block';
+        arrow.textContent = '▲';
+      }
+    }
+
+    function filterEmailRoutine() {
+      const term = document.getElementById('emailSearchInput').value.toLowerCase().trim();
+      const categories = document.querySelectorAll('.email-category-item');
+
+      categories.forEach(cat => {
+        let catName = cat.getAttribute('data-category').toLowerCase();
+        let items = cat.querySelectorAll('.email-list-item');
+        let anyItemMatch = false;
+
+        items.forEach(item => {
+          let text = item.textContent.toLowerCase();
+          if (text.includes(term) || (term.length > 0 && catName.includes(term))) {
+            item.style.display = 'flex';
+            anyItemMatch = true;
+            if (term.length > 0) {
+              let subCat = item.closest('.sub-category-content');
+              if (subCat) subCat.style.display = 'block';
+            }
+          } else if (term.length === 0) {
+            item.style.display = 'flex';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+
+        if (term.length > 0) {
+          if (anyItemMatch || catName.includes(term)) {
+            cat.style.display = 'block';
+            cat.querySelector('.email-category-content').style.display = 'block';
+          } else {
+            cat.style.display = 'none';
+          }
+        } else {
+          cat.style.display = 'block';
+          cat.querySelector('.email-category-content').style.display = 'none';
+          cat.querySelectorAll('.sub-category-content').forEach(sub => sub.style.display = 'none');
+        }
+      });
+    }
+
+    // BASE DE DADOS COMPLETA
+    const data = {
+    "1. Por Fase": {
+        "Denúncia": {
+            "Após assinatura da decisão": [
+                "I. Cadastro e Atualização de dados processuais",
+                "1. IMEDIATAMENTE verificar se há determinação de prisão do réu.",
+                "1.1 Caso seja determinado, deve-se expedir Mandado de Prisão Preventiva. (VIDE Peças BNMP - Mandado de Prisão Preventiva)",
+                "2. Evolução de Classe",
+                "2.1. Aba \"Andamento\"",
+                "2.2. Clicar em \"Evolução de Classe ou Correção de Classe de Incidente\"",
+                "2.2.1. No campo \"Classe\": código 282 - Ação Penal de Competência do Júri",
+                "2.2.2. No campo \"Competência\": código 11 - Júri",
+                "3. Corrigir o Assunto Principal",
+                "3.1. Aba \"Cadastro\"",
+                "3.2. Clicar em \"Processo\"",
+                "3.3. Na aba \"Dados Processuais\"",
+                "3.3.1. Selecionar o processo",
+                "3.3.2. Assunto Principal: preencher com o crime o qual o Ministério Público imputou ao denunciado",
+                "3.3.2.1 Caso hajam múltiplos crime, o assunto principal será sempre o mais grave (com maior pena de acordo com o Código Penal)",
+                "3.3.3. Assunto complementar será o \"segundo\" crime ou a forma do crime principal.",
+                "3.3.3.1. Se o crime for tentado, deverá ser colocado neste campo: 5555 - Crime Tentado",
+                "3.3.4. Corrigir os dados cadastrados pela Delegacia",
+                "3.3.4.1. Deverá constar o Inquérito Processual: XXXXXXX/AAAA",
+                "3.3.4.2. Deverá constar o Boletim de Ocrrência: LLXXXX/AAAA",
+                "3.3.4.3. L: Letra; X: Número; A: Ano",
+                "4. Atualizar Partes e Representantes",
+                "4.1. Cadastrar e conferir os dados cadastrados pela Delegacia",
+                "4.2. Cadastrar os dados das testemunhas arroladas pelo Ministério Público",
+                "5. Tarjar o Processo",
+                "5.1 Retirar as Tarjas de Sigilo, exceto em casos de feminicídio ou determinação contrária",
+                "5.2 Incluir tarja: Atuação do Ministério Público",
+                "5.3. Verifcar demais tarjas",
+                "5.3.1. Usualmente são:",
+                "5.3.1.1. Vítima Criança/Adolescente",
+                "5.3.1.2: Vítima ou Testemunha Protegida",
+                "5.3.1.3: Réu menor de 21 ou maior de 70 anos.",
+                "5.3.1.4: Pessoa em Situação de Rua",
+                "5.3.1.5: Estatudo do Idoso (preenchido quando, em Partes e Representantes, for selecionado o campo \"idoso\"",
+                "5.3.1.6: Curador Especial/Advogado Dativo",
+                "5.3.1.7: Deverá ser incluída outras tarjas que caracterizarem o processo, ainda que não listada aqui neste exemplo.",
+                "6. Atualizar o Histórico das Partes",
+                "6.1. Deverá constar:",
+                "6.1.1. Data do Fato",
+                "6.1.2. Prisões (se houver)",
+                "6.1.3. Data de Oferecimento da Denúncia",
+                "6.1.3.1. Neste caso, a parte deverá ser cadastrada como \"Denunciado\".",
+                "6.1.4. Data do Recebimento da Denúncia",
+                "6.1.3.1. A partir da data do recebimento da denúncia, a parte figurará como \"Réu\".",
+                "6.1.4: Alvará de Soltura (se houver)",
+                "6.1.5: Medidas Cautelares Diversas da Prisão (se houver)",
+                "II. Cumprimento dos Atos da Denúncia",
+                "1. Expedir Mandado de Citação",
+                "1.1. IMPORTANTE: Caso tenha sido expedido Mandado de Prisão, deve-se aguardar por 5 dias seu cumprimento.",
+                "1.1.1. Caso tenha sido cumprido, aguardar 2 dias para saber o local de prisão do réu",
+                "1.1.2. Caso não tenha sido cumprimento, exepedir os mandados normalmente.",
+                "1.2. Se réu preso por outro Juízo: vide Mandados se Citação - Réu Preso por Outro Juízo",
+                "1.3. Se réu preso pela 2ª Vara do Júri: vide Mandados de Citação - Réu Preso",
+                "1.4. Se réu solto: vide Mandados de Citação - Réu Solto",
+                "1.5. Se réu preso no Romão Gomes (Policial Militar): vide Mandados de Citação - Preso no Romão Gomes",
+                "2. Expedir Ofício IIRGD para solicitar Folha de Antecedentes",
+                "2.1. Vide Ofícios - IIRGD",
+                "3. Solicitar Certidão do Distribuidor",
+                "3.1. Deverá ser solicitado pelo email da Central de Pedidos do TJSP",
+                "3.2. Deverá, obrigatóriamente, constar no corpo do email:",
+                "3.2.1. Nome completo do réu",
+                "3.2.2. Filiação (pelo menos o nome da mãe)",
+                "3.2.3. Data de Nascimento do Réu.",
+                "3.3. Caso tenha mais de um réu, a Central de Pedidos aceitará a solicitação de 2 réus por email.",
+                "4. Cumprir a Cota do Ministério Público.",
+                "5. Dar Ciência ao Ministério Público",
+                "6. Encaminhar o processo para a fila \"Acompanhamento de Prisão Preventiva Decretada\", caso o réu esteja preso, pelo prazo de 85 dias a partir do último marco de análise da Prisão, com a observação \"Rever P.P.\"",
+                "6.1. Na hipótese de ter sido expedido mandado de prisão no recebimento da denúncia, o prazo deverá contar a partir do cumprimento do mandado de prisão",
+                "6.2. Na hipótese de não ter sido analisado, na denúncia, a Prisão Preventiva, deverá ser consideradada o marco inicial do prazo a última decisão que fez essa análise OU a data da conversão de Prisão em Flagrante em Preventiva.",
+                "7. Encaminhar processo para a fila de \"Ag. Decurso de Prazo\", pelo prazo de 30 dias, com a observação \"Ag. Mandado e Ofícios\"",
+                "7.1. Caso seja processo de réu solto, o prazo será de 45 dias."
+            ],
+            "Após Cumprimento do Mandado de Citação": [
+                "1. Nomear o defensor apontado pelo réu no Partes e Representantes",
+                "1.1. Se Advogado: cadastrar pelo código 66 e pesquisar pela sua OAB",
+                "1.2. Se Defensoria Pública: cadastrar pelo código 108  e pela OAB: 999999D/SP",
+                "1.2.1. Abrir Vista à Defensoria Pública",
+                "2. Encaminhar processo para fila \"Ag. Decurso de Prazo\", pelo prazo de 10 dias, com a observação \"Ag. Resposta à Acusação\"",
+                "2.1. O prazo será dobrado se o réu for representado pela Defensoria Pública"
+            ]
+        }
+    },
+    "2. Por Ato": {
+        "Alvarás": {
+            "Interrupção de Gravidez": [
+                "1. Modelo SAJ - SERA CRIADO MODELO DE GRUPO",
+                "2. IMEDIATAMENTE informar ao magistrado para assinatura",
+                "3. Após assinatura do(a) Magistrado(a) dar ciência à DPE (ou quem solicitou, via telefone ou email) e ciência ao MP (ou vista, se sentença orientar assim).",
+                "4. Encaminhar à fila \"Ag. Decurso de Prazo\", pelo prazo de 05 dias, com a observação \"Ag. Trânsito em Julgado\"."
+            ],
+            "Exumação": [
+                "1. Modelo SAJ - 1000361",
+                "1. Editar o modelo",
+                "2.  Após finalizado, IMEDIATAMENTE informar ao magistrado para assinatura",
+                "3. Após assinatura do(a) Magistrado(a) dar ciência à DPE (ou quem solicitou, via telefone ou email) e ciência ao MP (ou vista, se sentença orientar assim).",
+                "4. Encaminhar à fila \"Ag. Decurso de Prazo\", pelo prazo de 05 dias, com a observação \"Ag. Trânsito em Julgado\"."
+            ]
+        },
+        "Alvaras": {
+            "Devolução de Veículos": [
+                "I. Modelo SAJ - 944"
+            ]
+        },
+        "Ato Ordinatório": {
+            "Ciência à Defesa Constituída": [
+                "1 Modelo SAJ: 500531",
+                "2. Especificar o motivo da intimação - Ex.: Fica a Defesa Intimação a se manifestar no prazo legal, conforme decisão de fls. XXX/XXX",
+                "3. Verificar se o texto acima está marcado em amarelo",
+                "4. Confirmar se o ato foi encaminhado ao Diário.",
+                "5. Caso tenha sido determinado prazo pelo Juiz, encaminhar à fila \"Ag. Decurso de Prazo\", pelo prazo determinado, com a observação \"Ag. Defesa\"",
+                "6; Se for a fase do art. 422 do Código Processual Penal, encaminhar à fila \"Ag. Decurso de Prazo\", por 5 dias, com a observação \"Ag. Defesa (422)\"."
+            ]
+        },
+        "Cartas Precatórias": {
+            "Deprecado - Citação": [
+                "I. Citação de Réu Solto - Modelo SAJ: 506271",
+                "1. Confirmar o endereço, se é da cidade de São Paulo e se está correto",
+                "2. Caso seja de outra cidade, certificar e encaminhar à fila \"Conclusos Minuta\"",
+                "3. Cadastrar os dados no menu \"Partes e Representantes\"",
+                "4. Classificar o mandando como \"Comum\", com prazo de 45 dias.",
+                "5. Importante: quando finalizar a edição do documento, é obrigatório inserir 02 cópias das peças deprecadas.",
+                "6. Encaminhar expediente à fila \"Ag. Decurso de Prazo\", por 45 dias e observação \"Ag. Mandado (fl. de rosto)\".",
+                "7. Remover o ato da decisão, caso não haja outras determinações",
+                "II. Citação de Réu Preso - Modelo SAJ: 506271",
+                "1. Confirmar a qualificação do réu",
+                "1.1. Em caso de ausência de CPF, deverá ser consultado o INFOSEG",
+                "2. Confirmar o local de prisão do réu",
+                "2.1. Pode ser feito através do email: \"DCEP-CIC\" <dcep-cic@sp.gov.br>",
+                "2.2. Pode ser feito através do portal SAP: https://portal.sap.sp.gov.br/formularios/paradeiro",
+                "2.2.1. Para acessar o portal será necessário acessar através da conta GOV",
+                "2.3. Pode ser feito através da FA atualizada.",
+                "2.4. Importante: caso o local de prisão seja em outra cidade do Estado de São Paulo:",
+                "2.4.1. Certificar local da prisão",
+                "2.4.2. Encaminhar para \"Conclusos-Minuta\".",
+                "3. Classificar o mandado como \"Cumprimento Remoto\", por se tratar de réu preso.",
+                "4. Importante: quando finalizar a edição do documento, é obrigatório inserir 02 cópias das peças deprecadas.",
+                "5. Encaminhar expediente à fila \"Ag. Decurso de Prazo\", por 10 dias e observação \"Ag. Mandado (fl. de rosto)\".",
+                "6. Remover o ato da decisão, caso não haja outras determinações"
+            ],
+            "Deprecado - Intimação (réu)": [
+                "I. Intimação de Réu Solto para Audiência: Modelo SAJ: 506270",
+                "1. Confirmar o endereço, se é da cidade de São Paulo e se está correto",
+                "2. Caso seja de outra cidade, certificar e encaminhar à fila \"Conclusos Minuta\"",
+                "3. Cadastrar os dados no menu \"Partes e Representantes\"",
+                "4. Criar audiência na Pauta de Audiências",
+                "4.1. No campo \"Tipo de Audiência\": 5 - Oitiva",
+                "4.2. No campo \"Sala\": 4 - Precatória",
+                "4.3. No campo \"Duração\": 00:10",
+                "4.4. No campo \"Localizar Audiência\": incluir a data da Audiência",
+                "4.5. Clicar em \"Localizar Horário\"",
+                "4.6. Na planilha ao lado, confirmar se a data está correga e buscar o horário da Audiência, após, clicar em \"Agendar Audiência\".",
+                "4.7. Clicar com o botão direito do mouse sobre a Audiência recém agendada",
+                "4.8. No campo \"Situação da Audiência\" alterar de \"Pendente\" para \"Realizada\"",
+                "5. Importante: quando finalizar a edição do documento, é obrigatório inserir 02 cópias das peças deprecadas.",
+                "6. Encaminhar expediente à fila \"Ag. Decurso de Prazo\", por 45 dias e observação \"Ag. Mandado (fl. de rosto)\".",
+                "7. Caso a proximidade do ato seja inferior a 30 dias, imediatamente informar ao coordenador para assinatura.",
+                "8. Remover o ato da decisão, caso não haja outras determinações",
+                "II. Intimação de Réu Preso para Audiência: Modelo SAJ: 506270",
+                "1. Confirmar a qualificação do réu",
+                "1.1. Em caso de ausência de CPF, deverá ser consultado o INFOSEG",
+                "2. Confirmar o local de prisão do réu",
+                "2.1. Pode ser feito através do email: \"DCEP-CIC\" <dcep-cic@sp.gov.br>",
+                "2.2. Pode ser feito através do portal SAP: https://portal.sap.sp.gov.br/formularios/paradeiro",
+                "2.2.1. Para acessar o portal será necessário acessar através da conta GOV",
+                "2.3. Pode ser feito através da FA atualizada.",
+                "2.4. Importante: caso o local de prisão seja em outra cidade do Estado de São Paulo:",
+                "2.4.1. Certificar local da prisão",
+                "2.4.2. Encaminhar para \"Conclusos-Minuta\".",
+                "3. Classificar o mandado como \"Cumprimento Remoto\", por se tratar de réu preso.",
+                "4. Criar audiência na Pauta de Audiências",
+                "4.1. No campo \"Tipo de Audiência\": 5 - Oitiva",
+                "4.2. No campo \"Sala\": 4 - Precatória",
+                "4.3. No campo \"Duração\": 00:10",
+                "4.4. No campo \"Localizar Audiência\": incluir a data da Audiência",
+                "4.5. Clicar em \"Localizar Horário\"",
+                "4.6. Na planilha ao lado, confirmar se a data está correga e buscar o horário da Audiência, após, clicar em \"Agendar Audiência\".",
+                "4.7. Clicar com o botão direito do mouse sobre a Audiência recém agendada",
+                "4.8. No campo \"Situação da Audiência\" alterar de \"Pendente\" para \"Realizada\"",
+                "5. Importante: quando finalizar a edição do documento, é obrigatório inserir 02 cópias das peças deprecadas.",
+                "6. Encaminhar expediente à fila \"Ag. Decurso de Prazo\", por 45 dias e observação \"Ag. Mandado (fl. de rosto)\".",
+                "7. Caso a proximidade do ato seja inferior a 30 dias, imediatamente informar ao coordenador para assinatura.",
+                "8. Remover o ato da decisão, caso não haja outras determinações",
+                "III. Intimação de Sentença (Réu Solto): Modelo SAJ: 506392",
+                "1. Confirmar o endereço, se é da cidade de São Paulo e se está correto",
+                "1.1 Confirmar se consta a cópia da sentença integral exarada na vara de origem.",
+                "2. Caso seja de outra cidade, certificar e encaminhar à fila \"Conclusos Minuta\"",
+                "3. Cadastrar os dados no menu \"Partes e Representantes\"",
+                "4. Alterar o prazo para apelação para 05 (cinco) dias.",
+                "5. Incluir \"Termo de Recurso\"",
+                "5.1 Importante: ao finalizar o documento, será solicitada a inclusão de Termo de Recurso que acompanha o modelo SAJ. Caso tenha incluído o termo no corpo do mandado folha de rosto, NÃO é necessário incluí-lo.",
+                "6. Importante: quando finalizar a edição do documento, é obrigatório inserir 02 cópias das peças deprecadas.",
+                "7. Encaminhar expediente à fila \"Ag. Decurso de Prazo\", por 45 dias e observação \"Ag. Mandado (fl. de rosto)\".",
+                "8. Remover o ato da decisão, caso não haja outras determinações"
+            ],
+            "Deprecado - Intimação (testemunha)": [
+                "1. Modelo SAJ: 506270 (Para Audiência)",
+                "2. Confirmar o endereço, se é da cidade de São Paulo e se está correto.",
+                "3. Verificar se é caso de Réu Preso",
+                "4. Criar audiência na Pauta de Audiências",
+                "4.1. No campo \"Tipo de Audiência\": 5 - Oitiva",
+                "4.2. No campo \"Sala\": 4 - Precatória",
+                "4.3. No campo \"Duração\": 00:10",
+                "4.4. No campo \"Localizar Audiência\": incluir a data da Audiência",
+                "4.5. Clicar em \"Localizar Horário\"",
+                "4.6. Na planilha ao lado, confirmar se a data está correga e buscar o horário da Audiência, após, clicar em \"Agendar Audiência\".",
+                "4.7. Clicar com o botão direito do mouse sobre a Audiência recém agendada",
+                "4.8. No campo \"Situação da Audiência\" alterar de \"Pendente\" para \"Realizada\"",
+                "5. Importante: quando finalizar a edição do documento, é obrigatório inserir 02 cópias das peças deprecadas.",
+                "6. Caso a proximidade do ato seja inferior a 30 dias, imediatamente informar ao coordenador para assinatura.",
+                "7. Encaminhar expediente à fila \"Ag. Decurso de Prazo\", pelo prazo do cumprimento do mandado e observação \"Ag. Mandado (fl. de rosto)",
+                "8. Remover o ato da decisão, caso não haja outras determinações"
+            ],
+            "Deprecante - Citação": [
+                "1. Modelo SAJ: 501319",
+                "2. Durante a edição da Carta Precatória",
+                "2.1. Incluir os dados da Comarca a ser deprecada.",
+                "2.2. Inserir todos os endereços da referida comarca junto da qualificação da pessoa a ser intimada.",
+                "2.2.1. Caso sejam múltiplos endereços, recomenda-se organizar em tópicos para garantir o fiel cumprimento.",
+                "3. Incluir Prazo:",
+                "3.1. Réu Preso: 20 dias (se comarca deprecada dentro de Estado de São Paulo) e 30 dias (se comarca deprecada em outro Estado)",
+                "3.2. Réu Solto: 30 dias (se comarca deprecada dentro de Estado de São Paulo) e 60 dias (se comarca deprecada em outro Estado)",
+                "4. Incluir \"Termo de Declaração para Defesa\"",
+                "5. Aguardar assinatura do Magistrado e do Coordenador",
+                "6. Após as assinaturas, verficar a forma correta de protocolar a precatória no Estado deprecado",
+                "6.1. Vide Cartas Precatórias - Protocolo de Precatórias - eSAJ",
+                "6.2. Vide Cartas Precatórias - Protocolo de Precatórias - PJe",
+                "6.3. Vide Cartas Precatórias - Procolo de Precatórias - Malote",
+                "7. Após juntado o protocolo de precatória, encaminhar para a fila \"Ag. Decurso de Prazo\" pelo prazo definido na Carta Precatórias, com a observação \"Ag. Citação (CP)\"."
+            ],
+            "Deprecante - Intimação (testemunha)": [
+                "I. Para Audiência Presencial",
+                "1. Modelo SAJ - 501347",
+                "1.1. IMPORTANTE: O modelo é das Varas da Infância e Juventude, fazendo-se necessário alterar o título do Mandado (VERIFICAR COM O ALEX SE PODEMOS CRIAR MODELO ESPECÍFICO)",
+                "2. Durante a edição da Carta Precatória",
+                "2.1. Incluir os dados da Comarca a ser deprecada.",
+                "2.2. Inserir todos os endereços da referida comarca junto da qualificação da pessoa a ser intimada.",
+                "2.2.1. Caso sejam múltiplos endereços, recomenda-se organizar em tópicos para garantir o fiel cumprimento.",
+                "3. Incluir prazo",
+                "3.1. Réu Preso: 20 dias (se comarca deprecada dentro de Estado de São Paulo) e 30 dias (se comarca deprecada em outro Estado)",
+                "3.2. Réu Solto: 30 dias (se comarca deprecada dentro de Estado de São Paulo) e 60 dias (se comarca deprecada em outro Estado)",
+                "4. Aguardar a Assinatura do Magistrado e do Coordenador",
+                "5. Após as assinaturas, verficar a forma correta de protocolar a precatória no Estado deprecado",
+                "5.1. Vide Cartas Precatórias - Protocolo de Precatórias - eSAJ",
+                "5.2. Vide Cartas Precatórias - Protocolo de Precatórias - PJe",
+                "5.3. Vide Cartas Precatórias - Procolo de Precatórias - Malote",
+                "6. Após juntado o protocolo de precatória, encaminhar para a fila \"Ag. Decurso de Prazo\" pelo prazo definido na Carta Precatória, com a observação \"Ag. Intimação (CP)\"",
+                "II. Para Audiência Virtual",
+                "1. Modelo SAJ: 1185",
+                "1.1. IMPORTANTE: O modelo não consta se tratar de processo digital, sendo necessário incluir essa informação. (VERIFICAR COM O ALEX SE PODEMOS CRIAR MODELO ESPECIFICO)",
+                "1.2. Copiar os dizeres igual ao Mandado de Intimação para Audiência Virtual.",
+                "2. Durante a edição da Carta Precatória",
+                "2.1. Incluir os dados da Comarca a ser deprecada.",
+                "2.2. Inserir todos os endereços da referida comarca junto da qualificação da pessoa a ser intimada.",
+                "2.2.1. Caso sejam múltiplos endereços, recomenda-se organizar em tópicos para garantir o fiel cumprimento.",
+                "3. Incluir prazo",
+                "3.1. Réu Preso: 20 dias (se comarca deprecada dentro de Estado de São Paulo) e 30 dias (se comarca deprecada em outro Estado)",
+                "3.2. Réu Solto: 30 dias (se comarca deprecada dentro de Estado de São Paulo) e 60 dias (se comarca deprecada em outro Estado)",
+                "4. Gerar Link e QR Code:",
+                "4.1. Vide: Orientações Gerais - Audiências Virtuais - Link e QRCode",
+                "5. IMPORTANTE: Constar na Carta Precatória, expressamente, que a Audiência Virtual será via aplicativo Microsoft Teams.",
+                "6. Aguardar a Assinatura do Magistrado e do Coordenador",
+                "7. Após as assinaturas, verficar a forma correta de protocolar a precatória no Estado deprecado",
+                "7.1. Vide Cartas Precatórias - Protocolo de Precatórias - eSAJ",
+                "7.2. Vide Cartas Precatórias - Protocolo de Precatórias - PJe",
+                "7.3. Vide Cartas Precatórias - Procolo de Precatórias - Malote",
+                "8. Após juntado o protocolo de precatória, encaminhar para a fila \"Ag. Decurso de Prazo\" pelo prazo definido na Carta Precatória, com a observação \"Ag. Intimação (CP)\""
+            ],
+            "Deprecante - Intimação (réu)": [
+                "I. Para Intimação de Sentença",
+                "1. Modelo SAJ: 501333",
+                "2. Durante a edição da Carta Precatória",
+                "2.1. Incluir os dados da Comarca a ser deprecada.",
+                "2.2. Inserir todos os endereços da referida comarca junto da qualificação da pessoa a ser intimada.",
+                "2.2.1. Caso sejam múltiplos endereços, recomenda-se organizar em tópicos para garantir o fiel cumprimento.",
+                "3. Incluir prazo",
+                "3.1. Réu Preso: 20 dias (se comarca deprecada dentro de Estado de São Paulo) e 30 dias (se comarca deprecada em outro Estado)",
+                "3.2. Réu Solto: 30 dias (se comarca deprecada dentro de Estado de São Paulo) e 60 dias (se comarca deprecada em outro Estado)",
+                "4. Incluir o Termo de Recurso",
+                "5. Aguardar a Assinatura do Magistrado e do Coordenador",
+                "6. Após as assinaturas, verficar a forma correta de protocolar a precatória no Estado deprecado",
+                "6.1. Vide Cartas Precatórias - Protocolo de Precatórias - eSAJ",
+                "6.2. Vide Cartas Precatórias - Protocolo de Precatórias - PJe",
+                "6.3. Vide Cartas Precatórias - Procolo de Precatórias - Malote",
+                "7. Após juntado o protocolo de precatória, encaminhar para a fila \"Ag. Decurso de Prazo\" pelo prazo definido na Carta Precatória, com a observação \"Ag. Intimação (CP)\"",
+                "II. Para Nomeação de Defensor",
+                "1. Modelo SAJ: 502832",
+                "1.1. IMPORTANTE: no modelo consta prazo de 10 (dez) dias por padrão, atentar-se caso disposições do contrário.",
+                "2. Durante a edição da Carta Precatória",
+                "2.1. Incluir os dados da Comarca a ser deprecada.",
+                "2.2. Inserir todos os endereços da referida comarca junto da qualificação da pessoa a ser intimada.",
+                "2.2.1. Caso sejam múltiplos endereços, recomenda-se organizar em tópicos para garantir o fiel cumprimento.",
+                "3. Incluir prazo",
+                "3.1. Réu Preso: 20 dias (se comarca deprecada dentro de Estado de São Paulo) e 30 dias (se comarca deprecada em outro Estado)",
+                "3.2. Réu Solto: 30 dias (se comarca deprecada dentro de Estado de São Paulo) e 60 dias (se comarca deprecada em outro Estado)",
+                "4. Incluir o Termo de Declaração de Defesa",
+                "5. Aguardar a Assinatura do Magistrado e do Coordenador",
+                "6. Após as assinaturas, verficar a forma correta de protocolar a precatória no Estado deprecado",
+                "6.1. Vide Cartas Precatórias - Protocolo de Precatórias - eSAJ",
+                "6.2. Vide Cartas Precatórias - Protocolo de Precatórias - PJe",
+                "6.3. Vide Cartas Precatórias - Procolo de Precatórias - Malote",
+                "7. Após juntado o protocolo de precatória, encaminhar para a fila \"Ag. Decurso de Prazo\" pelo prazo definido na Carta Precatória, com a observação \"Ag. Intimação (CP)\"",
+                "III. Para Cumprimento de Medidades Cautelares Diversas da Prisão",
+                "1. Modelo SAJ - 501327",
+                "2. IMPORTANTE: Essa Carta Precatória será expedida para QUALQUER Comarca distinta da Comarca de São Paulo, ainda que no Estado de São Paulo",
+                "2.1. Na hipótese da Carta ser encaminhada para outra cidade, dentro do Estado de São Paulo, a comunicação será através do e-mail do distribuidor da Comarca deprecada.",
+                "2.1.1. O email pode ser encontrado no portal do TJSP: https://www.tjsp.jus.br/CanaisComunicacao/EmailsInstitucionais",
+                "3. Durante a edição da Carta Precatória",
+                "3.1. Incluir os dados da Comarca a ser deprecada.",
+                "3.2. Inserir todos os endereços da referida comarca junto da qualificação da pessoa a ser intimada.",
+                "3.2.1. Caso sejam múltiplos endereços, recomenda-se organizar em tópicos para garantir o fiel cumprimento.",
+                "4. Incluir prazo",
+                "4.1. Réu Solto: 30 dias (se comarca deprecada dentro de Estado de São Paulo) e 60 dias (se comarca deprecada em outro Estado)",
+                "5. Incluir o Termo de Declaração de Defesa",
+                "6. Aguardar a Assinatura do Magistrado e do Coordenador",
+                "7.Após a assinatura:",
+                "7.1. Caso a Comarca deprecada seja fora do Estado de São Paulo",
+                "7.1.1. Vide Cartas Precatórias - Protocolo de Precatórias - eSAJ",
+                "7.1.2. Vide Cartas Precatórias - Protocolo de Precatórias - PJe",
+                "7.1.3. Vide Cartas Precatórias - Procolo de Precatórias - Malote",
+                "7.2. Caso a Comarca deprecada seja dentro do Estado de São Paulo",
+                "7.2.1. Encaminhar para o email do Distribuidor da Comarca deprecada",
+                "7.2.2. Aguardar a resposta da Comarca com o Protocolo.",
+                "8. Após juntado o protocolo de precatória, encaminhar para a fila \"Ag. Decurso de Prazo\" pelo prazo definido na Carta Precatória, com a observação \"Ag. Intimação (CP)\""
+            ],
+            "Deprecante - Outros Casos": [
+                "I. Modelo SAJ - 501328 (genérico)"
+            ],
+            "Protocolo de Precatórias - eSAJ": [
+                "I. Disponível nos seguintes Estados: Acre (TJAC), Alagoas (TJAL), Amazonas (TJAM), Mato Grosso do Sul (TJMS), São Paulo (TJSP), Goiás (TJGO)."
+            ],
+            "Protocolo de Precatórias - PJe": [
+                "I. Disponível nos seguintes Estados: Amapá (TJAP), Bahia (TJBA), Ceará (TJCE), Distrito Federação e Territórios (TJDFT), Maranhão (TJMA), Minas Gerais (TJMG), Mato Grosso (TJMT), Pará (TJPA), Paraíba (TJPB), Pernambuco (TJPE), Piauí (TJPI), Rio Grande do Norte (TJRN) e Rondônia (TJRO)",
+                "1. Necessário ter cadastro prévio no sistema PJe da comarca em que a Carta Precatória (CP) será protocolada",
+                "2. Imprimir em PDF a Carta Precatória emitida no sistema SAJ e seus anexos, se o caso.",
+                "2.1. A Carta Precatória e seus anexos deverá, preferencialmente, estarem em um mesmo PDF.",
+                "3. Acessar o respectivo portal PJe. IMPORTANTE: o acesso será feito através do uso de Certificado Digital",
+                "4. Após concluir o processo de protocolo, salvar e comprovante e subir nos autos como \"Protocolo de Ofício\".",
+                "5. Encaminhar para a fila \"ag. Decurso de Prazo\", pelo período especificado na Carta Precatória, com a observação: \"Ag. Precatória\"."
+            ],
+            "Protocolo de Precatórias - Malote": [
+                "I. Disponível nos seguintes Estados: Espírito Santo (TJES), Paraná (TJPR), Rio de Janeiro (TJRJ), Rio Grande do Sul (TJRS), Roraima (TJRR), Santa Catarina (TJSC), Sergipe (TJSE) e Tocantins (TJTO)",
+                "1. Após a assinatura da Carta Precatória, verificar qual o Chefe de Seção responsável pelo envio do Malote Digital",
+                "1.1. Se for final PAR: Aline",
+                "1.2. Se for final IMPAR: Isaías",
+                "2. No email deverá constar:",
+                "2.1 Número do Processo.",
+                "2.2 Arquivo único (em PDF) constando a Carta Precatória e eventuais anexos.",
+                "2.3 Especificar a Comarca e o Estado deprecados",
+                "3. Aguardar o comprovante de envio de Malote Digital nos autos (quem solicitou subirá o comprovante).",
+                "4. Encaminhar para a fila \"ag. Decurso de Prazo\", pelo período especificado na Carta Precatória, com a observação: \"Ag. Precatória\"."
+            ]
+        },
+        "Certidões": {
+            "Certidão de Trânsito em Julgado": [
+                "1. Modelo SAJ: 1000138",
+                "I. Sentença Publicada em Audiência",
+                "1. Contar o dia seguinda da data da Sentença proferida. Prazo: 05 dias para o Ministério Público, 05 dias para o Assistente de Acusação (se houver), 05 dias para a Defesa Constituída, 10 dias para a Defensoria Pública",
+                "2. Prazos:",
+                "2.2. Ministério Público: 05 dias",
+                "2.3. Assistente de Acusação (se houver): 05 dias",
+                "2.4. Defesa Constituída: 05 dias",
+                "2.5. Defensor Dativo (se o caso): 10 dias",
+                "2.6. Defensoria Pública: 10 dias.",
+                "3. Verificar se não houve interposição do Recurso/Apelação caso tenha havido, não se transita em julgado para o recorrente/apelante",
+                "4. No momento da edição da certidão, devem-se deixar claras as datas e as respectivas partes",
+                "5. Deve-se incluir a movimentação referente à(s) parte(s) mencionadas na certidão (pressiona-se, no momento da edição do documento, a tecla F8)",
+                "6. A certidão do trânsito em julgado deverá ser expedida APÓS a data do trânsito.",
+                "7. Atualizar Histórico das Partes.",
+                "8. Verificar a necessidade de expedição de Guia de Recolhimento.",
+                "9. Encaminhar, se o caso, à fila \"Conclusos-Minuta\".",
+                "II. Sentença Não Publicada em Audiência",
+                "1. Em relação ao Ministério Público: contar 05 dias da data da efetiva declaração de ciência daquele órgão",
+                "2. Em relação à Defensoria Pública: contar 10 dias da data da efetiva declaração de ciência daquele órgão",
+                "3. Em relação à Defesa Constituída e ao Assistente de Acusação (quando houver): contar 05 dias da data da publicação no Diário Oficial.",
+                "4. Verificar se não houve interposição do Recurso/Apelação caso tenha havido, não se transita em julgado para o recorrente/apelante",
+                "5. No momento da edição da certidão, devem-se deixar claras as datas e as respectivas partes",
+                "6. Deve-se incluir a movimentação referente à(s) parte(s) mencionadas na certidão (pressiona-se, no momento da edição do documento, a tecla F8)",
+                "7. A certidão do trânsito em julgado deverá ser expedida APÓS a data do trânsito.",
+                "8. Atualizar Histórico das Partes",
+                "9. Verificar a necessidade de expedição de Guia de Recolhimento.",
+                "10. Encaminhar, se o caso, à fila \"Conclusos-Minuta\"."
+            ],
+            "Certidão de Prazo Prescricional (art. 366)": [
+                "Modelo SAJ: 709765",
+                "1. Sem retomada da marcha processual: 20 anos da data da decisão de suspensão com fundamento no art. 366",
+                "2. Ultrapassada a data da retomada processual: 40 anos da data do recebimento da denúncia",
+                "3. IMPORTANTE: Se o réu for menor de 21 ou maior de 70 anos na data dos fatos, os prazos supra caem pela metade.",
+                "4. Preencher planilha excel no grupo Modelar 2ª do Júri, no Drive (FORAGIDOS)",
+                "5. Encaminhar para a fila \"Processo Suspenso no 366\", pelo prazo de 365 dias, com a observação \"Ag. Prisão\"."
+            ],
+            "Inscrição na Dívida Ativa": [
+                "1. Modelo SAJ: 505265",
+                "2. Incluir número de cadastro do coordenador",
+                "3. Selecionar a movimentação da Sentença.",
+                "4. Valor: 100 UFESP",
+                "5. Data do vencimento: decurso da última intimação para pagamento",
+                "6. Data do trânsito em julgado: trânsito do acórdão ou da sentença",
+                "7. Notificação: data da intimação do réu para pagamento",
+                "8. Fundamento Legal: Excluir o artigo 121 e incluir a lei 11.608/03, art. 4º, §9º, alínea \"a\"",
+                "9. Decurso da última intimação para pagamento, é a mesma data do vencimento",
+                "10. Encaminhar para a fila Ag. Decurso de Prazo, pelo prazo de 2 dias, com a observação \"Ag. Cadastro PGE\".",
+                "IMPORTANTE: Não é possível quebrar vínculos nesse mandado devido à comunicação entre o SAJ e o Portal da PGE."
+            ]
+        },
+        "Guias": {
+            "Aditamento de Guia Provisória": [],
+            "Guia de Execução": [
+                "-"
+            ],
+            "Guia de Internação": [
+                "-"
+            ],
+            "Guia de Recolhimento Definitiva": [
+                "-"
+            ],
+            "Guia de Recolhimento Provisória": [
+                "I. Será expedida Guia de Recolhimento Provisória quando uma das partes recorrer de Sentença Condenatória.",
+                "1. Na hipótese de apenas uma das partes recorrer da Sentença, aguardar o trânsito em julgado da outra parte.",
+                "2. Após expedição da Certidão de Trânsito em Julgado:",
+                "2.1. Expedir Guia de Recolhimento Provisória no Sistema BNMP (vide Peças BNMP - Guia de Recolhimento Provisória)",
+                "2.2. IMEDIATAMENTE, após a expedição da Guia, avisar ao Magistrado para que assine a peça.",
+                "3. Após assinatura da peça, verificar para qual vara a guia será enviada para cadastro do Processo de Execução",
+                "4. Enviar as peças principais para a Vara de destino no https://www.tjsp.jus.br/jud/envioseeu/",
+                "5. No SAJ, copiar para a fila \"Guia de Execução - Alterar Competência\"",
+                "5.1 IMPORTANTE: é recomendado conferir diáriamente no site TJSP - SEEU para verificar o andamento.",
+                "6. Após o cadastrado da PEC no SEEU:",
+                "6.1 Alterar a compentência no BNMP (vide Peças BNMP - Evento de Transferência de Peças)",
+                "6.2 Expedir certidão de alteração de competência no SAJ",
+                "7. Verificar na Sentença/Decisão que determinou a expedição da Guia outras diligências que devem ser cumpridas."
+            ]
+        },
+        "Mandados": {
+            "Busca e Apreensão": [
+                "-"
+            ],
+            "Condução Coercitiva": [
+                "I.  DURANTE PLENÁRIO - Modelo SAJ: 1000187",
+                "1. IMEDIATAMENTE confirmar o endereço do réu",
+                "2. Confirmar o nome do Oficial de Justiça que realizará a diligência",
+                "3. Expedir o mandado com prazo de cumprimento \"Urgente - Plantão\"",
+                "4. A Zona do mandado deverá ser \"Barra Funda - Zona Plantão\"",
+                "5. IMEDIATAMENTE informar ao Coordenador para assinatura",
+                "6. IMEDIATAMENTE informar ao Assistente Judiciário que o mandado consta nos autos",
+                "7. IMEDIATAMENTE dirigir-se à Central de Mandados, no Fórum da Barra Funda, com uma cópia do Mandado e o nome do Oficial que irá cumprir a diligência.",
+                "8. IMEDIATAMENTE encaminhar um e-mail ao setor de transportes do Fórum da Barra Funda: tpmarioguimaraes@tjsp.jus.br com cópia para o email do Oficial de Justiça",
+                "8.1 Neste e-mail deverá constar o endereço onde a diligência será cumprida.",
+                "8.2. Exemplo de texto: \"Conforme determinado pela MMª Juíza desta Vara, solicito apoio de transporte para cumprimento de MANDADO DE CONDUÇÃO COERCITIVA, no endereço X, a ser cumprido pelo Oficial de Justiça que nos lê em cópia.",
+                "II. Casos Não Urgentes - Modelo SAJ: 1000088",
+                "1. Deverá ser expedido dentro de 30 dias antes da data da audiência."
+            ],
+            "Intimação de Menor (Depoimento Especial)": [
+                "Modelo SAJ: 506451"
+            ],
+            "Intimação de Réu Preso por outro Juízo": [
+                "1. Modelo SAJ: 506040 (mandado) + 583 (Ofício) REVISAR E REFAZER",
+                "2. Confirmar onde o réu está preso (por e-mail ou pela FA - se preso em São Paulo)",
+                "3. Ao selecionar o réu, confirmar se o SAJ puxou apenas UM endereço",
+                "4. O endereço selecionado deverá ser o local de prisão.",
+                "5. No campo \"Zona do Mandado\", procurar pelo SADM do respectivo local de prisão",
+                "6. No campo \"Cumprimento\", colocar \"Cumprimento Remoto\"",
+                "7. Editar o Mandado e confirmar os dados de qualificação e da Audiência - IMPORTANTE: fazer alterações no corpo do mandado para constar COMPARECIMENTO PESSOAL em PLENÁRIO.",
+                "8. Encaminhar processo para fila \"Ag. Decurso de Prazo\", por 30 dias, com a observação \"Ag. Mandado\"",
+                "9.  Caso a proximidade do ato seja inferior a 30 dias, imediatamente informar ao coordenador para assinatura e confirmar prazo do item 8."
+            ],
+            "Intimação de Réu Solto para Audiência - Presencial": [
+                "II. Audiência Presencial/Plenário - Modelo SAJ: 1000405 (INCLUIR EDITAL)"
+            ],
+            "Intimação de Réu Solto para Audiência - Virtual": [
+                "I. Audiência Virtual - Modelo SAJ: 506041",
+                "1. Confirmar os endereços cadastrados no \"Partes e Representantes\"",
+                "2. Confirmar se a \"Zona\" foi automaticamente selecionada",
+                "3. Confirmar se foi selecionado apenas um endereço",
+                "4. Incluir o tipo de cumprimento: \"Réu Preso\", se réu preso ou \"Audiência\" se réu solto",
+                "5. Inserir Link e QRCode",
+                "5.1. Vide: Orientações Gerais - Audiências Virtuais - Link e QRCode",
+                "6. Finalizar o mandado e verificar se o código de barras foi gerado",
+                "7. Caso haja a expedição de mais de um mandado à uma mesma pessoa, procurar despacho contendo o artigo 1.012, §3°, inciso I, das NSCGJ do TJSP",
+                "8. Caso a proximidade do ato seja inferior a 30 dias, imediatamente informar ao coordenador para assinatura."
+            ],
+            "Intimação de Testemunha para Audiência - Custodiada": [
+                "I. Testemunha Presa - Modelo SAJ: 583 (Ofício) + Modelo SAJ: 414 (se audência presencial) ou Modelo SAJ: 506029 (se audiência virtual)",
+                "1. Confirmar onde a testemunha está presa (por e-mail ou pela FA - se preso em São Paulo)",
+                "2. Importante: se o Plenário foi no período da manhã, determinar comparecimento às 08h00",
+                "3. Aguardar assinatura do Magistrado (estará assinado quando o documento estiver na fila \"Ofícios - Ag. Impressão\")",
+                "4. Consultar o endereço do local de prisão (https://www1.sap.sp.gov.br/sp/unidades-prisionais/complexos-penais.html)",
+                "5. Enviar para todos os e-mails indicados no site acima",
+                "6. Subir comprovante nos autos",
+                "7. Remover o ofício da fila \"ag. resposta\".",
+                "8. Importante: expedir Mandado de Intimação conforme item I."
+            ],
+            "Intimação de Testemunha para Audiência - Presencial": [
+                "I. Audiência Presencial/Plenário - Modelo SAJ: 414",
+                "1. Confirmar os endereços cadastrados no \"Partes e Representantes\"",
+                "2. Confirmar se a \"Zona\" foi automaticamente selecionada",
+                "3. Confirmar se foi selecionado apenas um endereço",
+                "4. Incluir o tipo de cumprimento: \"Réu Preso\", se réu preso ou \"Audiência\" se réu solto",
+                "5. Sempre que possível, tentar manter todas as informações do mandado em uma única página",
+                "6. Caso haja a expedição de mais de um mandado a uma mesma pessoa, procurar despacho contendo o artigo 1.012, §3°, inciso I, das NSCGJ do TJSP. Se não tiver, avisar ao Coordenador.",
+                "7. Caso a proximidade do ato seja inferior a 30 dias, imediatamente informar ao Coordenador para assinatura."
+            ],
+            "Intimação de Testemunha para Audiência - Virtual": [
+                "I. Audiência Virtual - Modelo SAJ: 506029",
+                "1. Confirmar os endereços cadastrados no \"Partes e Representantes\"",
+                "2. Confirmar se a \"Zona\" foi automaticamente selecionada",
+                "3. Confirmar se foi selecionado apenas um endereço",
+                "4. Incluir o tipo de cumprimento: \"Réu Preso\", se réu preso ou \"Audiência\" se réu solto",
+                "5. No Calendário do Outlook, procurar a Audiência Virtual em questão e copiar o link",
+                "6. Gerar Link e QR Code",
+                "6.1. Vide: Orientações Gerais - Audiências Virtuais - Link e QRCode",
+                "7. Finalizar o mandado e verificar se o código de barras foi gerado",
+                "8. Caso haja a expedição de mais de um mandado à uma mesma pessoa, procurar despacho contendo o artigo 1.012, §3°, inciso I, das NSCGJ do TJSP",
+                "9. Caso a proximidade do ato seja inferior a 30 dias, imediatamente informar ao coordenador para assinatura."
+            ],
+            "Taxa Judiciária": [
+                "I. Caso de Réu Preso - Modelo SAJ: 506020",
+                "1. Confirmar local de prisão do réu (por e-mail ou pela FA - se preso em São Paulo)",
+                "2. Confirmar/Atualizar o local de prisão no Histórico de Partes",
+                "3. Inserir o código do Escrivão",
+                "4. Expedir mandado como \"Cumprimento Remoto\"",
+                "5. Inserir o valor da Taxa Judiciária - 100 UFESP's",
+                "6. Encaminhar para fila \"Ag. Decurso de Prazo\", pelo prazo de 30 dias, com a observação \"Ag. Mandado - Taxa Judiciária\".",
+                "II. Caso de Réu Solto - Modelo SAJ: 506020"
+            ],
+            "Intimação - Genérico": [
+                "Modelo SAJ: 100384 (com despacho) ou 506641 (sem despacho)"
+            ],
+            "Intimação para comparecimento IML": [
+                "Modelo SAJ: 1000404",
+                "1. IMPORTANTE: Expedir APENAS após a assinatura do Ofício de Apresentação ao IML",
+                "2. Verificar a unidade IML que realizou o primeiro exame, caso haja, ou a unidade mais próxima da residência da pessoa a ser intimada.",
+                "3. Na edição do mandado, deverá constar expressamente o endereço da unidade IML.",
+                "4. Consignar prazo de 10 dias para o comparecimento, a menos que tenha havido determinação diferente do magistrado.",
+                "5. Importante: anexar ao mandado Ofício de Apresentação e demais peças que forem necessárias (Laudos, Prontuários, Etc.)",
+                "6. Encaminhar para fila \"Ag. Decuso de Prazo\", pelo prazo de 30 dias, com a observação \"Ag. Mandado - IML\")."
+            ],
+            "Intimação de Sentença": [
+                "I. Réu Solto",
+                "II. Réu Preso",
+                "III. Réu Revel"
+            ]
+        },
+        "Mandados de Citação": {
+            "Preso no Romão Gomes": [
+                "-"
+            ],
+            "Preso por Outro Juízo": [
+                "-"
+            ],
+            "Réu Preso": [
+                "I. Dentro do Estado de São Paulo - Modelo SAJ: 506126",
+                "1. Confirmar local de prisão do réu - pode ser pela FA, pelo e-mail dcep-cic@sp.gov.br ou pelo site https://portal.sap.sp.gov.br/formularios/paradeiro",
+                "2. Ao selecionar o réu, confirmar se o SAJ puxou apenas UM endereço",
+                "3. No campo \"Zona do Mandado\", procurar pelo SADM do respectivo local de prisão",
+                "4. No campo \"Cumprimento\", colocar \"Cumprimento Remoto\"",
+                "5. Editar o Mandado.",
+                "6. Incluir, ao fim, \"Temo de Declaração\" para constuição de defensor",
+                "7. Enviar em anexo a Denúncia e seus eventuais aditamentos.",
+                "8. Verificar se apareceu o código de barras do mandado.",
+                "II. Fora do Estado de São Paulo"
+            ],
+            "Réu Solto": [
+                "I. Dentro do Estado de São Paulo - Modelo SAJ: 1199",
+                "1. Confirmar os endereços cadastrados no \"Partes e Representantes\"",
+                "2. Confirmar se a \"Zona\" foi automaticamente selecionada",
+                "3. Confirmar se foi selecionado apenas um endereço",
+                "4. Incluir o tipo de cumprimento: \"comum\".",
+                "5. Incluir, ao fim, \"Termo de Declaração\" para constuição de defensor",
+                "6. IMPORTANTE: anexar cópia da denúncia quando finalizar o mandado.",
+                "7. Caso haja a expedição de mais de um mandado à uma mesma pessoa, procurar despacho contendo o artigo 1.012, §3°, inciso I, das NSCGJ do TJSP",
+                "8. Encaminhar para a fila \"Ag. Decurso de Prazo\", pelo prazo de 45 dias, com a observação \"Ag. Mandando - Citação\"",
+                "II. Fora do Estado de São Paulo",
+                "1. Deverá ser Expedida Carta Precatória (Vide Cartas Precatórias - Deprecante - Citação)",
+                "1.1 Se PJe:",
+                "1.2 Se e-SAJ:",
+                "1.3 Se Malote:"
+            ]
+        },
+        "Peças BNMP": {
+            "Alvará de Soltura": [
+                "I. No BNMP",
+                "1. Consultar o CPF da pessoa",
+                "1.1 Caso a pessoa não seja encontrada pelo CPF, buscar o RJI nos mandado de prisão constante nos autos ou buscar pelo nome.",
+                "2. Expedir nova PEÇA:",
+                "2.1. Tipo de Peça: Alvará de Soltura",
+                "2.2. Selecionar o nome do Magistrado que deverá assinar a peça",
+                "2.3. Inserir o número do processo SAJ",
+                "2.4. Classe Processual: 282 - Ação Penal de Competência do Júri",
+                "2.5. Selecionar o Mandado:",
+                "2.5.1 IMPORTANTE: O Mandado selecionado deve ser o referente ao processo a qual o Alvará de Soltura foi expedido",
+                "2.6. Motivo de Expedição do Alvará de Soltura",
+                "2.6.1 Absolvição",
+                "2.6.2 Impronúncia",
+                "2.6.3 Liberdade Prosivória com ou sem medida cautelar",
+                "2.6.3.1 IMPORTANTE: Neste caso, deverá ser expedido, no BNMP, Mandado de Medida Cautelar Diversa da Prisão",
+                "2.6.4 Revogação da Prisão Preventiva",
+                "2.6.5 Revogação da Prisão Temporária",
+                "2.7 Incluir na síntese da decisão que deu azo a emissão do mandado",
+                "2.8 Revisar a peça e finalizar",
+                "2.9 IMEDIATAMENTE informar ao magistrado que a peça está pronta e aguardando assinatura",
+                "3. Após assinatura, IMEDIATAMENTE, encaminhar ao local de prisão, com cópia para o email: alvaras.iirgd@sp.gov.br",
+                "II. No SAJ",
+                "1. Subir a peça assinada no processo",
+                "2. Subir os comprovantes de envio de email.",
+                "III. Após o Cumprimento",
+                "1. Dar cumprimendo do Mandado no BNMP",
+                "1.1 Incluir nova PEÇA:"
+            ],
+            "Mandado de Prisão Temporária": [
+                "I. No BNMP",
+                "1. Consultar o CPF do averiguado",
+                "1.1 Caso não haja CPF, deve-se consultar no INFOSEG: infoseg.sinesp.gov.br/infoseg2/",
+                "2. Consultar no BNMP se já há cadastro em nome do averiguado",
+                "2.1 Caso não localize pelo CPF, deverá tentar localizar pelo nome.",
+                "2.2 Caso não haja cadastro prévio, deve-se cadastrar uma nova pessoa através do CPF.",
+                "3. Uma vez cadastrado, deve-se expedir nova PEÇA:",
+                "3.1 Tipo de Peça: Mandado de Prisão",
+                "3.2 Selecionar o nome do Magistrado que deverá assinar a peça",
+                "3.3 Inserir o número do processo SAJ",
+                "3.4 Inserir a data de validade",
+                "3.4.1 A data de validade será 30 dias CORRIDOS incluindo a data da expedição. Recomenda-se contar no calendário para evitar erros.",
+                "3.5 Espécie de Prisão: Temporária",
+                "3.6 Tipo de Sigilo: Restrito",
+                "3.6.1 Importante: obrigatoriamente deve-se inserir os dados do magistrado que assinará a peça",
+                "3.7. Prazo da Prisão: 30 dias.",
+                "3.8. Incluir a tipificação penal",
+                "3.9 Incluir síntese da decisão que motivou a emissão do mandado",
+                "3.10 Revisar a peça e finalizar",
+                "3.11 IMEDIATAMENTE informar ao magistrado que a peça está pronta e aguardando assinatura",
+                "II. No SAJ:",
+                "1. Após assinado, deve-se IMEDIATAMENTE encaminhar à unidade policial que representou com o pedido da temporária, via email, junto da decisão.",
+                "1.1 Caso o averiguado esteja preso. Encaminhar ao local de prisão.",
+                "2. Subir o mandado e o comprovante de envio nos autos.",
+                "3. Encaminhar processo para a fila \"Ag. Decurso de Prazo\" com prazo de 30 dias, com a observação \"Ag. Cump. Prisão Temporária\".",
+                "4. Remover o Ato da Decisão.",
+                "III. Após o Cumprimento:",
+                "1. Dar cumprimendo do Mandado no BNMP",
+                "1.1 Incluir nova PEÇA:",
+                "2. Atualizar Histórico de Partes",
+                "3. Dar ciência ao Ministério Público",
+                "4. Encaminhar processo para a fila \"Ag. Decurso de Prazo\" com prazo de 25 dias (contados no calendário), com a observação \"Ag. Prisão Temporária\".",
+                "IV. Importante: Caso de Temporária Noturna",
+                "1. Expedido em plantão noturno, fora do BNMP",
+                "2. Após juntado o mandado cumprido nos autos, dever-se-á proceder à regularização no BNMP",
+                "2.1 Expedir o mandado de prisão temporária no BNMP com a data do dia de expedição.",
+                "2.2 A data de validade deverá ser 30 dias contando, inclusive, a data do CUMPRIMENTO do mandado e não da expedição.",
+                "3. Após assinado, deve-se IMEDIATAMENTE encaminhar à unidade policial que representou com o pedido da temporária, via email, junto da decisão.",
+                "4. Subir o mandado e o comprovante de envio nos autos.",
+                "5. Encaminhar processo para a fila \"Ag. Decurso de Prazo\" com prazo de 25 dias (contados no calendário e incluindo a data da expedição), com a observação \"Ag. Prisão Temporária\".",
+                "V. Prorrogação da Temporária",
+                "1. Deverá ser feito no dia do vencimento do Mandado de Prisão Temporária anterior.",
+                "2. No BNMP.",
+                "2.1 Espécie de Prisão: Prorrogação de Mandado de Prisão Temporária",
+                "2.2 Quando assinado, ele será cumprido automaticamente pelo BNMP.",
+                "3. Após assinado, deve-se IMEDIATAMENTE encaminhar à unidade policial que representou com o pedido da temporária, via email, junto da decisão.",
+                "4. Subir o mandado e o comprovante de envio nos autos",
+                "5. Encaminhar processo para a fila \"Ag. Decurso de Prazo\"  com prazo de 25 dias (contados no calendário e incluindo a data da expedição), com a observação \"Ag. Prisão Temporária\"."
+            ],
+            "Mandado de Prisão Preventiva": [],
+            "Mandado de Prisão Condenatória": [
+                "I. Decorrente de Sentença Não Transitada em Julgado",
+                "II. Decorrente de Sentença Transitada em Julgado"
+            ],
+            "Mandado de Medidas Cautelares Diversas da Prisão": [
+                "OBS.: Caso SURSIS"
+            ],
+            "Mandado de Medidas Protetivas de Urgência": [
+                "I. No BNMP",
+                "1. Consultar o CPF do averiguado",
+                "1.1 Caso não haja CPF, deve-se consultar no INFOSEG: infoseg.sinesp.gov.br/infoseg2/",
+                "2. Consultar no BNMP se já há cadastro em nome do averiguado",
+                "2.1 Caso não localize pelo CPF, deverá tentar localizar pelo nome.",
+                "2.2 Caso não haja cadastro prévio, deve-se cadastrar uma nova pessoa através do CPF.",
+                "3. Uma vez cadastrado, deve-se expedir nova PEÇA:",
+                "3.1 Tipo de Peça: Mandado de Medida Cautelar Diversa da Prisão ou Protetiva de Urgências",
+                "3.2 Selecionar o nome do Magistrado que deverá assinar a peça",
+                "3.3 Inserir o número do processo SAJ",
+                "3.4 Selecionar o motivo da expedição: Medidas Protetivas de Urgência",
+                "3.5 Classe: 282 - Ação Penal de Competência do Júri",
+                "3.6 Inserir a data da decisão (conforme expresso no documento)",
+                "3.7 Colar a síntese da decisão que determinou a imposição das Medidas Protetivas de Urgências",
+                "3.8 Na aba \"dados das vítimas\", inserir o CPF da vítima, preenchendo os demais campos se o caso",
+                "3.9 Na aba \"dados do agressor\", inserir as medidas conforme determinação do magistrado",
+                "3.10 Revisar e finalizar a peça",
+                "3.11 IMEDIATAMENTE informar ao magistrado que a peça está pronta e aguardando assinatura",
+                "II. No SAJ (INCLUIR MANDADO AGRESSOR?)",
+                "1. Subir o Mandado de Protetiva de Urgência nos autos",
+                "2. Subir a certidão de cumprimento",
+                "3. Encaminhar a peça, por email, para o IIRGD: dipol@iirgd.sp.gov.br",
+                "4. Subir o comprovante nos autos",
+                "5. Atualizar o Histórico de Partes, cadastrando as protetivas determinadas.",
+                "6. Encaminhar processo para a fila \"Acompanhamento de Medida Cautelar - Art. 319 CPP\", pelo prazo de exatamente um ano da data da decisão que determinou as protetivas, com a observação \"Rever Protetivas\"",
+                "III. Após o Cumprimento do Mandado de Medidas Protetivas de Urgência",
+                "1. Consultar o CPF do agressor",
+                "2. Expedir nova PEÇA:",
+                "2.1 Tipo de Peça: Certidão de Cumprimento de Mandado de Medida Cautelar Diversa da Prisão ou Protetiva de Urgência",
+                "2.2 Inserir a data da intimação",
+                "2.2.1 Caso tenha sido por mandado: data da assinatura do mandado por parte do agressor.",
+                "2.2.2 Caso tenha sido em audiência: data da audiência",
+                "2.2.3 Caso tenha sido em balcão: data do comparecimento",
+                "3. Finalizar Peça",
+                "4. Subir certidão de cumprimento nos autos."
+            ],
+            "Mandado de Prisão Domiciliar": [],
+            "Guia de Execução": [],
+            "Guia de Recolhimento Provisória": [],
+            "Guia de Recolhimento Definitinva": [],
+            "Certidão de Extinção por Morte": [],
+            "Certidão de Cumprimento (DENTRO DAS PEÇAS)": [],
+            "Evento de Transferência de Peças": [],
+            "Conversão de Prisão Temporária em Preventiva": [],
+            "Mandado de Internação": []
+        },
+        "Ofícios": {
+            "99": [
+                "1. Modelo SAJ 909",
+                "2. Ofício deverá ser enviado através do portal https://lert.didiglobal.com/BR (se for 99 MOBILIDADE) ou através do e-mail correiobacen_cx@br.99app.com (se for 99PAY). Neste último caso, apenas enviar ofício por email e seguir para o item 10.",
+                "3. Será necessário cadastro prévio.",
+                "4. Importante: após o cadastro, será enviada uma senha, de uso único e inalterável. A senha deve ser guardada.",
+                "5. Após a assinatura do magistrado, enviar o ofício no Portal",
+                "6. A qualificação da parte investigada será exigida pelo portal no momento do protocolo de ofício",
+                "7. O portal não emite um comprovante de protocolo, tal comprovante será encaminhado no e-mail cadastrado",
+                "8. Juntar o email recebido como \"protocolo de ofício\" nos autos.",
+                "9. No próprio portal será possível acompanhar o andamento da diligência",
+                "10. Encaminhar para a fila Ag. Decurso de Prazo, por 30 dias ou prazo determinado, com a observação \"Ag. Ofício\"."
+            ],
+            "Apresentação ao IML": [
+                "I. Modelo SAJ: 909",
+                "1. IMPORTANTE: caso seja para laudo complementar, deverá, no corpo do ofício, constar o número dos laudos de referência, ou encaminhá-los por email",
+                "2. Endereçar para o mesmo EPML que realizou os outros exames.",
+                "3. Aguardar assinatura do Magistrado (estará assinado quando o documento estiver na fila \"Ofícios - Ag. Impressão\")",
+                "4. Após assinatura, remover da fila \"Ofícios - Ag. Impressão\" e \"Encerrar sem Decurso de Prazo\".",
+                "5. IMPORTANTE: esse ofício não será encaminhado por email, ele será ANEXADO ao Mandado de Intimação de Comparecimento ao IML."
+            ],
+            "IIRGD": [
+                "I. Solictação de Folha de Antecedentes: Modelo SAJ - 1217",
+                "II. Comunicação de Sentença: Modelo SAJ - 1188"
+            ],
+            "Comunicação de Decisão": [
+                "-"
+            ],
+            "Comunicação de Denúncia": [
+                "-"
+            ],
+            "Confronto Balístico": [
+                "-"
+            ],
+            "Confronto de DNA": [
+                "-"
+            ],
+            "Corregedoria - Defensoria Pública/SP": [
+                "-"
+            ],
+            "Corregedoria - Polícia Civil": [
+                "-"
+            ],
+            "Corregedoria - SADM": [
+                "-"
+            ],
+            "Diligências": [
+                "1. Verificar a Delegacia responsável (da circunscrição ou especializada)",
+                "2. Modelo SAJ 1973",
+                "3. SER CLARO, DIRETO e CONCISO.",
+                "4. Enviar o e-mail com as cópias, se houver menção, e com cópia do Boletim de Ocorrência.",
+                "5. Subir comprovantes nos autos.",
+                "6. Encaminhar para a fila \"Ag. Decurso de Prazo\", pelo prazo de 30 dias ou outro determinado, com a observação \"Ag. Ofício\""
+            ],
+            "Google": [
+                "1. Modelo SAJ: 909",
+                "2. Importante: ter cadastro no Google LERS",
+                "3. Constar no ofício os endereços de email e/ou contas a serem investigadas, bem como respectivos CPF's",
+                "4. Ser claro e conciso",
+                "5. Aguardar assinatura do Magistrado (estará assinado quando o documento estiver na fila \"Ofícios - Ag. Impressão\")",
+                "6. Acessar o site do Google LERS: https://lers.google.com/signup_v2/landing",
+                "7. No site do Google, clicar em \"Enviar Nova Solicitação Oficial\".",
+                "8. Preencher formulário",
+                "9. Subir comprovante do envio nos autos (pode ser a página do site, constando o envio e número de protocolo ou o email de confirmação que o Google enviar)",
+                "10. Encaminhar para a fila \"ag. Decurso de Prazo\", por 30 dias ou prazo determinado, com a observação \"Ag. Ofício\"."
+            ],
+            "Nubank": [
+                "1. Modelo SAJ 909",
+                "2. Oficio deverá ser enviado através do portal https://app.nubank.com.br/beta/praja/",
+                "3. Não há necessidade de cadastro prévio no portal Nubank PRAJA",
+                "4. Importante: deverá constar o CPF do averiguado no corpo do ofício.",
+                "5. Após a assinatura do magistrado, enviar o ofício no Portal e selecionar o e-mail para o qual a resposta deverá ser encaminhada",
+                "6. O portal não emite um comprovante de protocolo, tal comprovante será encaminhado no e-mail mecionado no item 5.",
+                "7. Juntar o email recebido como \"protocolo de ofício\" nos autos.",
+                "8. Encaminhar para a fila Ag. Decurso de Prazo, por 30 dias ou prazo determinado, com a observação \"Ag. Ofício\"."
+            ],
+            "IMESC": [],
+            "Laudo Complementar": [
+                "-"
+            ],
+            "Laudo Direto": [
+                "-"
+            ],
+            "Laudo Indireto": [
+                "-"
+            ],
+            "META": [
+                "-"
+            ],
+            "Microsoft": [
+                "-"
+            ],
+            "Ofício - TRE": [
+                "1. Modelo SAJ: 500934",
+                "2. Importante: deve ser expedido apenas após o trânsito em julgado para ambas as partes",
+                "3.  Aguardar assinatura do Magistrado (estará assinado quando o documento estiver na fila \"Ofícios - Ag. Impressão\")",
+                "4. Após assinatura do magistrado, encaminhar para: sedipo@tre-sp.jus.br",
+                "5. Subir comprovante de envio nos autos",
+                "6. Remover ofício da fila de \"Ag. Resposta\"."
+            ],
+            "Polícia Federal - CAC": [
+                "-"
+            ],
+            "Polícia Federal - Réu Estrangeiro (comunicação)": [
+                "-"
+            ],
+            "Polícia Federal - Réu Estrangeiro (expulsão)": [
+                "-"
+            ],
+            "Quebra de Sigilo Bancário": [
+                "-"
+            ],
+            "Quebra de Sigilo Telemático": [
+                "I - Operadora VIVO",
+                "1. Modelo SAJ 909",
+                "2. Deixar clara que a quebra foi AUTORIZADA pelo Juízo",
+                "3. Constar prazo determinado, se tiver.",
+                "4. Aguardar assinatura do Magistrado (estará assinado quando o documento estiver na fila \"Ofícios - Ag. Impressão\")",
+                "5. Encaminhar para o email: ordens.sigilo.br@telefonica.com",
+                "6. Subir comprovantes nos autos",
+                "7. Copiar para fila \"Ag. Decurso de Prazo\" - por 30 dias ou o tempo determinado pelo magistrado",
+                "II. Operadora OI",
+                "1. Modelo SAJ 909",
+                "2. Deixar clara que a quebra foi AUTORIZADA pelo Juízo",
+                "3. Constar prazo determinado, se tiver.",
+                "4. Aguardar assinatura do Magistrado (estará assinado quando o documento estiver na fila \"Ofícios - Ag. Impressão\")",
+                "5. Encaminhar ofício apenas pelo e-mail sp2juri@tjsp.jus.br",
+                "6. Subir comprovantes nos autos",
+                "7. Copiar para fila \"Ag. Decurso de Prazo\" - por 30 dias ou o tempo determinado pelo magistrado",
+                "III. Operadora CLARO",
+                "1. Modelo SAJ 909",
+                "2. Deixar clara que a quebra foi AUTORIZADA pelo Juízo",
+                "3. Constar prazo determinado, se tiver.",
+                "4. Aguardar assinatura do Magistrado (estará assinado quando o documento estiver na fila \"Ofícios - Ag. Impressão\")",
+                "5. Encaminhar ofício para o e-mail: oficios.juridico@claro.com.br e oficios.doc@claro.com.br",
+                "6. Subir comprovantes nos autos",
+                "7. Copiar para fila \"Ag. Decurso de Prazo\" - por 30 dias ou o tempo determinado pelo magistrado",
+                "IV. Operadora TIM",
+                "1. Modelo SAJ 909",
+                "2. Deixar clara que a quebra foi AUTORIZADA pelo Juízo",
+                "3. Constar prazo determinado, se tiver.",
+                "4. Aguardar assinatura do Magistrado (estará assinado quando o documento estiver na fila \"Ofícios - Ag. Impressão\")",
+                "5. Encaminhar ofício para o e-mail: graop_oficios@timbrasil.com.br",
+                "6. Subir comprovantes nos autos",
+                "7. Copiar para fila \"Ag. Decurso de Prazo\" - por 30 dias ou o tempo determinado pelo magistrado"
+            ],
+            "Reiteração": [
+                "1. Acompanhar a fila \"Ofícios Ag. Resposta\"",
+                "2. Verificar quais estão vencidos na coluna \"Vencimento\" - não serão considerados vencidos os ofícios cuja data de vencimento é a mesma da consulta.",
+                "3. Abrir o processo para identificar o ofício em questão",
+                "4. Confirmar se o ofício de fato não foi respondido e se não houve determinação do magistrado de tornar conclusos, caso não houvesse resposta.",
+                "5. Se determinado pelo magistrado, conforme item 4, encaminhar para a fila \"Conclusos Minuta\"",
+                "6. Caso a 3ª reiteração já tiver sido realizada, certificar e encaminhar imediatamente à Conclusão",
+                "7. Se for ofício de diligências à Autoridade Policial, verificar se foi encaminhado ao Distrito Policial correto",
+                "8. Abrir a pasta \"Gerenciador de Arquivos\"",
+                "9. Pesquisar o processo e localizar o ofício",
+                "10. Com o botão direito do mouse, clicar em \"novo documento\" - essa opção irá gerar um ofício idêntico ao selecionado",
+                "11. Constar tratar-se de reiteração",
+                "12. Aguardar assinatura do Magistrado (estará assinado quando o documento estiver na fila \"Ofícios - Ag. Impressão\")",
+                "13. Enviar ofício ao destinatário",
+                "14. Subir comprovantes nos autos",
+                "15. Copiar para fila \"Ag. Decurso de Prazo\" - por 30 dias ou o tempo determinado pelo magistrado"
+            ],
+            "Requisição de Réu Preso (Audiência Virtual)": [
+                "I. Réu preso - Modelo SAJ: 583",
+                "1. Conformar onde o réu está preso (por e-mail ou pela FA)",
+                "2. Não é necessário copiar o link da audiência no ofício.",
+                "3. Aguardar assinatura do Magistrado (estará assinado quando o documento estiver na fila \"Ofícios - Ag. Impressão\")",
+                "4. Consultar o endereço do local de prisão (https://www1.sap.sp.gov.br/sp/unidades-prisionais/complexos-penais.html)",
+                "5. Enviar para todos os e-mails indicados no site acima",
+                "6. Subir comprovante nos autos",
+                "7. Remover o ofício da fila \"ag. resposta\".",
+                "II. Réu preso por outro Juízo - Modelo SAJ: 506040"
+            ],
+            "Requisição de Réu Preso (Plenário)": [
+                "1. Modelo SAJ: 583",
+                "2. Confirmar onde o réu está preso (por e-mail ou pela FA - se preso em São Paulo)",
+                "3. Importante: se o Plenário for no período da manhã, determinar comparecimento às 08h00",
+                "4. Aguardar assinatura do Magistrado (estará assinado quando o documento estiver na fila \"Ofícios - Ag. Impressão\")",
+                "5. Consultar o endereço de e-mail do local de prisão (https://www1.sap.sp.gov.br/sp/unidades-prisionais/complexos-penais.html)",
+                "6. Enviar para todos os e-mails indicados no site acima",
+                "7. Subir comprovante nos autos",
+                "8. Remover o ofício da fila \"ag. resposta\".",
+                "9. Importante: se o réu estiver preso por outro Juízo, deve ser expedido mandado (Modelo SAJ: 506040)"
+            ],
+            "Requisição de Servidor Público": [
+                "I. PM - via SISAJ (sisaj.policiamilitar.sp.gov.br)",
+                "2. É necessário ter algum parâmetro, como RE ou CPF do agente a ser requisitado",
+                "3. Subir o protocolo da solicitação como \"Protocolo de Ofício\" nos autos",
+                "4. Caso algum policial conste como indisponível, subir o protocolo de solicitação",
+                "5. Caso indisponibilidade e for testemunha apenas do Ministério Público, abrir vista àquele órgão",
+                "6. Caso indisponibilidade e for testemunha comum ou da defesa, encaminhar à fila \"Conclusos Minuta\".",
+                "-",
+                "II. PC - Modelo SAJ: 1164",
+                "1. Alterar o destinatário do Ofício para o Centro de Comunicações da Policia Civil - CEPOL",
+                "2.  Aguardar assinatura do Magistrado (estará assinado quando o documento estiver na fila \"Ofícios - Ag. Impressão\")",
+                "3. Subir o comprovante de envio nos autos",
+                "4.  Remover o ofício da fila \"ag. resposta\".",
+                "-",
+                "III. GCM - Modelo SAJ: (enviar para xxxx)",
+                "-",
+                "IV. SAMU - Modelo SAJ: (enviar para xxxx)",
+                "-"
+            ],
+            "Revogação da Suspensão do Processo (art. 366)": [
+                "-"
+            ],
+            "Suspensão do Processo (art. 366)": [
+                "-"
+            ],
+            "Whatsapp": [
+                "-"
+            ],
+            "Recambiamento": [
+                "I. Solicitar Autorização de Recambiamento: Modelo SAJ 502853",
+                "1. Trata-se de comunicação com o Juízo do local de prisão do réu",
+                "2. Localizar o local de prisão do réu",
+                "3. Localizar o Juízo responsável pela unidade prisional",
+                "4. Atualizar o local de prisão no Histórico de Partes",
+                "5. Expedir ofício, conferindo os dados da unidade prisional e do Juízo de Destino.",
+                "6. Aguardar assinatura do Magistrado (estará assinando quando o documento estinar na fila \"Ofícios - Ag. Impressão\");",
+                "7. Enviar para o email do Juízo responsável pela unidade prisional.",
+                "8. Subir comprovante de envio nos autos.",
+                "9. Copiar para fila \"Ag. Decurso de Prazo\" - por 30 dias ou o tempo determinado pelo magistrado, com a observação \"Ag. Autorização Recamb.\"",
+                "II. Solicitar Recambiamento à SAP: Modelo SAJ 502849",
+                "1. Trata-se de solicitação à SAP para disponibilização de vaga dentro de unidade prisional dentro do Estado de São Paulo",
+                "2. Expedir ofício, conferindo os dados da unidade prisional em que o réu se encontra",
+                "3. Aguardar assinatura do Magistrado (estará assinando quando o documento estinar na fila \"Ofícios - Ag. Impressão\");",
+                "4. Enviar para o email: dcepat@sp.gov.br",
+                "5. Subir comprovante de envio nos autos.",
+                "6. Copiar para fila \"Ag. Decurso de Prazo\" - por 30 dias ou tempo determinado pelo magistrado, com a observação \"Ag. Autorização Vaga\".",
+                "III. Solicitar Missão de Recambiamento: Modelo SAJ 502850"
+            ]
+        },
+        "Sentença": {
+            "Sentença de Extinção por Morte": [
+                "1. Publicar Sentença - Modelo SAJ 709766",
+                "2. Expedir Certidão de Extinção por Morte - BNMP (Vide tópico Peças BNMP - Certidão de Extinção por Morte)",
+                "2.1 Apenas será possível se houver peças em aberto da própria Vara que expedir a certidão.",
+                "2.2 Caso a 2ª Vara do Júri não tenha autorização para expedir a certidão, certificar no autos e encaminhar à fila \"Conclusos-Minuta\"",
+                "3. Intimar as partes",
+                "4. Atualizar Histórico das Partes",
+                "5. Encaminhar para a fila \"ag. Decurso de Prazo\", no prazo de 5 dias, com a observação \"Ag. Trânsito em Julgado\"."
+            ],
+            "Sentença Proferida Fora de Audiência": [
+                "1. Publicar Sentença - Modelo SAJ 709766",
+                "2. Abrir ciência às partes",
+                "3. Expedir Mandado de Intimação de Sentença para o Réu (Ver tópico - Mandados - Intimação de Sentença)",
+                "3.1. Importante: constar Termo de Recurso no mandado",
+                "3.2. Importante: anexar a Sentença ao mandado.",
+                "4. Verificar eventuais determinações no Termo de Audiência para cumprimento",
+                "5. Encaminhar para fila Ag. Decurso de Prazo, pelo prazo do mandado, com a observação \"Ag. Trânsito em Julgado às Partes\"",
+                "6. Importante: remover ato da Sentença/Termo de Audiência apenas quando todas as determinações estiverem cumpridas."
+            ]
+        },
+        "Apensamento": {
+            "-": [
+                "-"
+            ]
+        },
+        "Arquivamento": {
+            "Antes da Denúncia": [
+                "1. Verificar na decisão/despacho:",
+                "1.1. Se  consta a observação de que a decisão/despacho servirá como ofício",
+                "1.2. Se há determinação de destinação de armas/objetos apreendidos",
+                "1.2.1 Caso haja, deverá encaminhar uma cópia da decisão/despacho-ofício para onde o local está custodiado",
+                "1.2.1.1. A informação de onde o objeto estará constará no Termo de Exibição e Apreensão ou no Sistema Nacional de Gestão de Bens (SNGB)",
+                "1.2.2 Pode ser necessário expedir mandados ou outras peças em relação a alguns objetos",
+                "1.2.2.1 Neste caso, vide tópico Devolução/Destruição de Armas/Objetos",
+                "2. No Histórico de Partes, se houver parte identificada, incluir \"Inquérito/TC Arquivado\" - código 21",
+                "3. Dar ciência ao Ministério Público para que ele proceda às comunicações pertinentes",
+                "4. Encaminhar processo para a fila \"Ag. Decurso de Prazo\", pelo prazo de 60 dias, caso não haja determinação do contrário, com a observação \"Arq. IP\"",
+                "5. IMPORTANTE: Após o decurso do prazo acima:",
+                "5.1 Na Aba \"Movimentação Unitária\", incluir movimentação 61615",
+                "5.2. Encaminhar para a fila \"Processos Arquivados\"."
+            ],
+            "Discordância do Arquivamento": [
+                "I. Ocorre quando o familiar da parte se manifesta CONTRARIAMENTE ao Arquivamento",
+                "1. Encaminhar à Procuradoria Geral do Estado através do link: https://sis.mpsp.mp.br/atendimentocidadao/OrgaoExterno/Manifestacao/IncluirNovaManifestacao",
+                "1.1. O preenchimento é o mesmo quando ocorre conflito de competência. Vide Conflito de Competência - Remessa à PGE"
+            ]
+        },
+        "Redistribuição": {
+            "Habeas Corpus": [
+                "1. Cadastro deve ser via DISTRIBUIDOR."
+            ]
+        },
+        "IMESC": {
+            "Cadastro de Portaria": [
+                "I. Cadastro",
+                "1. Aba \"Cadastro\"",
+                "1.1 \"Petições Intermediárias e Incidentes Processuais Excepcionais",
+                "1.1.1 Em Classe inserir o Código 333 (Insanidade)",
+                "2. IMPORTANTE: Anotar o número gerado (fica à esquerda da janela onde foi inserida a Classe)",
+                "3. Em Partes de Representantes",
+                "3.1 Inserir o Requerente (a parte que entrou com a alegação de insanidade) e inserir os dados pertinentes",
+                "3.2 Inserir o Requerido (a outra parte) e inserir os dados pertinentes",
+                "4. Clicar em \"Emissão de Documentos\"",
+                "4.1 Modelo SAJ - 398",
+                "4.2 Editar o documento:",
+                "4.2.1 Apagar o número da portaria no título (confirmar com Alex)",
+                "4.2.2 Inserir a decisão do Magistrado no campo pertinente",
+                "4.2.2.1 IMPORTANTE: deve constar a decisão que determinou a instauração e os quesitos apresentados pelo Juízo",
+                "4.3. Copiar para a fila: \"Ag. Análise de Cartório\" para que o Magistrado assine",
+                "4.4. Informar ao magistrado que o documento está pronto e aguardando assinatura.",
+                "II. Após Assinatura da Portaria",
+                "1. Subir no incidente:",
+                "1.1 O Boletim de Ocorrência",
+                "1.2. A Denúncia",
+                "1.3. O recebimento da denúncia (CONFIRMAR)",
+                "1.4. A Resposta à Acusação (caso já tenha sido juntado)",
+                "1.4.1 IMPORTANTE: O fato de eventualmente não ter sido juntada a Resposta à Acusação não impede o andamento do expediente de insanidade",
+                "1.5. A decisão de que determinou a instauração do expediente.",
+                "2. Abrir vista ao Ministério Público",
+                "2.1 Encaminhar para a fila \"Ag. Decurso de Prazo\", pelo prazo de 5 dias, com a observação \"Ag. Quesitos do MPSP\"",
+                "3. Após a apresentação dos quesitos pelo Ministério Público, abrir vista à Defesa",
+                "3.1 Encaminhar para a fila \"Ag. Decurso de Prazo\", pelo prazo de 5 dias, com a observação \"Ag. Questios da Defesa\"",
+                "3.1.1 O prazo correrá em dobro, caso o réu seja assistido pela Defensoria Pública",
+                "I. Ocorre após a apresentação dos questos pelas partes",
+                "1. Encaminhar para a fila \"Conclusos-Minuta\"",
+                "2. A partir do despacho expedir o oficio (CONTINUAR DAQUI)"
+            ]
+        }
+    },
+    "3. Diversos": {
+        "Conflito de Competência": {
+            "Remessa à PGE": [
+                "1. Acessar o site https://sis.mpsp.mp.br/atendimentocidadao/OrgaoExterno/Manifestacao/IncluirNovaManifestacao",
+                "1.1. Deverão ser preenchidos todos os campos",
+                "1.2. Nome da Instituição: Tribunal de Justiça do Estado de São Paulo",
+                "1.3. Setor: 2ª Vara do Júri da Comarca de São Paulo",
+                "1.4. CNPJ do Tribunal: 51.174.001/0001-93",
+                "1.5. Preencher com os dados do escrevente que está preenchendo",
+                "1.6. Setor destinatário: Art. 28 CPP / Confito de Atribuições de Competência",
+                "1.7. Descrição",
+                "1.7.1. Caso tenha sido Conflito de Competência, deve-se descrever o ponto de discordância entre os promotores, resumidamente.",
+                "1.7.1.1 Nesse caso, no campo \"Indique as Pessoas Envolvidas\" pode permanecer em branco",
+                "1.7.2. Caso tenha sido discordância de familiares ante promoção de arquivamento",
+                "1.7.3. Sugestão de descrição: \"Os familiares da vítima se manifestaram contrariamente ao arquivamento promovido pelo Ministério Público.\"",
+                "1.7.4. Se houver qualificação do familiar que discordou, deve-se preencher o campo de \"Indique as Pessoas Envolvidas\" como \"interessado\".",
+                "1.8. Deverão ser encaminhados no campo \"Anexos\"",
+                "1.8.1. A senha do processo, em PDF.",
+                "1.8.2. A decisão que determinou a remessa à Procuradoria Geral do Estado, em PDF.",
+                "1.9. Caso a documentação ultrapasse 200MB de tamanho, deverá ser encaminhado link do One Drive (Vide - One Drive - Gerar Link para envio)",
+                "1.10. Clicar em \"Concluir\"",
+                "1.11. Revisar os dados e confirmar sua veracidade.",
+                "2. Juntar o protocolo gerado pelo Portal do MPSP como \"protocolo de ofício\" nos autos",
+                "2.1. O protocolo será encaminhado ao e-mail que foi cadastrado.",
+                "3. Encaminhar o processo para a fila \"ag. Decurso de Prazo\", pelo prazo de 30 dias, com a observação \"Ag. PGE\".",
+                "3.1. Caso não haja outras determinações, remover o ato da decisão.",
+                "4. A resposta da Procuradoria Geral do Estado virá como petição nos próprios autos."
+            ]
+        },
+        "": {
+            "": [
+                "-"
+            ]
+        },
+        "Provimentos": {
+            "Prov. 32/00": [
+                "-"
+            ],
+            "Prov. 770/02": [
+                "IMPORTANTE: expedir a Carta apenas se houver condenação do réu",
+                "I. Se vítima fatal - Modelo SAJ: 507455",
+                "1. Procurar nos autos o endereço de algum familiar",
+                "2. O destinatário deverá ser o familiar da vítima - \"Ao Familiar da Vítima....\"",
+                "3. Assinar, finalizar e subir nos autos",
+                "II. Se vítima não-fatal - Modelo SAJ: 507455",
+                "1. Procurar o endereço da vítima",
+                "2. O destinatário será a própria vítima",
+                "3. Assinar, finalizar e subir nos autos"
+            ]
+        },
+        "Suspensão Condicional do Processo (L 9099/95)": {
+            "-": [
+                "-"
+            ]
+        },
+        "Editais": {
+            "Intimação": [],
+            "Citação": [
+                "Modelo SAJ: 1000022",
+                "IMPORTANTE: Deve ser expedido apenas quando determinado expressamente e esgotadas as tentativas de localização"
+            ]
+        },
+        "Prazos": {
+            "Recursos/Apelações": [],
+            "Cartas Precatórias": []
+        },
+        "Jurados": {
+            "Cadastro de Jurados": [],
+            "Dispensa de Jurados": [],
+            "Exclusão de Jurados": [],
+            "Lista de Jurados": [
+                "I. LISTAS DE PLENÁRIO",
+                "1. As listas de jurados ficam prontos até dia 20 do mês anterior ao plenário",
+                "2. A lista é dinâmica: a lista apresentada do dia 20 é referente ao primeiro plenário do mês seguinte.",
+                "3. A Liste de Jurados de um plenário depende das atualizões do plenário anterior.",
+                "4. Qualquer dúvida em relação aos jurados, deve-se procurar o responsável pelos Jurados da 2ª Vara do Júri",
+                "5. As listas de jurados podem ser consultadas no seguinte link: https://tjsp-my.sharepoint.com/:f:/r/personal/alexmaia_tjsp_jus_br/Documents/J%C3%BAri?d=w599f222f1d11415e9a0a6b65c85436ce&csf=1&web=1&e=xcuapF"
+            ],
+            "Comprovante de Jurado": [],
+            "Atestados de Jurados": []
+        },
+        "Varas de Execução": {
+            "DEECRIM": [
+                "III. Verificar tabela disponível no site oficial do TJ/SP: https://www.tjsp.jus.br/Corregedoria/Corregedoria/Deex"
+            ]
+        }
+    },
+    "4. Balcão": {
+        "Atendimento balcão": {
+            "Réu - Alvará de Soltura": [
+                "I. Termo de Comparecimento - Sem Medidas Cautelares Diversas da Prisão - Modelo SAJ: 607",
+                "1. IMEDIATAMENTE dar cumprimento ao Alvará de Soltura no BNMP (vide tópico Peças BNMP - Alvará de Soltura)",
+                "2. Colher o endereço, número de telefone e email do réu",
+                "3. Atualizar a aba Partes e Representantes com as novas informações",
+                "4. Expedir o Termo de Comparecimento",
+                "4.1. No Termo deverá constar as informações atualizadas conforme declarado pelo réu em balcão",
+                "4.2. No Termo deverá constar a síntese da decisão que determinou a expedição do Alvará de Soltura",
+                "5. IMEDIATAMENTE informar ao magistrado que o Termo está finalizado e aguardando assinatura.",
+                "6. Verificar se é necessário intimar o réu de eventual sentença",
+                "6.1. Caso seja necessário, proceder-se-á à intimação da sentença",
+                "7. Após assinatura do Termo de Comparecimento pelo magistrado, deverá ser impressa duas cópias.",
+                "7.1 IMPORTANTE: caso seja necessário intimar o réu da sentença, deverá ser impressa cópia da Sentença e expedida Certidão de Intimação (vide tópico Atendimento Balcão -  Intimação/Citação em Balcão)",
+                "8. Entregar a cópia do Termo de Comparecimento para assinatura do réu (e entregar eventuais peças)",
+                "8.1 O réu ficará com uma cópia do Termpo de Comparecimento",
+                "9. Subir a certidão de cumprimento do Alvará no BNMP",
+                "10. Digitalizar o Termo de Comparecimento assinado e subir nos autos.",
+                "11. O Termo de Comparecimento assinado deverá ser colocado em pasta própria no cartório",
+                "12. IMPORTANTE: Verificar o andamento do processo, para analisar questões de prazo e filas.",
+                "II. Termo de Comparecimento - Com Medidas Cautelares Diversas da Prisão - Modelo SAJ: 607",
+                "1. IMEDIATAMENTE dar cumprimento ao Alvará de Soltura no BNMP (vide tópico Peças BNMP - Alvará de Soltura)",
+                "2. IMEDIATAMENTE dar cumprimento ao Mandado de Medidas Cautelares Diversas da Prisão no BNMP (vide tópico Peças BNMP - Mandados de Medidas Cautelares Diversas da Prisão)",
+                "2.1 Caso o Mandado de Medidas Cautelares Diversas de Prisão não tenha sido expedido, deverá ser expedido IMEDIATAMENTO (vide tópico Peças BNMP - Mandados de Medidas Cautelares Diversas da Prisão)",
+                "3. Colher o endereço, o número de telefone e o email do réu",
+                "4. Atualizar a aba Partes e Representantes com as novas informações",
+                "5. Expedir o Termo de Comparecimento",
+                "5.1. No Termo deverá constar as informações atualizadas conforme declaro pelo réu em balcão",
+                "5.2. No Termo deverá constar a síntese da decisão que determinou a expedição do Alvará de Soltura e determinou as Medidas Cautelares",
+                "5.3. No Termo deverá constar, expressamente, as medidas impostas ao réu",
+                "6. IMEDIATAMENTE informar ao magistrado que o Termo está finalizado e aguardando assinatura.",
+                "7. Verificar se é necessário intimar o réu de eventual sentença e se está ciente das cautelares impostas",
+                "7.1. Caso seja necessário, proceder-se-á à intimação da sentença",
+                "8. Após assinatura do Termo de Comparecimento pelo magistrado, deverá ser impressa duas cópias.",
+                "8.1 IMPORTANTE: caso seja necessário intimar o réu da sentença, deverá ser impressa cópia da Sentença e expedida Certidão de Intimação (vide tópico Atendimento Balcão -  Intimação/Citação em Balcão)",
+                "9. Entregar duas cópias do Termo de Comparecimento para assinatura do réu (e entregar eventuais peças)",
+                "9.1 O réu ficará com uma cópia do Termo de Comparecimento",
+                "10. Subir a certidão de cumprimento do Alvará no BNMP, o Mandado de Medidas Cautelares Diversas da Prisão (caso ainda não conste nos autos ou tenha sido expedido nesta oportunidade) e sua certidão de cumprimento",
+                "11. Digitalizar o Termo de Comparecimento assinado e subir nos autos.",
+                "12. O Termo de Comparecimento assinado deverá ser colocado em pasta própria no cartório",
+                "12.3 Outra cópia deverá ser usada para montar a pasta de cautelares.",
+                "12.3.1 Deverá ser montada uma pasta de comparecimento periódico para o réu (caso haja essa medida entre as medidas cautelares)",
+                "12.3.2 Deverá ser impressa Etiqueta de identificação da Pasta (vide tópico Serviços Cartorários - Etiquetas do Processo)",
+                "12.3.3 A primeira assinatura do réu será a do Termo de Comparcimento",
+                "13. Copiar expediente para a fila \"Acompanhamento de Medidas Cautelares\", com a observação \"Rever Cautelares\" no prazo de 1 ano a contar da decisão que determinou as medidas.",
+                "14. IMPORTANTE: Vertificar Históricos de Parte, para verificar se as medidas cautelares estão corretamente cadastradas.",
+                "15. IMPORTANTE: Verificar o andamento do processo, para analisar questões de prazo e filas."
+            ],
+            "Réu - Comparecimento Mensal": [
+                "-"
+            ],
+            "Jurados": [],
+            "Intimação/Citação em balcão": [
+                "I. Parte ou Testemunha para Audiência",
+                "1. Modelo SAJ: 50",
+                "2. Certificar que a intimação da parte/testemunha foi realizado em cartório",
+                "2.1. Caso seja intimação para Audiência Virtual, imprimir o mandado com o QR CODE e Link de Audiência para entregar.",
+                "2.1.1 Incluir que a parte recebeu o link na certidão de intimação",
+                "2.2 IMPORTANTE: O cartório NÃO intima em balcão com o Mandado de Intimação. Apenas entregará cópia para viabilizar o acesso ao link.",
+                "2.3 Colher as seguintes informações: endereço, telefone e email.",
+                "2.4 Sugestão de Redação: \"Certifico e dou fé que, nesta data, FULANO DE TAL compareceu neste cartório e foi intimado da audiência virtual designada para o dia TAL, declinou o endereço TAL, número de telefone TAL e o email TAL. Certifico ainda que recebeu em mãos cópia do mandado de fls. XX/XX para ter acesso ao link da audiência.",
+                "2.5 Imprimir a certidão SEM subir nos autos",
+                "2.6 Colher assinatura da parte/testemunha na certidão",
+                "2.7 Atualizar os novos dados no Partes e Representantes.",
+                "3. Digitalizar a certidão assinada e subir nos autos.",
+                "4. Caso tenha mandado aguardando cumprimento:",
+                "4.1 Caso o mandado não tenha sido distribuído:",
+                "4.1.1 Ir para a aba Mandados > Cancelamento de Mandado > Digitar o número do processo e buscar o mandado",
+                "4.1.2. No motivo do cancelamento, digitar que a intimação foi realizada em cartório",
+                "4.2 Caso o mandado já esteja em posse do Oficial de Justiça:",
+                "4.2.1 Ir para a aba Mandados > Consulta Avançada > Digitar o número do processo e buscar o mandado",
+                "4.2.2. Quando selecionar o mandado, verificar o \"AGENTE\", que é o Oficial de Justiça em posso do mandado. Anotar o nome.",
+                "4.2.3. Clicar em \"Relatório\" para baixar o arquivo em PDF (alguns oficiais pedem o relatório no email)",
+                "4.2.4. Encaminhar email com o relatório em anexo para o Oficial de Justiça",
+                "4.2.5. Subir o comprovante de email nos autos",
+                "5. IMPORTANTE: Verificar o andamento do processo, pois o processo pode estar no prazo aguardando apenas essa intimação.",
+                "II. Intimação de Sentença",
+                "1. Modelo SAJ: 50",
+                "2. Certificar que o réu foi intimado em cartório",
+                "2.1 Colher as seguintes informações: endereço, telefone e e-mail",
+                "2.2 Incluir TERMO DE RECURSO na certidão para que o réu declare se deseja ou não recorrer.",
+                "2.3 Sugestão de Redação: \"Certifico e dou fé que, nesta data, FULANO DE TAL compareceu neste cartório e foi intimado da sentença de fls. XX/XX, declinou o endereço TAL, número de telefone TAL e o email TAL. Certifico ainda que lhe foi entregue cópia da referida sentença\".",
+                "3. Imprimir a certidão SEM subir nos autos",
+                "4. Imprimir a sentença",
+                "5. Colher assinatura do réu na certidão e entregar-lhe a sentença.",
+                "6. Solicitar o preenchimento do Termo de Recurso",
+                "7. Digitalizar a certidão assinada e subir nos autos",
+                "8. IMPORTANTE: Verificar o andamento do processo, pois o processo pode estar no prazo aguardando apenas essa intimação.",
+                "9. Caso não haja outras pendências e prazos no processo, encaminhar para a fila Ag. Decurso de Prazo, com o prazo de 05 (cinco) dias, com a observação \"Ag. Trânsito em Julgado\".",
+                "10. IMPORTANTE: a partir da data desta intimação, começa a contar o prazo para trânsito em julgado para o réu.",
+                "III. Citação",
+                "1. Modelo SAJ: 50",
+                "2. Certificar que o réu foi o citado em cartório",
+                "2.2 IMPORTANTE: O cartório NÃO intima em balcão com o Mandado de Citação.",
+                "2.3 Colher as seguintes informações: endereço, telefone e email",
+                "2.4 Sugestão de Redação: \"Certifico e dou fé que, nesta data, FULANO DE TAL compareceu neste cartório e foi citado da denúncia de fls. XX/XX oferecida pelo Ministério Público, cuja cópia lhe foi entregue em mãos. Certifico ainda que declinou o endereço TAL, número de telefone TAL e o email TAL e que está ciente do prazo de 10 dias para oferecer Resposta à Acusação.",
+                "2.5. Incluir TERMO DE DECLARAÇÃO DE DEFESA para que o réu preencha.",
+                "3. Imprimir a certidão SEM subir nos autos",
+                "4. Imprimir a Denúncia",
+                "5. Imprimir a senha do processo.",
+                "6. Colher assinatura do réu na certidão e entregar-lhe a denúncia",
+                "7. Solicitar o preenchimento do Termo de Declaração de Defesa",
+                "8. Digitalizar a certidão assinada e subir nos autos",
+                "9. IMPORTANTE: Verificar o andamento do processo, pois o processo pode estar no prazo aguardando apenas a citação.",
+                "10. Caso não haja outras pendências e prazos no processo, encaminhar para a fila Ag. Decurso de Prazo, com o prazo de 10 (dez) dias, com a observação \"Ag. Resposta à Acusação\"",
+                "11. Caso o réu tenha optado pela Defensoria Pública, o prazo será em dobro."
+            ],
+            "Pedido de Certidão de Objeto e Pé": []
+        }
+    },
+    "5. Processos Físicos": {
+        "Desarquivamento": {
+            "": []
+        },
+        "Arquivamento": {
+            "": []
+        },
+        "Ciência/Vista": {
+            "": []
+        },
+        "Conclusão": {
+            "": []
+        },
+        "Digitalização": {
+            "Sistema IRON (Download)": [
+                "1. No sistema SGDAU, clicar na aba REQUISIÇÕES",
+                "2. Clicar em Painel de Controle",
+                "3. Em \"Forma de Entrega\", selecionar DIGITAL e colocar o período em que o desarquivamento foi solicitado (o intervalo deve ser menor que 90 dias)",
+                "4. Em \"Ação\", aparecerá uma imagem, que é o link para download do processo digitalizado.",
+                "5. Após o clique, no campo \"Tipo de Download\", em \"Multi Paginado\" para que o arquivo venha em APENAS UM ÚNICO PDF. (IMPORTANTE)",
+                "6. Clicar em download.",
+                "Importante: TODOS os pedidos ficam disponíveis àqueles que tiverem acesso ao SGDAU, não sendo restrito ao solicitante"
+            ],
+            "SAJ": [
+                "IMPORTANTE: Após tornar o processo digital no SAJ, o número de ordem mudará. Apenas será de responsabilidade do novo final APÓS toda a categorização do processo.",
+                "IMPORTANTE: O processo a ser tornado digital no SAJ deverá estar na base BARRA FUNDA. Caso não esteja, informar o coordenador para regularizaão.",
+                "1. No SAJ, página inicial, seguir o caminho CADASTRO > TORNAR PROCESSO DIGITAL",
+                "2. Digitar o processo físico a ser digitalizado.",
+                "3. O processo irá ficar na fila: 9001 - Ag. Digitalização.",
+                "4. Após, deve-se iniciar o processo de subir peças e recategorização do arquivo digitalizado referente ao processo físico."
+            ],
+            "Recategorização": [
+                "IMPORTANTE: É necessário ter o arquivo em PDF do Processo Físico que foi digitalizado.",
+                "1. Recomenda-se subir um volume por vez",
+                "2. Enquanto estiver sendo recategorizado, o processo deverá permanecer na fila \"Ag. Digitalização\".",
+                "3. A digitalização será feita no menu \"Digitalização de Peças\", e selecionando o arquivo PDF do processo.",
+                "4. Subir o arquivo como \"documentos diversos\".",
+                "5. Após, recategorizar o tipo do documento para organizar o processo em ambiente digital: Clicar com o botão direito do mouse > \"Recategorizar para Outro Tipo de Documento\" e selecionar o tipo correto do documento.",
+                "6. Atualizar o Histórico de Partes, caso incompleto.",
+                "7. Concluída a recategorização, analisar a petição e verificar o procedimento a ser realizado:",
+                "7.1 Se pedido da Defensoria Pública, deve-se juntar a petição física (digitalizada), cadastar no Partes e Representantes e abrir vista àquele órgão.",
+                "7.2 Se pedido do Ministério Público, deve-se juntar a petição física (digitalizada) e abrir vista àquele órgão.",
+                "7.3 Se pedido de advogado/parte, deve-se juntar a petição física (digitalizada) e encaminhar à fila \"Conclusos-Minuta\".",
+                "7.4. Importante: em caso de Revisão Criminal.",
+                "7.4.1 Juntar no processo o ofício de solicitação para revisão criminal.",
+                "7.4.2 Certificar que o processo foi digitalizado e as peças foram recategorizadas.",
+                "7.4.3 Certificar sobre as mídias: se não há mídias, ou se houver.",
+                "7.4.4. Avisar por e-mail o setor de revisão criminal que os autos se encontram disponíveis e juntar o e-mail.",
+                "7.4.5. Encaminhar o processo para a fila de \"Processo Arquivado\"."
+            ]
+        },
+        "Editais": {
+            "Intimação de Sentença (réu)": [
+                "I. Antes da Publicação",
+                "1. Modelo SAJ - 1000362",
+                "2. Na configuração do documento:",
+                "2.1 Colocar o prazo conforme tabela: vide Prazos - Editais",
+                "2.2. Caso seja processo com múltiplos réus, verificar se foi corretamente selecionado",
+                "2.3. Selecionar corretamente a sentença"
+            ]
+        },
+        "": {
+            "": [
+                "1. Modelo SAJ -"
+            ]
+        },
+        "Movimentação Unitária": {
+            "Prazos": []
+        }
+    },
+    "6. Orientações Gerais": {
+        "Prazos": {
+            "Editais": [
+                "1. Citação: 15 dias (art. 361 do CPP)",
+                "2. Intimações",
+                "2.1. Sentença Condenatória igual ou superior a 1 anos: 90 dias (art. 392, §1º)",
+                "2.2. Sentença Condenatória em outros casos: 60 dias",
+                "2.3. Sentenas Diversas (Pronúncia, Impronúncia, Extinção de Punibilidade): 15 dias (base HC STJ 552108/MS)",
+                "3. Outras Intimações",
+                "3.1. Se não houver determinação expressa do magistrado, considerar 15 dias.",
+                "4. Intimação para Audiência (réu revel): 15 dias."
+            ],
+            "Processuais": [],
+            "Ofícios": []
+        },
+        "Audiências Virtuais": {
+            "Link e QRCode": [
+                "1. No Calendário do Outlook, procurar a Audiência Virtual em questão e copiar o link",
+                "2. Encurtar o link através do site: https://tinyurl.com/",
+                "2.1 Basta colar o link e clicar em \"shorten link\"",
+                "2.2 Copiar o link",
+                "3. Gerar o QR code",
+                "3.1. Colar o link encurtado (já servindo como teste de funcionalidade) e, ao abrir, clicar com o botão direito do mouse e em \"GERAR QRCODE\".",
+                "3.2. O QRCODE gerado será oficial do navegador, qual seja, Edge ou Chrome",
+                "4. Inserir QRCODE no mandado:",
+                "4.1. Baixar QRCODE através da opção do navegador, o que ensejará na redução do tamanho e em eventuais distorções nos pixels quando inserido no mandado (através do menu INSERIR > IMAGEM).",
+                "4.2. Quando incluir, selecionar tamanho da resolução ORIGINAL (100%)",
+                "4.3. Após inserir, reduzir o QR CODE a um tamanho razoável (aproximadamente 6x6 na régua de edição)",
+                "4.4. Importante: SEMPRE testar o QR CODE antes de finalizar o mandado.",
+                "5. Recomendável que o link que constar no mandado esteja na fonte CONSOLAS."
+            ]
+        },
+        "Retorno de Mandados de Intimação": {
+            "Retorno de Mandados de Intimação": [
+                "- Caso retornem negativos:",
+                "1. Se testemunha do Ministério Público: vista ao MP e encaminhar para a fila Ag. Decurso de Prazo, pelo prazo de 05 (cinco) dias com a observação \"Ag. MP\"",
+                "2. Se testemunha da Defensoria Pública: encaminhar para a fila \"Conclusos-Minuta\"",
+                "3. Se testemunha de Advogado Constituído: encaminhar para a fila \"Conclusos-Minuta\"",
+                "4. Se testemunha do Assistente de Acusação: encaminhar para a fila \"Conclusos-Minuta\"",
+                "5. Se testemunha comum: encaminhar para a fila \"Conclusos-Minuta\"",
+                "6. Se réu: encaminhar para a fila \"Conclusos-Minuta\"",
+                "7. Se vítima: encaminhar para a fila \"Conclusos-Minuta\""
+            ]
+        },
+        "Serviços Cartorários (pensar nome melhor)": {
+            "Senhas do Processo": [],
+            "Etiquetas do Processo": []
+        },
+        "Devolução/Destruição de Armas/Objetos": {
+            "Armas": [],
+            "Veículos": [],
+            "Objetos Pessoais": []
+        },
+        "OneDrive": {
+            "Gerar link para envio": []
+        },
+        "Cadastros": {
+            "Google LERS": [],
+            "Infoseg/SINESP": []
+        },
+        "Editais": {
+            "Prazos": []
+        }
+    },
+    "A PARTIR DAQUI SERÁ ALIMENTADO COM ROTINA ESPECIFICA": {
+        "": {
+            "": []
+        }
+    }
+};
+
+    const selectA = document.getElementById('selectA');
+    const selectB = document.getElementById('selectB');
+    const selectC = document.getElementById('selectC');
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+    const checklistContainer = document.getElementById('checklistContainer');
+    const checklistItems = document.getElementById('checklistItems');
+    const checklistTitle = document.getElementById('checklistTitle');
+    const notes = document.getElementById('notes');
+    const videModal = document.getElementById('videModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalItems = document.getElementById('modalItems');
+
+    function showSajInfo(modelNum, procedimentos) {
+      modalTitle.textContent = "Modelo SAJ: " + modelNum;
+      modalItems.innerHTML = '<p style="font-weight:600; color:var(--secondary); margin-bottom:10px;">Este modelo é utilizado nas seguintes rotinas:</p>';
+      
+      let ul = document.createElement('ul');
+      ul.style.paddingLeft = '20px';
+      ul.style.color = '#333';
+      ul.style.fontSize = '14px';
+      ul.style.lineHeight = '1.8';
+      
+      procedimentos.forEach(proc => {
+        let li = document.createElement('li');
+        li.style.marginBottom = '5px';
+        li.innerHTML = `<strong>${proc}</strong>`;
+        ul.appendChild(li);
+      });
+      
+      modalItems.appendChild(ul);
+      videModal.style.display = 'flex';
+    }
+
+    function extractDynamicData() {
+      let sajMap = new Map();
+      let telefoniaSet = new Set();
+      let telefoniaData = [];
+
+      const telefoniaKeywords = ["VIVO", "CLARO", "TIM", "OI", "ALGAR", "TELEFONICA", "EMBRATEL", "NEXTEL"];
+      const emailRegex = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi;
+
+      try {
+        for (let a in data) {
+          for (let b in data[a]) {
+            for (let c in data[a][b]) {
+              if (Array.isArray(data[a][b][c])) {
+                data[a][b][c].forEach(item => {
+                  let sajMatch = item.match(/SAJ\s*(?:n[º°]|nr|:|-)?\s*(\d+)/i);
+                  if (sajMatch) {
+                    let modelNum = sajMatch[1];
+                    if (!sajMap.has(modelNum)) {
+                      sajMap.set(modelNum, new Set());
+                    }
+                    sajMap.get(modelNum).add(`${a} &rsaquo; ${b} &rsaquo; ${c}`);
+                  }
+
+                  let upperItem = item.toUpperCase();
+                  if (telefoniaKeywords.some(kw => upperItem.includes(kw))) {
+                    let emails = item.match(emailRegex);
+                    if (emails) {
+                      emails.forEach(em => {
+                        let emLower = em.toLowerCase();
+                        if (!telefoniaSet.has(emLower)) {
+                          telefoniaSet.add(emLower);
+                          let opName = "Operadora";
+                          telefoniaKeywords.forEach(kw => {
+                            if (upperItem.includes(kw)) opName = kw.charAt(0) + kw.slice(1).toLowerCase();
+                          });
+                          telefoniaData.push({ nome: opName, email: emLower });
+                        }
+                      });
+                    }
+                  }
+                });
+              }
+            }
+          }
+        }
+      } catch(e) {
+        console.error("Erro ao ler data para extração dinâmica:", e);
+      }
+
+      const sajContainer = document.getElementById('sajContent');
+      if (sajMap.size > 0) {
+        sajContainer.innerHTML = '';
+        let sortedKeys = Array.from(sajMap.keys()).sort((a,b) => parseInt(a) - parseInt(b));
+        
+        sortedKeys.forEach(modelNum => {
+          let procedimentos = Array.from(sajMap.get(modelNum));
+          let div = document.createElement('div');
+          div.className = 'email-list-item';
+          div.style.padding = '8px 4px';
+          
+          let span = document.createElement('span');
+          span.style.fontWeight = '700';
+          span.style.color = 'var(--primary)';
+          span.textContent = `SAJ ${modelNum}`;
+          
+          let btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'search-btn-mini';
+          btn.textContent = 'Ver Detalhes';
+          btn.onclick = function(e) { 
+            e.stopPropagation(); 
+            showSajInfo(modelNum, procedimentos); 
+          };
+          
+          div.appendChild(span);
+          div.appendChild(btn);
+          sajContainer.appendChild(div);
+        });
+      } else {
+        sajContainer.innerHTML = '<div class="email-list-item"><span style="color:#7f8c8d; font-style:italic; font-size: 11px;">Nenhum modelo SAJ detectado na base de dados.</span></div>';
+      }
+
+      const telContainer = document.getElementById('telefoniaContent');
+      if (telefoniaData.length > 0) {
+        telContainer.innerHTML = '';
+        telefoniaData.sort((a,b) => a.nome.localeCompare(b.nome)).forEach(tel => {
+          let div = document.createElement('div');
+          div.className = 'email-list-item';
+          div.innerHTML = `<span>${tel.nome}</span> <a href="mailto:${tel.email}" class="email-address">${tel.email}</a>`;
+          telContainer.appendChild(div);
+        });
+      } else {
+        telContainer.innerHTML = '<div class="email-list-item"><span style="color:#7f8c8d; font-style:italic; font-size: 11px;">Nenhum e-mail de telefonia detectado na base.</span></div>';
+      }
+    }
+
+    window.onload = function() {
+      for (let a in data) {
+        let option = document.createElement('option');
+        option.value = a;
+        option.textContent = a;
+        selectA.appendChild(option);
+      }
+      extractDynamicData();
+    };
+
+    function switchTab(tab) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+      
+      if (tab === 'cascade') {
+        document.querySelectorAll('.tab-btn')[0].classList.add('active');
+        document.getElementById('tabCascade').classList.add('active');
+      } else {
+        document.querySelectorAll('.tab-btn')[1].classList.add('active');
+        document.getElementById('tabSearch').classList.add('active');
+        searchInput.focus();
+      }
+    }
+
+    function updateB() {
+      selectB.innerHTML = '<option value="">Selecione a opção secundária...</option>';
+      selectC.innerHTML = '<option value="">Aguardando seleção anterior...</option>';
+      selectB.disabled = true;
+      selectC.disabled = true;
+      checklistContainer.style.display = 'none';
+      
+      const aVal = selectA.value;
+      if (aVal && data[aVal]) {
+        selectB.disabled = false;
+        for (let b in data[aVal]) {
+          let option = document.createElement('option');
+          option.value = b;
+          option.textContent = b;
+          selectB.appendChild(option);
+        }
+      }
+    }
+
+    function updateC() {
+      selectC.innerHTML = '<option value="">Selecione o subitem...</option>';
+      selectC.disabled = true;
+      checklistContainer.style.display = 'none';
+      
+      const aVal = selectA.value;
+      const bVal = selectB.value;
+      if (aVal && bVal && data[aVal][bVal]) {
+        selectC.disabled = false;
+        for (let c in data[aVal][bVal]) {
+          let option = document.createElement('option');
+          option.value = c;
+          option.textContent = c;
+          selectC.appendChild(option);
+        }
+      }
+    }
+
+    function executeSearch() {
+      const aVal = selectA.value;
+      const bVal = selectB.value;
+      const cVal = selectC.value;
+      
+      if (aVal && bVal && cVal && data[aVal] && data[aVal][bVal] && data[aVal][bVal][cVal]) {
+        let items = data[aVal][bVal][cVal];
+        if (items.length > 0) {
+          renderChecklist(`${bVal} - ${cVal}`, items);
+        } else {
+          alert("Esta seleção não possui itens de checklist cadastrados.");
+          checklistContainer.style.display = 'none';
+        }
+      } else {
+        alert("Por favor, selecione todas as opções na navegação em cascata.");
+        checklistContainer.style.display = 'none';
+      }
+    }
+
+    function handleFreeSearch() {
+      const term = searchInput.value.trim().toLowerCase();
+      searchResults.innerHTML = '';
+      if (term.length === 0) {
+        searchResults.style.display = 'none';
+        return;
+      }
+      
+      let resultsFound = 0;
+      for (let a in data) {
+        for (let b in data[a]) {
+          for (let c in data[a][b]) {
+            const items = data[a][b][c];
+            const matchA = a.toLowerCase().includes(term);
+            const matchB = b.toLowerCase().includes(term);
+            const matchC = c.toLowerCase().includes(term);
+            const matchItem = items.some(item => item.toLowerCase().includes(term));
+            
+            if (matchA || matchB || matchC || matchItem) {
+              resultsFound++;
+              let itemDiv = document.createElement('div');
+              itemDiv.className = 'search-result-item';
+              itemDiv.innerHTML = `
+                <div>
+                  <div class="search-result-title">${b} &rsaquo; ${c}</div>
+                  <div class="search-result-path">${a} &bull; ${items.length} item(ns)</div>
+                </div>
+                <button type="button" class="search-btn-mini">Buscar</button>
+              `;
+              itemDiv.querySelector('.search-btn-mini').onclick = function(e) {
+                e.stopPropagation();
+                renderChecklist(`${b} - ${c}`, items);
+                searchResults.style.display = 'none';
+                searchInput.value = '';
+              };
+              searchResults.appendChild(itemDiv);
+            }
+          }
+        }
+      }
+      
+      if (resultsFound === 0) {
+        searchResults.innerHTML = '<div class="no-results">Nenhum procedimento encontrado.</div>';
+      }
+      searchResults.style.display = 'block';
+    }
+
+    function formatItemText(itemText) {
+      let videRegex = /vide:?\s+([^-\(\)]+)(?:\s*-\s*([^\(\)]+))?/gi;
+      let formatted = itemText.replace(videRegex, function(match, part1, part2) {
+        let bTarget = part1.trim();
+        let cTarget = part2 ? part2.trim() : null;
+        return `<span class="vide-link" onclick="openVideModal('${bTarget}', '${cTarget || ''}')">${match}</span>`;
+      });
+
+      let urlRegex = /(https?:\/\/[^\s]+)/g;
+      formatted = formatted.replace(urlRegex, function(url) {
+        return `<a href="${url}" target="_blank" class="external-link" onclick="event.stopPropagation();">${url}</a>`;
+      });
+      return formatted;
+    }
+
+    // FUNÇÃO VIDE CORRIGIDA E ROBUSTA PARA BUSCAR QUALQUER CHAVE DO OBJETO
+    function openVideModal(bQuery, cQuery) {
+      modalItems.innerHTML = '';
+      let foundItems = [];
+      let matchedTitle = `${bQuery} ${cQuery ? '- ' + cQuery : ''}`;
+      
+      let bClean = bQuery.trim().toLowerCase();
+      let cClean = cQuery ? cQuery.trim().toLowerCase() : '';
+
+      for (let a in data) {
+        for (let b in data[a]) {
+          for (let c in data[a][b]) {
+            let bLower = b.toLowerCase();
+            let cLower = c.toLowerCase();
+            
+            // Verifica correspondência flexível (contém parte do texto em qualquer direção)
+            let matchB = bLower.includes(bClean) || bClean.includes(bLower);
+            let matchC = !cClean || cLower.includes(cClean) || cClean.includes(cLower);
+            
+            if (matchB && matchC) {
+              matchedTitle = `${b} - ${c}`;
+              foundItems = data[a][b][c];
+              break;
+            }
+          }
+          if (foundItems.length > 0) break;
+        }
+        if (foundItems.length > 0) break;
+      }
+
+      modalTitle.textContent = "Consulta: " + matchedTitle;
+      
+      if (foundItems.length > 0) {
+        let modalHasRoman = foundItems.some(item => /^(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.\-\s]/i.test(item.trim()));
+        
+        if (modalHasRoman) {
+          let sections = [];
+          let currentSection = { header: "Orientações Iniciais", items: [] };
+          
+          foundItems.forEach(item => {
+            let trimmed = item.trim();
+            if (/^(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.\-\s]/i.test(trimmed)) {
+              if (currentSection.items.length > 0 || currentSection.header !== "Orientações Iniciais") {
+                sections.push(currentSection);
+              }
+              currentSection = { header: item, items: [] };
+            } else {
+              currentSection.items.push(item);
+            }
+          });
+          sections.push(currentSection);
+          
+          sections.forEach((sec, sIndex) => {
+            let accordionDiv = document.createElement('div');
+            accordionDiv.className = 'roman-accordion';
+            
+            let headerBtn = document.createElement('div');
+            headerBtn.className = 'roman-header';
+            headerBtn.innerHTML = `<span>${sec.header}</span> <span>▼</span>`;
+            
+            let contentDiv = document.createElement('div');
+            contentDiv.className = 'roman-content';
+            
+            headerBtn.onclick = function() {
+              if (contentDiv.style.display === 'block') {
+                contentDiv.style.display = 'none';
+                headerBtn.querySelector('span:last-child').textContent = '▼';
+              } else {
+                contentDiv.style.display = 'block';
+                headerBtn.querySelector('span:last-child').textContent = '▲';
+              }
+            };
+            
+            if (sec.items.length === 0) {
+              contentDiv.innerHTML = '<p style="color:#7f8c8d; margin:0; font-size:13px; font-style:italic;">Nenhum detalhe adicional.</p>';
+            } else {
+              sec.items.forEach((subItem, subIndex) => {
+                let itemDiv = document.createElement('div');
+                itemDiv.className = 'checklist-item';
+                
+                let checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.id = `modal_chk_${sIndex}_${subIndex}`;
+                
+                let label = document.createElement('label');
+                label.htmlFor = `modal_chk_${sIndex}_${subIndex}`;
+                label.innerHTML = ' ' + formatItemText(subItem);
+                
+                let upperItem = subItem.toUpperCase();
+                let isBoldRed = upperItem.includes("IMEDIATAMENTE") || upperItem.includes("URGENTE");
+                let isSaj = upperItem.includes("SAJ");
+                let isRom = /^(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.\-\s]/i.test(subItem.trim());
+                
+                if (isBoldRed) {
+                  label.style.fontWeight = 'bold';
+                  label.style.color = '#e74c3c';
+                } else if (isSaj || isRom) {
+                  label.style.fontWeight = 'bold';
+                }
+
+                checkbox.addEventListener('change', function() {
+                  if (this.checked) {
+                    itemDiv.classList.add('checked');
+                  } else {
+                    itemDiv.classList.remove('checked');
+                  }
+                });
+
+                itemDiv.appendChild(checkbox);
+                itemDiv.appendChild(label);
+                contentDiv.appendChild(itemDiv);
+              });
+            }
+            
+            accordionDiv.appendChild(headerBtn);
+            accordionDiv.appendChild(contentDiv);
+            modalItems.appendChild(accordionDiv);
+          });
+        } else {
+          foundItems.forEach((subItem, sIndex) => {
+            let itemDiv = document.createElement('div');
+            itemDiv.className = 'checklist-item';
+            
+            let checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.id = `modal_chk_${sIndex}`;
+            
+            let label = document.createElement('label');
+            label.htmlFor = `modal_chk_${sIndex}`;
+            label.innerHTML = ' ' + formatItemText(subItem);
+            
+            let upperItem = subItem.toUpperCase();
+            let isBoldRed = upperItem.includes("IMEDIATAMENTE") || upperItem.includes("URGENTE");
+            let isSaj = upperItem.includes("SAJ");
+            let isRoman = /^(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.\-\s]/i.test(subItem.trim());
+            
+            if (isBoldRed) {
+              label.style.fontWeight = 'bold';
+              label.style.color = '#e74c3c';
+            } else if (isSaj || isRoman) {
+              label.style.fontWeight = 'bold';
+            }
+            
+            checkbox.addEventListener('change', function() {
+              if (this.checked) {
+                itemDiv.classList.add('checked');
+              } else {
+                itemDiv.classList.remove('checked');
+              }
+            });
+            
+            itemDiv.appendChild(checkbox);
+            itemDiv.appendChild(label);
+            modalItems.appendChild(itemDiv);
+          });
+        }
+      } else {
+        modalItems.innerHTML = '<p style="color:#7f8c8d; text-align:center; padding: 20px;">Nenhum item encontrado para esta referência.</p>';
+      }
+      
+      videModal.style.display = 'flex';
+    }
+
+    function closeVideModal(e) {
+      if (e.target === videModal) {
+        videModal.style.display = 'none';
+      }
+    }
+
+    function closeVideModalDirect() {
+      videModal.style.display = 'none';
+    }
+
+    function renderChecklist(title, items) {
+      checklistItems.innerHTML = '';
+      notes.value = '';
+      
+      if (!items || items.length === 0) {
+        checklistContainer.style.display = 'none';
+        return;
+      }
+      
+      checklistTitle.textContent = title;
+      
+      let hasRoman = items.some(item => /^(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.\-\s]/i.test(item.trim()));
+      
+      if (hasRoman) {
+        let sections = [];
+        let currentSection = { header: "Orientações Iniciais", items: [] };
+        
+        items.forEach(item => {
+          let trimmed = item.trim();
+          if (/^(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.\-\s]/i.test(trimmed)) {
+            if (currentSection.items.length > 0 || currentSection.header !== "Orientações Iniciais") {
+              sections.push(currentSection);
+            }
+            currentSection = { header: item, items: [] };
+          } else {
+            currentSection.items.push(item);
+          }
+        });
+        sections.push(currentSection);
+        
+        sections.forEach((sec, sIndex) => {
+          let accordionDiv = document.createElement('div');
+          accordionDiv.className = 'roman-accordion';
+          
+          let headerBtn = document.createElement('div');
+          headerBtn.className = 'roman-header';
+          headerBtn.innerHTML = `<span>${sec.header}</span> <span>▼</span>`;
+          
+          let contentDiv = document.createElement('div');
+          contentDiv.className = 'roman-content';
+          
+          headerBtn.onclick = function() {
+            if (contentDiv.style.display === 'block') {
+              contentDiv.style.display = 'none';
+              headerBtn.querySelector('span:last-child').textContent = '▼';
+            } else {
+              contentDiv.style.display = 'block';
+              headerBtn.querySelector('span:last-child').textContent = '▲';
+            }
+          };
+          
+          if (sec.items.length === 0) {
+            contentDiv.innerHTML = '<p style="color:#7f8c8d; margin:0; font-size:13px; font-style:italic;">Nenhum detalhe adicional.</p>';
+          } else {
+            sec.items.forEach((subItem, subIndex) => {
+              let itemDiv = document.createElement('div');
+              itemDiv.className = 'checklist-item';
+              
+              let checkbox = document.createElement('input');
+              checkbox.type = 'checkbox';
+              checkbox.id = `chk_${sIndex}_${subIndex}`;
+              
+              let label = document.createElement('label');
+              label.htmlFor = `chk_${sIndex}_${subIndex}`;
+              label.innerHTML = ' ' + formatItemText(subItem);
+              
+              let upperItem = subItem.toUpperCase();
+              let isBoldRed = upperItem.includes("IMEDIATAMENTE") || upperItem.includes("URGENTE");
+              let isSaj = upperItem.includes("SAJ");
+              let isRom = /^(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.\-\s]/i.test(subItem.trim());
+              
+              if (isBoldRed) {
+                label.style.fontWeight = 'bold';
+                label.style.color = '#e74c3c';
+              } else if (isSaj || isRom) {
+                label.style.fontWeight = 'bold';
+              }
+
+              checkbox.addEventListener('change', function() {
+                if (this.checked) {
+                  itemDiv.classList.add('checked');
+                } else {
+                  itemDiv.classList.remove('checked');
+                }
+              });
+
+              itemDiv.appendChild(checkbox);
+              itemDiv.appendChild(label);
+              contentDiv.appendChild(itemDiv);
+            });
+          }
+          
+          accordionDiv.appendChild(headerBtn);
+          accordionDiv.appendChild(contentDiv);
+          checklistItems.appendChild(accordionDiv);
+        });
+      } else {
+        items.forEach((item, index) => {
+          let div = document.createElement('div');
+          div.className = 'checklist-item';
+          
+          let checkbox = document.createElement('input');
+          checkbox.type = 'checkbox';
+          checkbox.id = 'chk_' + index;
+          
+          let label = document.createElement('label');
+label.htmlFor = 'chk_' + index;
+          label.innerHTML = ' ' + formatItemText(item);
+          
+          let upperItem = item.toUpperCase();
+          let isBoldRed = upperItem.includes("IMEDIATAMENTE") || upperItem.includes("URGENTE");
+          let isSaj = upperItem.includes("SAJ");
+          let isRoman = /^(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.\-\s]/i.test(item.trim());
+          
+          if (isBoldRed) {
+            label.style.fontWeight = 'bold';
+            label.style.color = '#e74c3c';
+          } else if (isSaj || isRoman) {
+            label.style.fontWeight = 'bold';
+          }
+          
+          checkbox.addEventListener('change', function() {
+            if (this.checked) {
+              div.classList.add('checked');
+            } else {
+              div.classList.remove('checked');
+            }
+          });
+          
+          div.appendChild(checkbox);
+          div.appendChild(label);
+          checklistItems.appendChild(div);
+        });
+      }
+      
+      checklistContainer.style.display = 'block';
+    }
+
+    function confirmClearAll() {
+      if (confirm("Deseja realmente apagar todas as seleções e anotações?")) {
+        clearAll();
+      }
+    }
+
+    function clearAll() {
+      selectA.value = '';
+      updateB();
+      searchInput.value = '';
+      searchResults.style.display = 'none';
+      searchResults.innerHTML = '';
+      checklistContainer.style.display = 'none';
+      notes.value = '';
+    }
+  </script>
+</body>
+</html>

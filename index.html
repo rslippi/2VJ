@@ -610,7 +610,7 @@
                   <div class="email-list-item"><span>51º DP - Butantã</span><a href="mailto:spaulo.dp051@policiacivil.sp.gov.br" class="email-address">spaulo.dp051@policiacivil.sp.gov.br</a></div>
                   <div class="email-list-item"><span>52º DP - Parque São Jorge</span><a href="mailto:dp052.spaulo@policiacivil.sp.gov.br" class="email-address">dp052.spaulo@policiacivil.sp.gov.br</a></div>
                   <div class="email-list-item"><span>53º DP - Parque do Carmo</span><a href="mailto:spaulo.dp053@policiacivil.sp.gov.br" class="email-address">spaulo.dp053@policiacivil.sp.gov.br</a></div>
-                  <div class="email-list-item"><span>54º DP - Cidade Tiradentes</span><a href="mailto:spaulo.dp054@policiacivil.sp.gov.br" class="email-address">spaulo.dp054@policiacivil.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>54º DP - Cidade Tiradentes</span><a href="mailto:dp054.spaulo@policiacivil.sp.gov.br" class="email-address">dp054.spaulo@policiacivil.sp.gov.br</a></div>
                   <div class="email-list-item"><span>55º DP - Parque São Rafael</span><a href="mailto:dp055.spaulo@policiacivil.sp.gov.br" class="email-address">dp055.spaulo@policiacivil.sp.gov.br</a></div>
                   <div class="email-list-item"><span>56º DP - Vila Alpina</span><a href="mailto:dp56.decap@policiacivil.sp.gov.br" class="email-address">dp56.decap@policiacivil.sp.gov.br</a></div>
                   <div class="email-list-item"><span>57º DP - Parque da Mooca</span><a href="mailto:dp057.spaulo@policiacivil.sp.gov.br" class="email-address">dp057.spaulo@policiacivil.sp.gov.br</a></div>
@@ -1095,8 +1095,7 @@
       });
     }
 
-    // BASE DE DADOS COMPLETA
-    const data = {
+const data = {
     "1. Por Fase": {
         "Denúncia": {
             "Após assinatura da decisão": [
@@ -1114,12 +1113,12 @@
                 "3.3. Na aba \"Dados Processuais\"",
                 "3.3.1. Selecionar o processo",
                 "3.3.2. Assunto Principal: preencher com o crime o qual o Ministério Público imputou ao denunciado",
-                "3.3.2.1 Caso hajam múltiplos crime, o assunto principal será sempre o mais grave (com maior pena de acordo com o Código Penal)",
+                "3.3.2.1 Caso haja múltiplos crimes, o assunto principal será sempre o mais grave (com maior pena de acordo com o Código Penal)",
                 "3.3.3. Assunto complementar será o \"segundo\" crime ou a forma do crime principal.",
                 "3.3.3.1. Se o crime for tentado, deverá ser colocado neste campo: 5555 - Crime Tentado",
                 "3.3.4. Corrigir os dados cadastrados pela Delegacia",
                 "3.3.4.1. Deverá constar o Inquérito Processual: XXXXXXX/AAAA",
-                "3.3.4.2. Deverá constar o Boletim de Ocrrência: LLXXXX/AAAA",
+                "3.3.4.2. Deverá constar o Boletim de Ocorrência: LLXXXX/AAAA",
                 "3.3.4.3. L: Letra; X: Número; A: Ano",
                 "4. Atualizar Partes e Representantes",
                 "4.1. Cadastrar e conferir os dados cadastrados pela Delegacia",
@@ -1127,15 +1126,15 @@
                 "5. Tarjar o Processo",
                 "5.1 Retirar as Tarjas de Sigilo, exceto em casos de feminicídio ou determinação contrária",
                 "5.2 Incluir tarja: Atuação do Ministério Público",
-                "5.3. Verifcar demais tarjas",
+                "5.3. Verificar demais tarjas",
                 "5.3.1. Usualmente são:",
                 "5.3.1.1. Vítima Criança/Adolescente",
                 "5.3.1.2: Vítima ou Testemunha Protegida",
                 "5.3.1.3: Réu menor de 21 ou maior de 70 anos.",
                 "5.3.1.4: Pessoa em Situação de Rua",
-                "5.3.1.5: Estatudo do Idoso (preenchido quando, em Partes e Representantes, for selecionado o campo \"idoso\"",
+                "5.3.1.5: Estatuto do Idoso (preenchido quando, em Partes e Representantes, for selecionado o campo \"idoso\")",
                 "5.3.1.6: Curador Especial/Advogado Dativo",
-                "5.3.1.7: Deverá ser incluída outras tarjas que caracterizarem o processo, ainda que não listada aqui neste exemplo.",
+                "5.3.1.7: Deverão ser incluídas outras tarjas que caracterizem o processo, ainda que não listadas aqui neste exemplo.",
                 "6. Atualizar o Histórico das Partes",
                 "6.1. Deverá constar:",
                 "6.1.1. Data do Fato",
@@ -1143,15 +1142,15 @@
                 "6.1.3. Data de Oferecimento da Denúncia",
                 "6.1.3.1. Neste caso, a parte deverá ser cadastrada como \"Denunciado\".",
                 "6.1.4. Data do Recebimento da Denúncia",
-                "6.1.3.1. A partir da data do recebimento da denúncia, a parte figurará como \"Réu\".",
+                "6.1.4.1. A partir da data do recebimento da denúncia, a parte figurará como \"Réu\".",
                 "6.1.4: Alvará de Soltura (se houver)",
                 "6.1.5: Medidas Cautelares Diversas da Prisão (se houver)",
                 "II. Cumprimento dos Atos da Denúncia",
                 "1. Expedir Mandado de Citação",
                 "1.1. IMPORTANTE: Caso tenha sido expedido Mandado de Prisão, deve-se aguardar por 5 dias seu cumprimento.",
                 "1.1.1. Caso tenha sido cumprido, aguardar 2 dias para saber o local de prisão do réu",
-                "1.1.2. Caso não tenha sido cumprimento, exepedir os mandados normalmente.",
-                "1.2. Se réu preso por outro Juízo: vide Mandados se Citação - Réu Preso por Outro Juízo",
+                "1.1.2. Caso não tenha sido cumprido, expedir os mandados normalmente.",
+                "1.2. Se réu preso por outro Juízo: vide Mandados de Citação - Réu Preso por Outro Juízo",
                 "1.3. Se réu preso pela 2ª Vara do Júri: vide Mandados de Citação - Réu Preso",
                 "1.4. Se réu solto: vide Mandados de Citação - Réu Solto",
                 "1.5. Se réu preso no Romão Gomes (Policial Militar): vide Mandados de Citação - Preso no Romão Gomes",
@@ -1159,7 +1158,7 @@
                 "2.1. Vide Ofícios - IIRGD",
                 "3. Solicitar Certidão do Distribuidor",
                 "3.1. Deverá ser solicitado pelo email da Central de Pedidos do TJSP",
-                "3.2. Deverá, obrigatóriamente, constar no corpo do email:",
+                "3.2. Deverá, obrigatoriamente, constar no corpo do email:",
                 "3.2.1. Nome completo do réu",
                 "3.2.2. Filiação (pelo menos o nome da mãe)",
                 "3.2.3. Data de Nascimento do Réu.",
@@ -1168,7 +1167,7 @@
                 "5. Dar Ciência ao Ministério Público",
                 "6. Encaminhar o processo para a fila \"Acompanhamento de Prisão Preventiva Decretada\", caso o réu esteja preso, pelo prazo de 85 dias a partir do último marco de análise da Prisão, com a observação \"Rever P.P.\"",
                 "6.1. Na hipótese de ter sido expedido mandado de prisão no recebimento da denúncia, o prazo deverá contar a partir do cumprimento do mandado de prisão",
-                "6.2. Na hipótese de não ter sido analisado, na denúncia, a Prisão Preventiva, deverá ser consideradada o marco inicial do prazo a última decisão que fez essa análise OU a data da conversão de Prisão em Flagrante em Preventiva.",
+                "6.2. Na hipótese de não ter sido analisada, na denúncia, a Prisão Preventiva, deverá ser considerado o marco inicial do prazo a última decisão que fez essa análise OU a data da conversão de Prisão em Flagrante em Preventiva.",
                 "7. Encaminhar processo para a fila de \"Ag. Decurso de Prazo\", pelo prazo de 30 dias, com a observação \"Ag. Mandado e Ofícios\"",
                 "7.1. Caso seja processo de réu solto, o prazo será de 45 dias."
             ],
@@ -1184,33 +1183,34 @@
     },
     "2. Por Ato": {
         "Alvarás": {
+            "Cremação e Translado de Restos Mortais": [
+                "I. Modelo SAJ - 1000361",
+                "1. Na configuração do alvará, selecionar o requerente",
+                "2. Na edição do alvará, certificar-se do correto preenchimento",
+                "3. Dar ciência ao Ministério Público e intimar o Requerente",
+                "3.1. Se Defensoria Pública: dar ciência, via SAJ",
+                "3.2. Se advogado constituído, encaminhar por email",
+                "3.2.1. Na ausência do e-mail, verificar outras formas de contato.",
+                "3.2.2. Pode ser o e-mail ou telefone do requerente",
+                "3.2.3. IMPORTANTE: apenas na ausência absoluta das informações acima, deverá ser intimado o advogado por Publicação no DJEN - Vide Ato Ordinatório - Ciência à Defesa Constituída",
+                "4. Encaminhar processo para fila \"Ag. Decurso de Prazo\", pelo prazo de 05 dias, com a observação \"Ag. Trânsito em Julgado\"."
+            ],
             "Interrupção de Gravidez": [
                 "1. Modelo SAJ - SERA CRIADO MODELO DE GRUPO",
                 "2. IMEDIATAMENTE informar ao magistrado para assinatura",
                 "3. Após assinatura do(a) Magistrado(a) dar ciência à DPE (ou quem solicitou, via telefone ou email) e ciência ao MP (ou vista, se sentença orientar assim).",
-                "4. Encaminhar à fila \"Ag. Decurso de Prazo\", pelo prazo de 05 dias, com a observação \"Ag. Trânsito em Julgado\"."
+                "4. Encaminhar processo para a fila \"Ag. Decurso de Prazo\", pelo prazo de 05 dias, com a observação \"Ag. Trânsito em Julgado\"."
             ],
-            "Exumação": [
-                "1. Modelo SAJ - 1000361",
-                "1. Editar o modelo",
-                "2.  Após finalizado, IMEDIATAMENTE informar ao magistrado para assinatura",
-                "3. Após assinatura do(a) Magistrado(a) dar ciência à DPE (ou quem solicitou, via telefone ou email) e ciência ao MP (ou vista, se sentença orientar assim).",
-                "4. Encaminhar à fila \"Ag. Decurso de Prazo\", pelo prazo de 05 dias, com a observação \"Ag. Trânsito em Julgado\"."
-            ]
-        },
-        "Alvaras": {
-            "Devolução de Veículos": [
-                "I. Modelo SAJ - 944"
-            ]
+            "": []
         },
         "Ato Ordinatório": {
             "Ciência à Defesa Constituída": [
                 "1 Modelo SAJ: 500531",
-                "2. Especificar o motivo da intimação - Ex.: Fica a Defesa Intimação a se manifestar no prazo legal, conforme decisão de fls. XXX/XXX",
+                "2. Especificar o motivo da intimação - Ex.: Fica a Defesa intimada a se manifestar no prazo legal, conforme decisão de fls. XXX/XXX",
                 "3. Verificar se o texto acima está marcado em amarelo",
                 "4. Confirmar se o ato foi encaminhado ao Diário.",
                 "5. Caso tenha sido determinado prazo pelo Juiz, encaminhar à fila \"Ag. Decurso de Prazo\", pelo prazo determinado, com a observação \"Ag. Defesa\"",
-                "6; Se for a fase do art. 422 do Código Processual Penal, encaminhar à fila \"Ag. Decurso de Prazo\", por 5 dias, com a observação \"Ag. Defesa (422)\"."
+                "6. Se for a fase do art. 422 do Código de Processo Penal, encaminhar à fila \"Ag. Decurso de Prazo\", por 5 dias, com a observação \"Ag. Defesa (422)\"."
             ]
         },
         "Cartas Precatórias": {
@@ -1219,7 +1219,7 @@
                 "1. Confirmar o endereço, se é da cidade de São Paulo e se está correto",
                 "2. Caso seja de outra cidade, certificar e encaminhar à fila \"Conclusos Minuta\"",
                 "3. Cadastrar os dados no menu \"Partes e Representantes\"",
-                "4. Classificar o mandando como \"Comum\", com prazo de 45 dias.",
+                "4. Classificar o mandado como \"Comum\", com prazo de 45 dias.",
                 "5. Importante: quando finalizar a edição do documento, é obrigatório inserir 02 cópias das peças deprecadas.",
                 "6. Encaminhar expediente à fila \"Ag. Decurso de Prazo\", por 45 dias e observação \"Ag. Mandado (fl. de rosto)\".",
                 "7. Remover o ato da decisão, caso não haja outras determinações",
@@ -1250,7 +1250,7 @@
                 "4.3. No campo \"Duração\": 00:10",
                 "4.4. No campo \"Localizar Audiência\": incluir a data da Audiência",
                 "4.5. Clicar em \"Localizar Horário\"",
-                "4.6. Na planilha ao lado, confirmar se a data está correga e buscar o horário da Audiência, após, clicar em \"Agendar Audiência\".",
+                "4.6. Na planilha ao lado, confirmar se a data está correta e buscar o horário da Audiência, após, clicar em \"Agendar Audiência\".",
                 "4.7. Clicar com o botão direito do mouse sobre a Audiência recém agendada",
                 "4.8. No campo \"Situação da Audiência\" alterar de \"Pendente\" para \"Realizada\"",
                 "5. Importante: quando finalizar a edição do documento, é obrigatório inserir 02 cópias das peças deprecadas.",
@@ -1275,7 +1275,7 @@
                 "4.3. No campo \"Duração\": 00:10",
                 "4.4. No campo \"Localizar Audiência\": incluir a data da Audiência",
                 "4.5. Clicar em \"Localizar Horário\"",
-                "4.6. Na planilha ao lado, confirmar se a data está correga e buscar o horário da Audiência, após, clicar em \"Agendar Audiência\".",
+                "4.6. Na planilha ao lado, confirmar se a data está correta e buscar o horário da Audiência, após, clicar em \"Agendar Audiência\".",
                 "4.7. Clicar com o botão direito do mouse sobre a Audiência recém agendada",
                 "4.8. No campo \"Situação da Audiência\" alterar de \"Pendente\" para \"Realizada\"",
                 "5. Importante: quando finalizar a edição do documento, é obrigatório inserir 02 cópias das peças deprecadas.",
@@ -1304,7 +1304,7 @@
                 "4.3. No campo \"Duração\": 00:10",
                 "4.4. No campo \"Localizar Audiência\": incluir a data da Audiência",
                 "4.5. Clicar em \"Localizar Horário\"",
-                "4.6. Na planilha ao lado, confirmar se a data está correga e buscar o horário da Audiência, após, clicar em \"Agendar Audiência\".",
+                "4.6. Na planilha ao lado, confirmar se a data está correta e buscar o horário da Audiência, após, clicar em \"Agendar Audiência\".",
                 "4.7. Clicar com o botão direito do mouse sobre a Audiência recém agendada",
                 "4.8. No campo \"Situação da Audiência\" alterar de \"Pendente\" para \"Realizada\"",
                 "5. Importante: quando finalizar a edição do documento, é obrigatório inserir 02 cópias das peças deprecadas.",
@@ -1328,44 +1328,6 @@
                 "6.2. Vide Cartas Precatórias - Protocolo de Precatórias - PJe",
                 "6.3. Vide Cartas Precatórias - Procolo de Precatórias - Malote",
                 "7. Após juntado o protocolo de precatória, encaminhar para a fila \"Ag. Decurso de Prazo\" pelo prazo definido na Carta Precatórias, com a observação \"Ag. Citação (CP)\"."
-            ],
-            "Deprecante - Intimação (testemunha)": [
-                "I. Para Audiência Presencial",
-                "1. Modelo SAJ - 501347",
-                "1.1. IMPORTANTE: O modelo é das Varas da Infância e Juventude, fazendo-se necessário alterar o título do Mandado (VERIFICAR COM O ALEX SE PODEMOS CRIAR MODELO ESPECÍFICO)",
-                "2. Durante a edição da Carta Precatória",
-                "2.1. Incluir os dados da Comarca a ser deprecada.",
-                "2.2. Inserir todos os endereços da referida comarca junto da qualificação da pessoa a ser intimada.",
-                "2.2.1. Caso sejam múltiplos endereços, recomenda-se organizar em tópicos para garantir o fiel cumprimento.",
-                "3. Incluir prazo",
-                "3.1. Réu Preso: 20 dias (se comarca deprecada dentro de Estado de São Paulo) e 30 dias (se comarca deprecada em outro Estado)",
-                "3.2. Réu Solto: 30 dias (se comarca deprecada dentro de Estado de São Paulo) e 60 dias (se comarca deprecada em outro Estado)",
-                "4. Aguardar a Assinatura do Magistrado e do Coordenador",
-                "5. Após as assinaturas, verficar a forma correta de protocolar a precatória no Estado deprecado",
-                "5.1. Vide Cartas Precatórias - Protocolo de Precatórias - eSAJ",
-                "5.2. Vide Cartas Precatórias - Protocolo de Precatórias - PJe",
-                "5.3. Vide Cartas Precatórias - Procolo de Precatórias - Malote",
-                "6. Após juntado o protocolo de precatória, encaminhar para a fila \"Ag. Decurso de Prazo\" pelo prazo definido na Carta Precatória, com a observação \"Ag. Intimação (CP)\"",
-                "II. Para Audiência Virtual",
-                "1. Modelo SAJ: 1185",
-                "1.1. IMPORTANTE: O modelo não consta se tratar de processo digital, sendo necessário incluir essa informação. (VERIFICAR COM O ALEX SE PODEMOS CRIAR MODELO ESPECIFICO)",
-                "1.2. Copiar os dizeres igual ao Mandado de Intimação para Audiência Virtual.",
-                "2. Durante a edição da Carta Precatória",
-                "2.1. Incluir os dados da Comarca a ser deprecada.",
-                "2.2. Inserir todos os endereços da referida comarca junto da qualificação da pessoa a ser intimada.",
-                "2.2.1. Caso sejam múltiplos endereços, recomenda-se organizar em tópicos para garantir o fiel cumprimento.",
-                "3. Incluir prazo",
-                "3.1. Réu Preso: 20 dias (se comarca deprecada dentro de Estado de São Paulo) e 30 dias (se comarca deprecada em outro Estado)",
-                "3.2. Réu Solto: 30 dias (se comarca deprecada dentro de Estado de São Paulo) e 60 dias (se comarca deprecada em outro Estado)",
-                "4. Gerar Link e QR Code:",
-                "4.1. Vide: Orientações Gerais - Audiências Virtuais - Link e QRCode",
-                "5. IMPORTANTE: Constar na Carta Precatória, expressamente, que a Audiência Virtual será via aplicativo Microsoft Teams.",
-                "6. Aguardar a Assinatura do Magistrado e do Coordenador",
-                "7. Após as assinaturas, verficar a forma correta de protocolar a precatória no Estado deprecado",
-                "7.1. Vide Cartas Precatórias - Protocolo de Precatórias - eSAJ",
-                "7.2. Vide Cartas Precatórias - Protocolo de Precatórias - PJe",
-                "7.3. Vide Cartas Precatórias - Procolo de Precatórias - Malote",
-                "8. Após juntado o protocolo de precatória, encaminhar para a fila \"Ag. Decurso de Prazo\" pelo prazo definido na Carta Precatória, com a observação \"Ag. Intimação (CP)\""
             ],
             "Deprecante - Intimação (réu)": [
                 "I. Para Intimação de Sentença",
@@ -1424,20 +1386,49 @@
                 "7.2.2. Aguardar a resposta da Comarca com o Protocolo.",
                 "8. Após juntado o protocolo de precatória, encaminhar para a fila \"Ag. Decurso de Prazo\" pelo prazo definido na Carta Precatória, com a observação \"Ag. Intimação (CP)\""
             ],
+            "Deprecante - Intimação (testemunha)": [
+                "I. Para Audiência Presencial",
+                "1. Modelo SAJ - 501347",
+                "1.1. IMPORTANTE: O modelo é das Varas da Infância e Juventude, fazendo-se necessário alterar o título do Mandado (VERIFICAR COM O ALEX SE PODEMOS CRIAR MODELO ESPECÍFICO)",
+                "2. Durante a edição da Carta Precatória",
+                "2.1. Incluir os dados da Comarca a ser deprecada.",
+                "2.2. Inserir todos os endereços da referida comarca junto da qualificação da pessoa a ser intimada.",
+                "2.2.1. Caso sejam múltiplos endereços, recomenda-se organizar em tópicos para garantir o fiel cumprimento.",
+                "3. Incluir prazo",
+                "3.1. Réu Preso: 20 dias (se comarca deprecada dentro de Estado de São Paulo) e 30 dias (se comarca deprecada em outro Estado)",
+                "3.2. Réu Solto: 30 dias (se comarca deprecada dentro de Estado de São Paulo) e 60 dias (se comarca deprecada em outro Estado)",
+                "4. Aguardar a Assinatura do Magistrado e do Coordenador",
+                "5. Após as assinaturas, verficar a forma correta de protocolar a precatória no Estado deprecado",
+                "5.1. Vide Cartas Precatórias - Protocolo de Precatórias - eSAJ",
+                "5.2. Vide Cartas Precatórias - Protocolo de Precatórias - PJe",
+                "5.3. Vide Cartas Precatórias - Procolo de Precatórias - Malote",
+                "6. Após juntado o protocolo de precatória, encaminhar para a fila \"Ag. Decurso de Prazo\" pelo prazo definido na Carta Precatória, com a observação \"Ag. Intimação (CP)\"",
+                "II. Para Audiência Virtual",
+                "1. Modelo SAJ: 1185",
+                "1.1. IMPORTANTE: O modelo não consta se tratar de processo digital, sendo necessário incluir essa informação. (VERIFICAR COM O ALEX SE PODEMOS CRIAR MODELO ESPECIFICO)",
+                "1.2. Copiar os dizeres igual ao Mandado de Intimação para Audiência Virtual.",
+                "2. Durante a edição da Carta Precatória",
+                "2.1. Incluir os dados da Comarca a ser deprecada.",
+                "2.2. Inserir todos os endereços da referida comarca junto da qualificação da pessoa a ser intimada.",
+                "2.2.1. Caso sejam múltiplos endereços, recomenda-se organizar em tópicos para garantir o fiel cumprimento.",
+                "3. Incluir prazo",
+                "3.1. Réu Preso: 20 dias (se comarca deprecada dentro de Estado de São Paulo) e 30 dias (se comarca deprecada em outro Estado)",
+                "3.2. Réu Solto: 30 dias (se comarca deprecada dentro de Estado de São Paulo) e 60 dias (se comarca deprecada em outro Estado)",
+                "4. Gerar Link e QR Code:",
+                "4.1. Vide: Audiências Virtuais - Link e QRCode",
+                "5. IMPORTANTE: Constar na Carta Precatória, expressamente, que a Audiência Virtual será via aplicativo Microsoft Teams.",
+                "6. Aguardar a Assinatura do Magistrado e do Coordenador",
+                "7. Após as assinaturas, verficar a forma correta de protocolar a precatória no Estado deprecado",
+                "7.1. Vide Cartas Precatórias - Protocolo de Precatórias - eSAJ",
+                "7.2. Vide Cartas Precatórias - Protocolo de Precatórias - PJe",
+                "7.3. Vide Cartas Precatórias - Procolo de Precatórias - Malote",
+                "8. Após juntado o protocolo de precatória, encaminhar para a fila \"Ag. Decurso de Prazo\" pelo prazo definido na Carta Precatória, com a observação \"Ag. Intimação (CP)\""
+            ],
             "Deprecante - Outros Casos": [
                 "I. Modelo SAJ - 501328 (genérico)"
             ],
             "Protocolo de Precatórias - eSAJ": [
                 "I. Disponível nos seguintes Estados: Acre (TJAC), Alagoas (TJAL), Amazonas (TJAM), Mato Grosso do Sul (TJMS), São Paulo (TJSP), Goiás (TJGO)."
-            ],
-            "Protocolo de Precatórias - PJe": [
-                "I. Disponível nos seguintes Estados: Amapá (TJAP), Bahia (TJBA), Ceará (TJCE), Distrito Federação e Territórios (TJDFT), Maranhão (TJMA), Minas Gerais (TJMG), Mato Grosso (TJMT), Pará (TJPA), Paraíba (TJPB), Pernambuco (TJPE), Piauí (TJPI), Rio Grande do Norte (TJRN) e Rondônia (TJRO)",
-                "1. Necessário ter cadastro prévio no sistema PJe da comarca em que a Carta Precatória (CP) será protocolada",
-                "2. Imprimir em PDF a Carta Precatória emitida no sistema SAJ e seus anexos, se o caso.",
-                "2.1. A Carta Precatória e seus anexos deverá, preferencialmente, estarem em um mesmo PDF.",
-                "3. Acessar o respectivo portal PJe. IMPORTANTE: o acesso será feito através do uso de Certificado Digital",
-                "4. Após concluir o processo de protocolo, salvar e comprovante e subir nos autos como \"Protocolo de Ofício\".",
-                "5. Encaminhar para a fila \"ag. Decurso de Prazo\", pelo período especificado na Carta Precatória, com a observação: \"Ag. Precatória\"."
             ],
             "Protocolo de Precatórias - Malote": [
                 "I. Disponível nos seguintes Estados: Espírito Santo (TJES), Paraná (TJPR), Rio de Janeiro (TJRJ), Rio Grande do Sul (TJRS), Roraima (TJRR), Santa Catarina (TJSC), Sergipe (TJSE) e Tocantins (TJTO)",
@@ -1450,9 +1441,105 @@
                 "2.3 Especificar a Comarca e o Estado deprecados",
                 "3. Aguardar o comprovante de envio de Malote Digital nos autos (quem solicitou subirá o comprovante).",
                 "4. Encaminhar para a fila \"ag. Decurso de Prazo\", pelo período especificado na Carta Precatória, com a observação: \"Ag. Precatória\"."
+            ],
+            "Protocolo de Precatórias - PJe": [
+                "I. Disponível nos seguintes Estados: Amapá (TJAP), Bahia (TJBA), Ceará (TJCE), Distrito Federação e Territórios (TJDFT), Maranhão (TJMA), Minas Gerais (TJMG), Mato Grosso (TJMT), Pará (TJPA), Paraíba (TJPB), Pernambuco (TJPE), Piauí (TJPI), Rio Grande do Norte (TJRN) e Rondônia (TJRO)",
+                "1. Necessário ter cadastro prévio no sistema PJe da comarca em que a Carta Precatória (CP) será protocolada",
+                "2. Imprimir em PDF a Carta Precatória emitida no sistema SAJ e seus anexos, se o caso.",
+                "2.1. A Carta Precatória e seus anexos deverá, preferencialmente, estarem em um mesmo PDF.",
+                "3. Acessar o respectivo portal PJe. IMPORTANTE: o acesso será feito através do uso de Certificado Digital",
+                "4. Após concluir o processo de protocolo, salvar e comprovante e subir nos autos como \"Protocolo de Ofício\".",
+                "5. Encaminhar para a fila \"ag. Decurso de Prazo\", pelo período especificado na Carta Precatória, com a observação: \"Ag. Precatória\"."
             ]
         },
         "Certidões": {
+            "Autuação de Advogado": [],
+            "Certidão de Objeto e Pé": [
+                "I. Processo Físico fora do SAJ",
+                "1. Verificar o número de controle do processo",
+                "1.1. Em geral, no formato XXX/ANO",
+                "1.2. Procurar nos Livros de Registros de Feitos do cartório o processo pelo número de controle",
+                "1.3. Procurar nas fichas o nome do réu ou da vítima.",
+                "2. No WORD, editar no https://docs.google.com/document/d/1Lx1XZtEo9bFlxnlWRxByeMYtUsnjGZ_TQ6u39n9oDmM/edit?usp=sharing",
+                "2.1. Devem constar todas as informações da ficha e do Registro de Feitos",
+                "2.2. Atentar-se a data de expedição da Certidão de Objeto e Pé",
+                "2.3. Salvar em PDF e imprimir",
+                "3. A certidão impressa deverá ser deixada em local próprio, com a ficha do réu/vítima juntos, na mesa do Coordenador para verificação e assinatura",
+                "3.1. Deverá ser colocado um aviso que se trata de processo físico.",
+                "3.2. O Livro de Registro de Feitos, com a página marcada, deverá ser deixado na mesa do Coordenador",
+                "4. Após a assinatura da certidão",
+                "4.1 Se conhecido o email do socilitante, encaminhar.",
+                "4.2 Se for retirada pessoal, deixar em pasta própria no cartório",
+                "4.3. Guardar o livro e a ficha nos locais corretos.",
+                "II. Processo Físico dentro do SAJ",
+                "1. Verificar em qual base SAJ o processo se encontra, se Santana ou se Barra Funda",
+                "1.1. Caso haja certidão de objeto e pé expedido recentemente, basta gerar uma nova",
+                "1.1.1. Em \"Gerenciador de Arquivos\", localizar a Certidão de Objeto e Pé anteoriormente expedida",
+                "1.1.2. Clicar com o botão direito do mouse e em \"novo documento\"",
+                "1.1.3. Verificar e atualizar o que for necessário",
+                "1.1.4. Finalizar com o comando \"Ctrl + F8\".",
+                "1.1.5. Imprimir uma cópia e deixar em local próprio na mesa do coordenador para verificação e assinatura",
+                "1.1.6. Deve-se anotar que se trata de certidão expedida em processo físico constante no SAJ, com menção à base em que ele se encontra",
+                "2. Caso não haja certidão de objeto e pé expedido",
+                "2.1. Verificar se o Histórico de Partes está corretamente preenchido.",
+                "2.1.1 Caso esteja, mas esteja em \"itálico\", deverá ser atualizado.",
+                "2.2. Atualizar o Histórico de Partes, se necessário",
+                "2.2.1. Verificar o número de controle do processo",
+                "2.2.2. Em geral, no formato XXX/ANO",
+                "2.2.3. Procurar nos Livros de Registros de Feitos do cartório o processo pelo número de controle",
+                "2.2.4. Procurar nas fichas o nome do réu ou da vítima.",
+                "2.2.5. Com os dados do Registro de Feitos e da ficha, preencher o Histórico de Partes",
+                "3. Expedir a Certidão de Objeto e Pé no SAJ",
+                "3.1. Modelo SAJ - 503446",
+                "3.2. Verificar se todos os dados do Histórico de Partes constam no corpo da Certidão",
+                "3.3. Em situação processual, deverá constar",
+                "3.3.1. \"Processo arquivado por despacho de DD/MM/AAAA\" - para os casos de processos arquivados",
+                "3.3.2. \"Não houve oferecimento de denúncia pelo Ministério Público. Inquérito Policial arquivado por despacho de DD/MM/AAAA, com a ressalva prevista no art. 18 CPP\" - para casos de Inquérito Policial em que não houve oferecimento de denúncia",
+                "3.4. Finalizar a certidão com o comando \"Ctrl + F8\".",
+                "4. Imprimir uma cópia e deixar em local próprio na mesa do coordenador para verificação e assinatura",
+                "5. Deve-se anotar que se trata de certidão expedida em processo físico constante no SAJ, com menção à base em que ele se encontra.",
+                "6. Após a assinatura:",
+                "6.1 Se conhecido o email do socilitante, encaminhar.",
+                "6.2 Se for retirada pessoal, deixar em pasta própria no cartório",
+                "6.3. Guardar o livro e a ficha nos locais corretos.",
+                "II. Processo Digital",
+                "1. Verificar em qual base SAJ o processo se encontra, se Santana ou se Barra Funda",
+                "1.1. Caso haja certidão de objeto e pé expedido recentemente, basta gerar uma nova",
+                "1.1.1. Em \"Gerenciador de Arquivos\", localizar a Certidão de Objeto e Pé anteoriormente expedida",
+                "1.1.2. Clicar com o botão direito do mouse e em \"novo documento\"",
+                "1.1.3. Verificar e atualizar o que for necessário",
+                "1.1.4. Finalizar",
+                "1.1.5. Acompanhar diariamente para verificar se a assinatura foi realizada",
+                "1.1.5.1. Não é necessário imprimir cópia e deixar na mesa do Coordenador",
+                "1.1.5.2. Caso seja base Santanda, deve-se avisar ao Coordenador.",
+                "2. Caso não haja certidão de objeto e pé expedido",
+                "2.1. Verificar se o Histórico de Partes está corretamente preenchido.",
+                "2.2. Atualizar o Histórico de Partes, se necessário",
+                "3. Expedir a Certidão de Objeto e Pé no SAJ",
+                "3.1. Modelo SAJ - 503446",
+                "3.2. Verificar se todos os dados do Histórico de Partes constam no corpo da Certidão",
+                "3.3. Em situação processual, deverá constar",
+                "3.3.1. \"Processo arquivado por despacho de DD/MM/AAAA\" - para os casos de processos arquivados",
+                "3.3.2. \"Não houve oferecimento de denúncia pelo Ministério Público. Inquérito Policial arquivado por despacho de DD/MM/AAAA, com a ressalva prevista no art. 18 CPP\" - para casos de Inquérito Policial em que não houve oferecimento de denúncia",
+                "4. Após a assinatura da certidão",
+                "4.1 Se conhecido o email do socilitante, encaminhar.",
+                "4.2 Se for retirada pessoal, deixar em pasta própria no cartório",
+                "III. Em nome da vítima",
+                "IV. Exumação",
+                "1. Modelo SAJ - 1000361",
+                "1. Editar o modelo",
+                "2.  Após finalizado, IMEDIATAMENTE informar ao magistrado para assinatura",
+                "3. Após assinatura do(a) Magistrado(a) dar ciência à DPE (ou quem solicitou, via telefone ou email) e ciência ao MP (ou vista, se sentença orientar assim).",
+                "4. Encaminhar à fila \"Ag. Decurso de Prazo\", pelo prazo de 05 dias, com a observação \"Ag. Trânsito em Julgado\"."
+            ],
+            "Certidão de Prazo Prescricional (art. 366)": [
+                "Modelo SAJ: 709765",
+                "1. Sem retomada da marcha processual: 20 anos da data da decisão de suspensão com fundamento no art. 366",
+                "2. Ultrapassada a data da retomada processual: 40 anos da data do recebimento da denúncia",
+                "3. IMPORTANTE: Se o réu for menor de 21 ou maior de 70 anos na data dos fatos, os prazos supra caem pela metade.",
+                "4. Preencher planilha excel no grupo Modelar 2ª do Júri, no Drive (FORAGIDOS)",
+                "5. Encaminhar para a fila \"Processo Suspenso no 366\", pelo prazo de 365 dias, com a observação \"Ag. Prisão\"."
+            ],
             "Certidão de Trânsito em Julgado": [
                 "1. Modelo SAJ: 1000138",
                 "I. Sentença Publicada em Audiência",
@@ -1482,14 +1569,7 @@
                 "9. Verificar a necessidade de expedição de Guia de Recolhimento.",
                 "10. Encaminhar, se o caso, à fila \"Conclusos-Minuta\"."
             ],
-            "Certidão de Prazo Prescricional (art. 366)": [
-                "Modelo SAJ: 709765",
-                "1. Sem retomada da marcha processual: 20 anos da data da decisão de suspensão com fundamento no art. 366",
-                "2. Ultrapassada a data da retomada processual: 40 anos da data do recebimento da denúncia",
-                "3. IMPORTANTE: Se o réu for menor de 21 ou maior de 70 anos na data dos fatos, os prazos supra caem pela metade.",
-                "4. Preencher planilha excel no grupo Modelar 2ª do Júri, no Drive (FORAGIDOS)",
-                "5. Encaminhar para a fila \"Processo Suspenso no 366\", pelo prazo de 365 dias, com a observação \"Ag. Prisão\"."
-            ],
+            "Homonímia": [],
             "Inscrição na Dívida Ativa": [
                 "1. Modelo SAJ: 505265",
                 "2. Incluir número de cadastro do coordenador",
@@ -1502,33 +1582,6 @@
                 "9. Decurso da última intimação para pagamento, é a mesma data do vencimento",
                 "10. Encaminhar para a fila Ag. Decurso de Prazo, pelo prazo de 2 dias, com a observação \"Ag. Cadastro PGE\".",
                 "IMPORTANTE: Não é possível quebrar vínculos nesse mandado devido à comunicação entre o SAJ e o Portal da PGE."
-            ]
-        },
-        "Guias": {
-            "Aditamento de Guia Provisória": [],
-            "Guia de Execução": [
-                "-"
-            ],
-            "Guia de Internação": [
-                "-"
-            ],
-            "Guia de Recolhimento Definitiva": [
-                "-"
-            ],
-            "Guia de Recolhimento Provisória": [
-                "I. Será expedida Guia de Recolhimento Provisória quando uma das partes recorrer de Sentença Condenatória.",
-                "1. Na hipótese de apenas uma das partes recorrer da Sentença, aguardar o trânsito em julgado da outra parte.",
-                "2. Após expedição da Certidão de Trânsito em Julgado:",
-                "2.1. Expedir Guia de Recolhimento Provisória no Sistema BNMP (vide Peças BNMP - Guia de Recolhimento Provisória)",
-                "2.2. IMEDIATAMENTE, após a expedição da Guia, avisar ao Magistrado para que assine a peça.",
-                "3. Após assinatura da peça, verificar para qual vara a guia será enviada para cadastro do Processo de Execução",
-                "4. Enviar as peças principais para a Vara de destino no https://www.tjsp.jus.br/jud/envioseeu/",
-                "5. No SAJ, copiar para a fila \"Guia de Execução - Alterar Competência\"",
-                "5.1 IMPORTANTE: é recomendado conferir diáriamente no site TJSP - SEEU para verificar o andamento.",
-                "6. Após o cadastrado da PEC no SEEU:",
-                "6.1 Alterar a compentência no BNMP (vide Peças BNMP - Evento de Transferência de Peças)",
-                "6.2 Expedir certidão de alteração de competência no SAJ",
-                "7. Verificar na Sentença/Decisão que determinou a expedição da Guia outras diligências que devem ser cumpridas."
             ]
         },
         "Mandados": {
@@ -1549,6 +1602,9 @@
                 "8.2. Exemplo de texto: \"Conforme determinado pela MMª Juíza desta Vara, solicito apoio de transporte para cumprimento de MANDADO DE CONDUÇÃO COERCITIVA, no endereço X, a ser cumprido pelo Oficial de Justiça que nos lê em cópia.",
                 "II. Casos Não Urgentes - Modelo SAJ: 1000088",
                 "1. Deverá ser expedido dentro de 30 dias antes da data da audiência."
+            ],
+            "Intimação - Genérico": [
+                "Modelo SAJ: 100384 (com despacho) ou 506641 (sem despacho)"
             ],
             "Intimação de Menor (Depoimento Especial)": [
                 "Modelo SAJ: 506451"
@@ -1574,7 +1630,7 @@
                 "3. Confirmar se foi selecionado apenas um endereço",
                 "4. Incluir o tipo de cumprimento: \"Réu Preso\", se réu preso ou \"Audiência\" se réu solto",
                 "5. Inserir Link e QRCode",
-                "5.1. Vide: Orientações Gerais - Audiências Virtuais - Link e QRCode",
+                "5.1. Vide: Audiências Virtuais - Link e QRCode",
                 "6. Finalizar o mandado e verificar se o código de barras foi gerado",
                 "7. Caso haja a expedição de mais de um mandado à uma mesma pessoa, procurar despacho contendo o artigo 1.012, §3°, inciso I, das NSCGJ do TJSP",
                 "8. Caso a proximidade do ato seja inferior a 30 dias, imediatamente informar ao coordenador para assinatura."
@@ -1582,7 +1638,7 @@
             "Intimação de Testemunha para Audiência - Custodiada": [
                 "I. Testemunha Presa - Modelo SAJ: 583 (Ofício) + Modelo SAJ: 414 (se audência presencial) ou Modelo SAJ: 506029 (se audiência virtual)",
                 "1. Confirmar onde a testemunha está presa (por e-mail ou pela FA - se preso em São Paulo)",
-                "2. Importante: se o Plenário foi no período da manhã, determinar comparecimento às 08h00",
+                "2. Importante: se o Plenário for no período da manhã, determinar comparecimento às 08h00",
                 "3. Aguardar assinatura do Magistrado (estará assinado quando o documento estiver na fila \"Ofícios - Ag. Impressão\")",
                 "4. Consultar o endereço do local de prisão (https://www1.sap.sp.gov.br/sp/unidades-prisionais/complexos-penais.html)",
                 "5. Enviar para todos os e-mails indicados no site acima",
@@ -1608,11 +1664,12 @@
                 "4. Incluir o tipo de cumprimento: \"Réu Preso\", se réu preso ou \"Audiência\" se réu solto",
                 "5. No Calendário do Outlook, procurar a Audiência Virtual em questão e copiar o link",
                 "6. Gerar Link e QR Code",
-                "6.1. Vide: Orientações Gerais - Audiências Virtuais - Link e QRCode",
+                "6.1. Vide: Audiências Virtuais - Link e QRCode",
                 "7. Finalizar o mandado e verificar se o código de barras foi gerado",
                 "8. Caso haja a expedição de mais de um mandado à uma mesma pessoa, procurar despacho contendo o artigo 1.012, §3°, inciso I, das NSCGJ do TJSP",
                 "9. Caso a proximidade do ato seja inferior a 30 dias, imediatamente informar ao coordenador para assinatura."
             ],
+            "Representação": [],
             "Taxa Judiciária": [
                 "I. Caso de Réu Preso - Modelo SAJ: 506020",
                 "1. Confirmar local de prisão do réu (por e-mail ou pela FA - se preso em São Paulo)",
@@ -1623,8 +1680,31 @@
                 "6. Encaminhar para fila \"Ag. Decurso de Prazo\", pelo prazo de 30 dias, com a observação \"Ag. Mandado - Taxa Judiciária\".",
                 "II. Caso de Réu Solto - Modelo SAJ: 506020"
             ],
-            "Intimação - Genérico": [
-                "Modelo SAJ: 100384 (com despacho) ou 506641 (sem despacho)"
+            "Intimação de Medidas Protetivas de Urgência": [
+                "I. Vítima",
+                "1. Modelo SAJ - 502855",
+                "2. Durante a configuração atentar-se:",
+                "2.1. No correto endereçamento da vítima",
+                "2.2. A classificação deverá ser: Barra Funda - Urgente Plantão",
+                "3. Na Edição do documento, as medidas protetivas deferidas deverão estar destacadas",
+                "4. Após concluída a edição, imediatamente deve-se comunicar ao Coordenador para assinatura.",
+                "II. Agressor - Solto",
+                "1. Modelo SAJ - 502856",
+                "III. Agressor - Preso",
+                "IV. Agressor Solto - Outro Estado",
+                "V. Agressor Preso - Outro Estado"
+            ],
+            "Intimação de Sentença": [
+                "I. Réu Solto",
+                "II. Réu Preso (dentro do Estado de São Paulo)",
+                "1. Modelo SAJ - 506024",
+                "2. Confirmar local de prisão do réu - pode ser pela FA, pelo e-mail dcep-cic@sp.gov.br ou pelo site https://portal.sap.sp.gov.br/formularios/paradeiro",
+                "3. No campo \"Zona do Mandado\", procurar pelo SADM do respectivo local de prisão",
+                "4. No campo \"Cumprimento\", colocar \"Cumprimento Remoto\"",
+                "5. Editar o Mandado.",
+                "5.1. Incluir Termo de Recurso no corpo do mandado",
+                "5.2. Ao finalizar, deve ser enviado em anexo cópia da Sentença",
+                "IV. Réu Revel"
             ],
             "Intimação para comparecimento IML": [
                 "Modelo SAJ: 1000404",
@@ -1634,20 +1714,11 @@
                 "4. Consignar prazo de 10 dias para o comparecimento, a menos que tenha havido determinação diferente do magistrado.",
                 "5. Importante: anexar ao mandado Ofício de Apresentação e demais peças que forem necessárias (Laudos, Prontuários, Etc.)",
                 "6. Encaminhar para fila \"Ag. Decuso de Prazo\", pelo prazo de 30 dias, com a observação \"Ag. Mandado - IML\")."
-            ],
-            "Intimação de Sentença": [
-                "I. Réu Solto",
-                "II. Réu Preso",
-                "III. Réu Revel"
             ]
         },
         "Mandados de Citação": {
-            "Preso no Romão Gomes": [
-                "-"
-            ],
-            "Preso por Outro Juízo": [
-                "-"
-            ],
+            "Preso no Romão Gomes": [],
+            "Preso por Outro Juízo": [],
             "Réu Preso": [
                 "I. Dentro do Estado de São Paulo - Modelo SAJ: 506126",
                 "1. Confirmar local de prisão do réu - pode ser pela FA, pelo e-mail dcep-cic@sp.gov.br ou pelo site https://portal.sap.sp.gov.br/formularios/paradeiro",
@@ -1677,140 +1748,24 @@
                 "1.3 Se Malote:"
             ]
         },
-        "Peças BNMP": {
-            "Alvará de Soltura": [
-                "I. No BNMP",
-                "1. Consultar o CPF da pessoa",
-                "1.1 Caso a pessoa não seja encontrada pelo CPF, buscar o RJI nos mandado de prisão constante nos autos ou buscar pelo nome.",
-                "2. Expedir nova PEÇA:",
-                "2.1. Tipo de Peça: Alvará de Soltura",
-                "2.2. Selecionar o nome do Magistrado que deverá assinar a peça",
-                "2.3. Inserir o número do processo SAJ",
-                "2.4. Classe Processual: 282 - Ação Penal de Competência do Júri",
-                "2.5. Selecionar o Mandado:",
-                "2.5.1 IMPORTANTE: O Mandado selecionado deve ser o referente ao processo a qual o Alvará de Soltura foi expedido",
-                "2.6. Motivo de Expedição do Alvará de Soltura",
-                "2.6.1 Absolvição",
-                "2.6.2 Impronúncia",
-                "2.6.3 Liberdade Prosivória com ou sem medida cautelar",
-                "2.6.3.1 IMPORTANTE: Neste caso, deverá ser expedido, no BNMP, Mandado de Medida Cautelar Diversa da Prisão",
-                "2.6.4 Revogação da Prisão Preventiva",
-                "2.6.5 Revogação da Prisão Temporária",
-                "2.7 Incluir na síntese da decisão que deu azo a emissão do mandado",
-                "2.8 Revisar a peça e finalizar",
-                "2.9 IMEDIATAMENTE informar ao magistrado que a peça está pronta e aguardando assinatura",
-                "3. Após assinatura, IMEDIATAMENTE, encaminhar ao local de prisão, com cópia para o email: alvaras.iirgd@sp.gov.br",
-                "II. No SAJ",
-                "1. Subir a peça assinada no processo",
-                "2. Subir os comprovantes de envio de email.",
-                "III. Após o Cumprimento",
-                "1. Dar cumprimendo do Mandado no BNMP",
-                "1.1 Incluir nova PEÇA:"
-            ],
-            "Mandado de Prisão Temporária": [
-                "I. No BNMP",
-                "1. Consultar o CPF do averiguado",
-                "1.1 Caso não haja CPF, deve-se consultar no INFOSEG: infoseg.sinesp.gov.br/infoseg2/",
-                "2. Consultar no BNMP se já há cadastro em nome do averiguado",
-                "2.1 Caso não localize pelo CPF, deverá tentar localizar pelo nome.",
-                "2.2 Caso não haja cadastro prévio, deve-se cadastrar uma nova pessoa através do CPF.",
-                "3. Uma vez cadastrado, deve-se expedir nova PEÇA:",
-                "3.1 Tipo de Peça: Mandado de Prisão",
-                "3.2 Selecionar o nome do Magistrado que deverá assinar a peça",
-                "3.3 Inserir o número do processo SAJ",
-                "3.4 Inserir a data de validade",
-                "3.4.1 A data de validade será 30 dias CORRIDOS incluindo a data da expedição. Recomenda-se contar no calendário para evitar erros.",
-                "3.5 Espécie de Prisão: Temporária",
-                "3.6 Tipo de Sigilo: Restrito",
-                "3.6.1 Importante: obrigatoriamente deve-se inserir os dados do magistrado que assinará a peça",
-                "3.7. Prazo da Prisão: 30 dias.",
-                "3.8. Incluir a tipificação penal",
-                "3.9 Incluir síntese da decisão que motivou a emissão do mandado",
-                "3.10 Revisar a peça e finalizar",
-                "3.11 IMEDIATAMENTE informar ao magistrado que a peça está pronta e aguardando assinatura",
-                "II. No SAJ:",
-                "1. Após assinado, deve-se IMEDIATAMENTE encaminhar à unidade policial que representou com o pedido da temporária, via email, junto da decisão.",
-                "1.1 Caso o averiguado esteja preso. Encaminhar ao local de prisão.",
-                "2. Subir o mandado e o comprovante de envio nos autos.",
-                "3. Encaminhar processo para a fila \"Ag. Decurso de Prazo\" com prazo de 30 dias, com a observação \"Ag. Cump. Prisão Temporária\".",
-                "4. Remover o Ato da Decisão.",
-                "III. Após o Cumprimento:",
-                "1. Dar cumprimendo do Mandado no BNMP",
-                "1.1 Incluir nova PEÇA:",
-                "2. Atualizar Histórico de Partes",
-                "3. Dar ciência ao Ministério Público",
-                "4. Encaminhar processo para a fila \"Ag. Decurso de Prazo\" com prazo de 25 dias (contados no calendário), com a observação \"Ag. Prisão Temporária\".",
-                "IV. Importante: Caso de Temporária Noturna",
-                "1. Expedido em plantão noturno, fora do BNMP",
-                "2. Após juntado o mandado cumprido nos autos, dever-se-á proceder à regularização no BNMP",
-                "2.1 Expedir o mandado de prisão temporária no BNMP com a data do dia de expedição.",
-                "2.2 A data de validade deverá ser 30 dias contando, inclusive, a data do CUMPRIMENTO do mandado e não da expedição.",
-                "3. Após assinado, deve-se IMEDIATAMENTE encaminhar à unidade policial que representou com o pedido da temporária, via email, junto da decisão.",
-                "4. Subir o mandado e o comprovante de envio nos autos.",
-                "5. Encaminhar processo para a fila \"Ag. Decurso de Prazo\" com prazo de 25 dias (contados no calendário e incluindo a data da expedição), com a observação \"Ag. Prisão Temporária\".",
-                "V. Prorrogação da Temporária",
-                "1. Deverá ser feito no dia do vencimento do Mandado de Prisão Temporária anterior.",
-                "2. No BNMP.",
-                "2.1 Espécie de Prisão: Prorrogação de Mandado de Prisão Temporária",
-                "2.2 Quando assinado, ele será cumprido automaticamente pelo BNMP.",
-                "3. Após assinado, deve-se IMEDIATAMENTE encaminhar à unidade policial que representou com o pedido da temporária, via email, junto da decisão.",
-                "4. Subir o mandado e o comprovante de envio nos autos",
-                "5. Encaminhar processo para a fila \"Ag. Decurso de Prazo\"  com prazo de 25 dias (contados no calendário e incluindo a data da expedição), com a observação \"Ag. Prisão Temporária\"."
-            ],
-            "Mandado de Prisão Preventiva": [],
-            "Mandado de Prisão Condenatória": [
-                "I. Decorrente de Sentença Não Transitada em Julgado",
-                "II. Decorrente de Sentença Transitada em Julgado"
-            ],
-            "Mandado de Medidas Cautelares Diversas da Prisão": [
-                "OBS.: Caso SURSIS"
-            ],
-            "Mandado de Medidas Protetivas de Urgência": [
-                "I. No BNMP",
-                "1. Consultar o CPF do averiguado",
-                "1.1 Caso não haja CPF, deve-se consultar no INFOSEG: infoseg.sinesp.gov.br/infoseg2/",
-                "2. Consultar no BNMP se já há cadastro em nome do averiguado",
-                "2.1 Caso não localize pelo CPF, deverá tentar localizar pelo nome.",
-                "2.2 Caso não haja cadastro prévio, deve-se cadastrar uma nova pessoa através do CPF.",
-                "3. Uma vez cadastrado, deve-se expedir nova PEÇA:",
-                "3.1 Tipo de Peça: Mandado de Medida Cautelar Diversa da Prisão ou Protetiva de Urgências",
-                "3.2 Selecionar o nome do Magistrado que deverá assinar a peça",
-                "3.3 Inserir o número do processo SAJ",
-                "3.4 Selecionar o motivo da expedição: Medidas Protetivas de Urgência",
-                "3.5 Classe: 282 - Ação Penal de Competência do Júri",
-                "3.6 Inserir a data da decisão (conforme expresso no documento)",
-                "3.7 Colar a síntese da decisão que determinou a imposição das Medidas Protetivas de Urgências",
-                "3.8 Na aba \"dados das vítimas\", inserir o CPF da vítima, preenchendo os demais campos se o caso",
-                "3.9 Na aba \"dados do agressor\", inserir as medidas conforme determinação do magistrado",
-                "3.10 Revisar e finalizar a peça",
-                "3.11 IMEDIATAMENTE informar ao magistrado que a peça está pronta e aguardando assinatura",
-                "II. No SAJ (INCLUIR MANDADO AGRESSOR?)",
-                "1. Subir o Mandado de Protetiva de Urgência nos autos",
-                "2. Subir a certidão de cumprimento",
-                "3. Encaminhar a peça, por email, para o IIRGD: dipol@iirgd.sp.gov.br",
-                "4. Subir o comprovante nos autos",
-                "5. Atualizar o Histórico de Partes, cadastrando as protetivas determinadas.",
-                "6. Encaminhar processo para a fila \"Acompanhamento de Medida Cautelar - Art. 319 CPP\", pelo prazo de exatamente um ano da data da decisão que determinou as protetivas, com a observação \"Rever Protetivas\"",
-                "III. Após o Cumprimento do Mandado de Medidas Protetivas de Urgência",
-                "1. Consultar o CPF do agressor",
-                "2. Expedir nova PEÇA:",
-                "2.1 Tipo de Peça: Certidão de Cumprimento de Mandado de Medida Cautelar Diversa da Prisão ou Protetiva de Urgência",
-                "2.2 Inserir a data da intimação",
-                "2.2.1 Caso tenha sido por mandado: data da assinatura do mandado por parte do agressor.",
-                "2.2.2 Caso tenha sido em audiência: data da audiência",
-                "2.2.3 Caso tenha sido em balcão: data do comparecimento",
-                "3. Finalizar Peça",
-                "4. Subir certidão de cumprimento nos autos."
-            ],
-            "Mandado de Prisão Domiciliar": [],
-            "Guia de Execução": [],
-            "Guia de Recolhimento Provisória": [],
-            "Guia de Recolhimento Definitinva": [],
-            "Certidão de Extinção por Morte": [],
-            "Certidão de Cumprimento (DENTRO DAS PEÇAS)": [],
-            "Evento de Transferência de Peças": [],
-            "Conversão de Prisão Temporária em Preventiva": [],
-            "Mandado de Internação": []
+        "Oficios": {
+            "Devolução de Veículos": [
+                "I. Expedição de Ofício - Modelo SAJ - 944",
+                "1. Identificar, no Boletim de Ocorrência ou no Auto de Exibição e Apreensão, o local em que o veículo está apreendido",
+                "2. Emitir o documento no SAJ, conforme modelo acima",
+                "2.1. Na edição do documento:",
+                "2.1.1. Selecionar o nome de quem vai retirar o veículo",
+                "2.1.2. Na \"Movimentação\", selecionar a decisão que autorizou a devolução do veículo",
+                "2.1.3. \"Bens do Processo\" deverá ser preenchido, caso tenha sido cadastrado.",
+                "2.1.4. Confirmar se o veículo está sob custódia do mesmo Distrito Policial constante no destinatário do ofício.",
+                "II. Expedição de Alvará - Modelo SAJ - 1232",
+                "1. Na configuração, deverá ser selecionado quem irá buscar o veículo apreendido",
+                "2. Por se tratar de Alvará Genérico, as informações deverão ser inseridas manualmente:",
+                "2.1. Placa",
+                "2.2. Chassi",
+                "2.3. Ano e Modelo",
+                "2.4. Demais dados pertinentes do veículo"
+            ]
         },
         "Ofícios": {
             "99": [
@@ -1826,16 +1781,12 @@
                 "10. Encaminhar para a fila Ag. Decurso de Prazo, por 30 dias ou prazo determinado, com a observação \"Ag. Ofício\"."
             ],
             "Apresentação ao IML": [
-                "I. Modelo SAJ: 909",
+                "I.  Modelo SAJ - 909",
                 "1. IMPORTANTE: caso seja para laudo complementar, deverá, no corpo do ofício, constar o número dos laudos de referência, ou encaminhá-los por email",
                 "2. Endereçar para o mesmo EPML que realizou os outros exames.",
                 "3. Aguardar assinatura do Magistrado (estará assinado quando o documento estiver na fila \"Ofícios - Ag. Impressão\")",
                 "4. Após assinatura, remover da fila \"Ofícios - Ag. Impressão\" e \"Encerrar sem Decurso de Prazo\".",
                 "5. IMPORTANTE: esse ofício não será encaminhado por email, ele será ANEXADO ao Mandado de Intimação de Comparecimento ao IML."
-            ],
-            "IIRGD": [
-                "I. Solictação de Folha de Antecedentes: Modelo SAJ - 1217",
-                "II. Comunicação de Sentença: Modelo SAJ - 1188"
             ],
             "Comunicação de Decisão": [
                 "-"
@@ -1878,15 +1829,9 @@
                 "9. Subir comprovante do envio nos autos (pode ser a página do site, constando o envio e número de protocolo ou o email de confirmação que o Google enviar)",
                 "10. Encaminhar para a fila \"ag. Decurso de Prazo\", por 30 dias ou prazo determinado, com a observação \"Ag. Ofício\"."
             ],
-            "Nubank": [
-                "1. Modelo SAJ 909",
-                "2. Oficio deverá ser enviado através do portal https://app.nubank.com.br/beta/praja/",
-                "3. Não há necessidade de cadastro prévio no portal Nubank PRAJA",
-                "4. Importante: deverá constar o CPF do averiguado no corpo do ofício.",
-                "5. Após a assinatura do magistrado, enviar o ofício no Portal e selecionar o e-mail para o qual a resposta deverá ser encaminhada",
-                "6. O portal não emite um comprovante de protocolo, tal comprovante será encaminhado no e-mail mecionado no item 5.",
-                "7. Juntar o email recebido como \"protocolo de ofício\" nos autos.",
-                "8. Encaminhar para a fila Ag. Decurso de Prazo, por 30 dias ou prazo determinado, com a observação \"Ag. Ofício\"."
+            "IIRGD": [
+                "I. Solictação de Folha de Antecedentes: Modelo SAJ - 1217",
+                "II. Comunicação de Sentença: Modelo SAJ - 1188"
             ],
             "IMESC": [],
             "Laudo Complementar": [
@@ -1903,6 +1848,16 @@
             ],
             "Microsoft": [
                 "-"
+            ],
+            "Nubank": [
+                "1. Modelo SAJ 909",
+                "2. Oficio deverá ser enviado através do portal https://app.nubank.com.br/beta/praja/",
+                "3. Não há necessidade de cadastro prévio no portal Nubank PRAJA",
+                "4. Importante: deverá constar o CPF do averiguado no corpo do ofício.",
+                "5. Após a assinatura do magistrado, enviar o ofício no Portal e selecionar o e-mail para o qual a resposta deverá ser encaminhada",
+                "6. O portal não emite um comprovante de protocolo, tal comprovante será encaminhado no e-mail mecionado no item 5.",
+                "7. Juntar o email recebido como \"protocolo de ofício\" nos autos.",
+                "8. Encaminhar para a fila Ag. Decurso de Prazo, por 30 dias ou prazo determinado, com a observação \"Ag. Ofício\"."
             ],
             "Ofício - TRE": [
                 "1. Modelo SAJ: 500934",
@@ -1957,6 +1912,26 @@
                 "5. Encaminhar ofício para o e-mail: graop_oficios@timbrasil.com.br",
                 "6. Subir comprovantes nos autos",
                 "7. Copiar para fila \"Ag. Decurso de Prazo\" - por 30 dias ou o tempo determinado pelo magistrado"
+            ],
+            "Recambiamento": [
+                "1. Trata-se de comunicação com o Juízo do local de prisão do réu",
+                "2. Localizar o local de prisão do réu",
+                "3. Localizar o Juízo responsável pela unidade prisional",
+                "5. Expedir ofício, conferindo os dados da unidade prisional e do Juízo de Destino.",
+                "6. Aguardar assinatura do Magistrado (estará assinando quando o documento estinar na fila \"Ofícios - Ag. Impressão\");",
+                "7. Enviar para o email do Juízo responsável pela unidade prisional.",
+                "9. Copiar para fila \"Ag. Decurso de Prazo\" - por 30 dias ou o tempo determinado pelo magistrado, com a observação \"Ag. Autorização Recamb.\"",
+                "II. Solicitar Recambiamento à SAP: Modelo SAJ 502849",
+                "2. Expedir ofício, conferindo os dados da unidade prisional em que o réu se encontra",
+                "3. Aguardar assinatura do Magistrado (estará assinando quando o documento estinar na fila \"Ofícios - Ag. Impressão\");",
+                "4. Enviar para o email: dcepat@sp.gov.br",
+                "6. Copiar para fila \"Ag. Decurso de Prazo\" - por 30 dias ou tempo determinado pelo magistrado, com a observação \"Ag. Autorização Vaga\".",
+                "III. Solicitar Missão de Recambiamento: Modelo SAJ 502850",
+                "I. Solicitar Autorização de Recambiamento: Modelo SAJ 502853",
+                "4. Atualizar o local de prisão no Histórico de Partes",
+                "8. Subir comprovante de envio nos autos.",
+                "1. Trata-se de solicitação à SAP para disponibilização de vaga dentro de unidade prisional dentro do Estado de São Paulo",
+                "5. Subir comprovante de envio nos autos."
             ],
             "Reiteração": [
                 "1. Acompanhar a fila \"Ofícios Ag. Resposta\"",
@@ -2024,26 +1999,272 @@
             ],
             "Whatsapp": [
                 "-"
+            ]
+        },
+        "Peças BNMP": {
+            "Aditamento de Guia": [
+                "I. No BNMP",
+                "1. Conferir se o Histórico de Partes do réu está atualizado no SAJ",
+                "1.1 Conferir se há CPF cadastrado no SAJ e no BNMP",
+                "1.2 Caso não haja CPF, deve-se consultar no INFOSEG: infoseg.sinesp.gov.br/infoseg2/",
+                "2. Consultar no BNMP se já há cadastro em nome do averiguado",
+                "2.1 Caso não localize pelo CPF, deverá tentar localizar pelo nome.",
+                "2.2 Caso não haja cadastro prévio, deve-se cadastrar uma nova pessoa através do CPF.",
+                "3. Uma vez cadastrado, deve-se expedir nova PEÇA:",
+                "3.1. Tipo da Peça: Guia de Recolhimento",
+                "3.2. Selecionar Guia de Recolhimento Definitiva",
+                "3.2 Selecionar o nome do Magistrado que deverá assinar a peça",
+                "3.3 Inserir o número do processo SAJ",
+                "4. Em \"Dados do Processo Criminal\":",
+                "4.1 Tipo de Processo Criminal: 282 - Ação Penal de Competência do Júri",
+                "4.2 Em Revisão Criminal: selecionar \"Não\"",
+                "4.3 Preencher os dados conforme Histórico de Partes atualizado.",
+                "5. Em \"Cadastro de Sentença\"",
+                "5.1. Tipo de Pena: Originária",
+                "6. Em Tipificação Penal",
+                "6.1. Preencher conforme dados da sentença",
+                "6.1.2. Código Penal: 2848",
+                "6.1.3. Características do crime:",
+                "6.1.3.1. Incluir as informações pertinentes nas caixas selecionáveis (se crime tentado, violência doméstica, etc)",
+                "6.1.3.2. Nos casos de compentência do Júri, sempre selecionar \"com Violência ou Grave Ameaça\"",
+                "6.1.4. Não preencher as frações de progressão ou livramento condicional",
+                "6.1.5. Incluir o tempo da pena",
+                "7. Em \"Cadastro das Prisões\"",
+                "7.1 Deverão ser registrados todos os eventos de prisão no decorrer do processo.",
+                "7.1.1 IMPORTANTE: Caso tenha havido conversão de flagrante/temporária em preventiva, deverá ser considerado \"SOLTURA\" da prisão antiga na mesma data do cumprimento da nova prisão.",
+                "8. IMEDIATAMENTE informar ao magistrado que a peça encontra-se disponível para assinatura, encaminhando-lhe o link do BNMP",
+                "II. Após a Assinatura",
+                "1. Subir a Guia de Recolhimento Definitiva no Processo",
+                "2. Verificar onde a Guia de Recolhimento Provisória foi cadastrada",
+                "2.1. Verificar no Histórico de Partes ou na Certidão de Alteração de Competência dentro do SAJ",
+                "2.2. Verificar nas Movimentações do Processo se consta a movimentação de Envio de Guia via SAJ (antes do advento do SEEU)",
+                "3. Comunicar à Vara Competente",
+                "3.1 Por email encaminhar as peças principais que foram juntadas no processo APÓS a Alteração de Competência."
             ],
-            "Recambiamento": [
-                "I. Solicitar Autorização de Recambiamento: Modelo SAJ 502853",
-                "1. Trata-se de comunicação com o Juízo do local de prisão do réu",
-                "2. Localizar o local de prisão do réu",
-                "3. Localizar o Juízo responsável pela unidade prisional",
-                "4. Atualizar o local de prisão no Histórico de Partes",
-                "5. Expedir ofício, conferindo os dados da unidade prisional e do Juízo de Destino.",
-                "6. Aguardar assinatura do Magistrado (estará assinando quando o documento estinar na fila \"Ofícios - Ag. Impressão\");",
-                "7. Enviar para o email do Juízo responsável pela unidade prisional.",
-                "8. Subir comprovante de envio nos autos.",
-                "9. Copiar para fila \"Ag. Decurso de Prazo\" - por 30 dias ou o tempo determinado pelo magistrado, com a observação \"Ag. Autorização Recamb.\"",
-                "II. Solicitar Recambiamento à SAP: Modelo SAJ 502849",
-                "1. Trata-se de solicitação à SAP para disponibilização de vaga dentro de unidade prisional dentro do Estado de São Paulo",
-                "2. Expedir ofício, conferindo os dados da unidade prisional em que o réu se encontra",
-                "3. Aguardar assinatura do Magistrado (estará assinando quando o documento estinar na fila \"Ofícios - Ag. Impressão\");",
-                "4. Enviar para o email: dcepat@sp.gov.br",
-                "5. Subir comprovante de envio nos autos.",
-                "6. Copiar para fila \"Ag. Decurso de Prazo\" - por 30 dias ou tempo determinado pelo magistrado, com a observação \"Ag. Autorização Vaga\".",
-                "III. Solicitar Missão de Recambiamento: Modelo SAJ 502850"
+            "Alvará de Soltura": [
+                "I. No BNMP",
+                "1. Consultar o CPF da pessoa",
+                "1.1 Caso a pessoa não seja encontrada pelo CPF, buscar o RJI nos mandado de prisão constante nos autos ou buscar pelo nome.",
+                "2. Expedir nova PEÇA:",
+                "2.1. Tipo de Peça: Alvará de Soltura",
+                "2.2. Selecionar o nome do Magistrado que deverá assinar a peça",
+                "2.3. Inserir o número do processo SAJ",
+                "2.4. Classe Processual: 282 - Ação Penal de Competência do Júri",
+                "2.5. Selecionar o Mandado:",
+                "2.5.1 IMPORTANTE: O Mandado selecionado deve ser o referente ao processo a qual o Alvará de Soltura foi expedido",
+                "2.6. Motivo de Expedição do Alvará de Soltura",
+                "2.6.1 Absolvição",
+                "2.6.2 Impronúncia",
+                "2.6.3 Liberdade Prosivória com ou sem medida cautelar",
+                "2.6.3.1 IMPORTANTE: Neste caso, deverá ser expedido, no BNMP, Mandado de Medida Cautelar Diversa da Prisão",
+                "2.6.4 Revogação da Prisão Preventiva",
+                "2.6.5 Revogação da Prisão Temporária",
+                "2.7 Incluir na síntese da decisão que deu azo a emissão do mandado",
+                "2.8 Revisar a peça e finalizar",
+                "2.9 IMEDIATAMENTE informar ao magistrado que a peça está pronta e aguardando assinatura",
+                "3. Após assinatura, IMEDIATAMENTE, encaminhar ao local de prisão, com cópia para o email: alvaras.iirgd@sp.gov.br",
+                "II. No SAJ",
+                "1. Subir a peça assinada no processo",
+                "2. Subir os comprovantes de envio de email.",
+                "III. Após o Cumprimento",
+                "1. Dar cumprimendo do Mandado no BNMP",
+                "1.1 Incluir nova PEÇA:"
+            ],
+            "Certidão de Cumprimento (DENTRO DAS PEÇAS)": [],
+            "Certidão de Extinção por Morte": [],
+            "Conversão de Prisão Temporária em Preventiva": [],
+            "Evento de Transferência de Peças": [],
+            "Guia de Execução": [],
+            "Guia de Recolhimento Definitiva": [
+                "I. No BNMP",
+                "1. Conferir se o Histórico de Partes do réu está atualizado no SAJ",
+                "1.1 Conferir se há CPF cadastrado no SAJ e no BNMP",
+                "1.2 Caso não haja CPF, deve-se consultar no INFOSEG: infoseg.sinesp.gov.br/infoseg2/",
+                "2. Consultar no BNMP se já há cadastro em nome do averiguado",
+                "2.1 Caso não localize pelo CPF, deverá tentar localizar pelo nome.",
+                "2.2 Caso não haja cadastro prévio, deve-se cadastrar uma nova pessoa através do CPF.",
+                "3. Uma vez cadastrado, deve-se expedir nova PEÇA:",
+                "3.1. Tipo da Peça: Guia de Recolhimento",
+                "3.2. Selecionar Guia de Recolhimento Definitiva",
+                "3.2 Selecionar o nome do Magistrado que deverá assinar a peça",
+                "3.3 Inserir o número do processo SAJ",
+                "4. Em \"Dados do Processo Criminal\":",
+                "4.1 Tipo de Processo Criminal: 282 - Ação Penal de Competência do Júri",
+                "4.2 Em Revisão Criminal: selecionar \"Não\"",
+                "4.3 Preencher os dados conforme Histórico de Partes atualizado.",
+                "5. Em \"Cadastro de Sentença\"",
+                "5.1. Tipo de Pena: Originária",
+                "6. Em Tipificação Penal",
+                "6.1. Preencher conforme dados da sentença",
+                "6.1.2. Código Penal: 2848",
+                "6.1.3. Características do crime:",
+                "6.1.3.1. Incluir as informações pertinentes nas caixas selecionáveis (se crime tentado, violência doméstica, etc)",
+                "6.1.3.2. Nos casos de compentência do Júri, sempre selecionar \"com Violência ou Grave Ameaça\"",
+                "6.1.4. Não preencher as frações de progressão ou livramento condicional",
+                "6.1.5. Incluir o tempo da pena",
+                "7. Em \"Cadastro das Prisões\"",
+                "7.1 Deverão ser registrados todos os eventos de prisão no decorrer do processo.",
+                "7.1.1 IMPORTANTE: Caso tenha havido conversão de flagrante/temporária em preventiva, deverá ser considerado \"SOLTURA\" da prisão antiga na mesma data do cumprimento da nova prisão.",
+                "8. IMEDIATAMENTE informar ao magistrado que a peça encontra-se disponível para assinatura, encaminhando-lhe o link do BNMP",
+                "II. Após a Assinatura",
+                "1. Subir a Guia de Recolhimento Definitiva no Processo",
+                "3. Enviar as peças principais para a Vara de Destino no https://www.tjsp.jus.br/jud/envioseeu/",
+                "4. No SAJ, copiar o processo para a fila \"Guia de Execução - Alterar Competência\"",
+                "4.1. Só será possível copiar para essa fila a partir da fila \"Ag. Análise de Cartório\"",
+                "4.2. IMPORTANTE: é recomendado conferir diariamente o andamento do cadastro da PEC",
+                "III. Após Cadastro da PEC no SEEU:",
+                "1. Alterar a compentência no BNMP (vide Peças BNMP - Evento de Transferência de Peças)",
+                "2. Na fila \"Guia de Execução - Alterar Competência\" clicar em \"Emitir Certidão - Alterada a Competência\"",
+                "2.1. Na certidão deverá constar no número da PEC que foi cadastrada (disponibilizada no SEEU) e a nova Vara Competente",
+                "3. Incluir no Histórico de Partes",
+                "3.1 Se o réu estiver preso dentro do Estado de São Paulo: Código: 589 - Processo de Execução Iniciado - TJSP",
+                "3.2 Se o réu estiver preso fora do Estado de São Paulo: Código: 582 - Processo de Execução Iniciado - Outro Estado",
+                "3.3 IMPORTANTE: incluir, no campo ao lado do Evento acima o número da PEC e a Vara Competente."
+            ],
+            "Guia de Recolhimento Provisória": [
+                "I. No BNMP",
+                "1. Conferir se o Histórico de Partes do réu está atualizado no SAJ",
+                "1.1 Conferir se há CPF cadastrado no SAJ e no BNMP",
+                "1.2 Caso não haja CPF, deve-se consultar no INFOSEG: infoseg.sinesp.gov.br/infoseg2/",
+                "2. Consultar no BNMP se já há cadastro em nome do averiguado",
+                "2.1 Caso não localize pelo CPF, deverá tentar localizar pelo nome.",
+                "2.2 Caso não haja cadastro prévio, deve-se cadastrar uma nova pessoa através do CPF.",
+                "3. Uma vez cadastrado, deve-se expedir nova PEÇA:",
+                "3.1. Tipo da Peça: Guia de Recolhimento",
+                "3.2. Selecionar Guia de Recolhimento Provisória",
+                "3.2 Selecionar o nome do Magistrado que deverá assinar a peça",
+                "3.3 Inserir o número do processo SAJ",
+                "3.4.1. Deve-se selecionar \"Expedição excepcional sem mandado cumprido, por determinação judicial",
+                "3.4.2. A justificativa deverá ser \"Resolução CNJ 417/2021\".",
+                "4. Em \"Dados do Processo Criminal\":",
+                "4.1 Tipo de Processo Criminal: 282 - Ação Penal de Competência do Júri",
+                "4.2 Em Revisão Criminal: selecionar \"Não\"",
+                "4.3 Preencher os dados conforme Histórico de Partes atualizado.",
+                "5. Em \"Cadastro de Sentença\"",
+                "5.1. Tipo de Pena: Originária",
+                "6. Em Tipificação Penal",
+                "6.1. Preencher conforme dados da sentença",
+                "6.1.2. Código Penal: 2848",
+                "6.1.3. Características do crime:",
+                "6.1.3.1. Incluir as informações pertinentes nas caixas selecionáveis (se crime tentado, violência doméstica, etc)",
+                "6.1.3.2. Nos casos de compentência do Júri, sempre selecionar \"com Violência ou Grave Ameaça\"",
+                "6.1.4. Não preencher as frações de progressão ou livramento condicional",
+                "6.1.5. Incluir o tempo da pena",
+                "7. Em \"Cadastro das Prisões\"",
+                "7.1 Deverão ser registrados todos os eventos de prisão no decorrer do processo.",
+                "7.1.1 IMPORTANTE: Caso tenha havido conversão de flagrante/temporária em preventiva, deverá ser considerado \"SOLTURA\" da prisão antiga na mesma data do cumprimento da nova prisão.",
+                "8. IMEDIATAMENTE informar ao magistrado que a peça encontra-se disponível para assinatura, encaminhando-lhe o link do BNMP",
+                "II. Após a Assinatura",
+                "1. Subir a Guia de Recolhimento Provisória no Processo",
+                "3. Enviar as peças principais para a Vara de Destino no https://www.tjsp.jus.br/jud/envioseeu/",
+                "4. No SAJ, copiar o processo para a fila \"Guia de Execução - Alterar Competência\"",
+                "4.1. Só será possível copiar para essa fila a partir da fila \"Ag. Análise de Cartório\"",
+                "4.2. IMPORTANTE: é recomendado conferir diariamente o andamento do cadastro da PEC",
+                "III. Após Cadastro da PEC no SEEU:",
+                "1. Alterar a compentência no BNMP (vide Peças BNMP - Evento de Transferência de Peças)",
+                "2. Na fila \"Guia de Execução - Alterar Competência\" clicar em \"Emitir Certidão - Alterada a Competência\"",
+                "2.1. Na certidão deverá constar no número da PEC que foi cadastrada (disponibilizada no SEEU) e a nova Vara Competente",
+                "3. Incluir no Histórico de Partes",
+                "3.1 Se o réu estiver preso dentro do Estado de São Paulo: Código: 589 - Processo de Execução Iniciado - TJSP",
+                "3.2 Se o réu estiver preso fora do Estado de São Paulo: Código: 582 - Processo de Execução Iniciado - Outro Estado",
+                "3.3 IMPORTANTE: incluir, no campo ao lado do Evento acima o número da PEC e a Vara Competente."
+            ],
+            "Mandado de Internação": [],
+            "Mandado de Medidas Cautelares Diversas da Prisão": [
+                "OBS.: Caso SURSIS"
+            ],
+            "Mandado de Medidas Protetivas de Urgência": [
+                "I. No BNMP",
+                "1. Consultar o CPF do averiguado",
+                "1.1 Caso não haja CPF, deve-se consultar no INFOSEG: infoseg.sinesp.gov.br/infoseg2/",
+                "2. Consultar no BNMP se já há cadastro em nome do averiguado",
+                "2.1 Caso não localize pelo CPF, deverá tentar localizar pelo nome.",
+                "2.2 Caso não haja cadastro prévio, deve-se cadastrar uma nova pessoa através do CPF.",
+                "3. Uma vez cadastrado, deve-se expedir nova PEÇA:",
+                "3.1 Tipo de Peça: Mandado de Medida Cautelar Diversa da Prisão ou Protetiva de Urgências",
+                "3.2 Selecionar o nome do Magistrado que deverá assinar a peça",
+                "3.3 Inserir o número do processo SAJ",
+                "3.4 Selecionar o motivo da expedição: Medidas Protetivas de Urgência",
+                "3.5 Classe: 282 - Ação Penal de Competência do Júri",
+                "3.6 Inserir a data da decisão (conforme expresso no documento)",
+                "3.7 Colar a síntese da decisão que determinou a imposição das Medidas Protetivas de Urgências",
+                "3.8 Na aba \"dados das vítimas\", inserir o CPF da vítima, preenchendo os demais campos se o caso",
+                "3.9 Na aba \"dados do agressor\", inserir as medidas conforme determinação do magistrado",
+                "3.10 Revisar e finalizar a peça",
+                "3.11 IMEDIATAMENTE informar ao magistrado que a peça está pronta e aguardando assinatura",
+                "II. No SAJ (INCLUIR MANDADO AGRESSOR?)",
+                "1. Subir o Mandado de Protetiva de Urgência nos autos",
+                "2. Subir a certidão de cumprimento",
+                "3. Encaminhar a peça, por email, para o IIRGD: dipol@iirgd.sp.gov.br",
+                "4. Subir o comprovante nos autos",
+                "5. Atualizar o Histórico de Partes, cadastrando as protetivas determinadas.",
+                "6. Encaminhar processo para a fila \"Acompanhamento de Medida Cautelar - Art. 319 CPP\", pelo prazo de exatamente um ano da data da decisão que determinou as protetivas, com a observação \"Rever Protetivas\"",
+                "III. Após o Cumprimento do Mandado de Medidas Protetivas de Urgência",
+                "1. Consultar o CPF do agressor",
+                "2. Expedir nova PEÇA:",
+                "2.1 Tipo de Peça: Certidão de Cumprimento de Mandado de Medida Cautelar Diversa da Prisão ou Protetiva de Urgência",
+                "2.2 Inserir a data da intimação",
+                "2.2.1 Caso tenha sido por mandado: data da assinatura do mandado por parte do agressor.",
+                "2.2.2 Caso tenha sido em audiência: data da audiência",
+                "2.2.3 Caso tenha sido em balcão: data do comparecimento",
+                "3. Finalizar Peça",
+                "4. Subir certidão de cumprimento nos autos."
+            ],
+            "Mandado de Prisão Condenatória": [
+                "I. Decorrente de Sentença Não Transitada em Julgado",
+                "II. Decorrente de Sentença Transitada em Julgado"
+            ],
+            "Mandado de Prisão Domiciliar": [],
+            "Mandado de Prisão Preventiva": [],
+            "Mandado de Prisão Temporária": [
+                "I. No BNMP",
+                "1. Consultar o CPF do averiguado",
+                "1.1 Caso não haja CPF, deve-se consultar no INFOSEG: infoseg.sinesp.gov.br/infoseg2/",
+                "2. Consultar no BNMP se já há cadastro em nome do averiguado",
+                "2.1 Caso não localize pelo CPF, deverá tentar localizar pelo nome.",
+                "2.2 Caso não haja cadastro prévio, deve-se cadastrar uma nova pessoa através do CPF.",
+                "3. Uma vez cadastrado, deve-se expedir nova PEÇA:",
+                "3.1 Tipo de Peça: Mandado de Prisão",
+                "3.2 Selecionar o nome do Magistrado que deverá assinar a peça",
+                "3.3 Inserir o número do processo SAJ",
+                "3.4 Inserir a data de validade",
+                "3.4.1 A data de validade será 30 dias CORRIDOS incluindo a data da expedição. Recomenda-se contar no calendário para evitar erros.",
+                "3.5 Espécie de Prisão: Temporária",
+                "3.6 Tipo de Sigilo: Restrito",
+                "3.6.1 Importante: obrigatoriamente deve-se inserir os dados do magistrado que assinará a peça",
+                "3.7. Prazo da Prisão: 30 dias.",
+                "3.8. Incluir a tipificação penal",
+                "3.9 Incluir síntese da decisão que motivou a emissão do mandado",
+                "3.10 Revisar a peça e finalizar",
+                "3.11 IMEDIATAMENTE informar ao magistrado que a peça está pronta e aguardando assinatura",
+                "II. No SAJ:",
+                "1. Após assinado, deve-se IMEDIATAMENTE encaminhar à unidade policial que representou com o pedido da temporária, via email, junto da decisão.",
+                "1.1 Caso o averiguado esteja preso. Encaminhar ao local de prisão.",
+                "2. Subir o mandado e o comprovante de envio nos autos.",
+                "3. Encaminhar processo para a fila \"Ag. Decurso de Prazo\" com prazo de 30 dias, com a observação \"Ag. Cump. Prisão Temporária\".",
+                "4. Remover o Ato da Decisão.",
+                "III. Após o Cumprimento:",
+                "1. Dar cumprimendo do Mandado no BNMP",
+                "1.1 Incluir nova PEÇA:",
+                "2. Atualizar Histórico de Partes",
+                "3. Dar ciência ao Ministério Público",
+                "4. Encaminhar processo para a fila \"Ag. Decurso de Prazo\" com prazo de 25 dias (contados no calendário), com a observação \"Ag. Prisão Temporária\".",
+                "IV. Importante: Caso de Temporária Noturna",
+                "1. Expedido em plantão noturno, fora do BNMP",
+                "2. Após juntado o mandado cumprido nos autos, dever-se-á proceder à regularização no BNMP",
+                "2.1 Expedir o mandado de prisão temporária no BNMP com a data do dia de expedição.",
+                "2.2 A data de validade deverá ser 30 dias contando, inclusive, a data do CUMPRIMENTO do mandado e não da expedição.",
+                "3. Após assinado, deve-se IMEDIATAMENTE encaminhar à unidade policial que representou com o pedido da temporária, via email, junto da decisão.",
+                "4. Subir o mandado e o comprovante de envio nos autos.",
+                "5. Encaminhar processo para a fila \"Ag. Decurso de Prazo\" com prazo de 25 dias (contados no calendário e incluindo a data da expedição), com a observação \"Ag. Prisão Temporária\".",
+                "V. Prorrogação da Temporária",
+                "1. Deverá ser feito no dia do vencimento do Mandado de Prisão Temporária anterior.",
+                "2. No BNMP.",
+                "2.1 Espécie de Prisão: Prorrogação de Mandado de Prisão Temporária",
+                "2.2 Quando assinado, ele será cumprido automaticamente pelo BNMP.",
+                "3. Após assinado, deve-se IMEDIATAMENTE encaminhar à unidade policial que representou com o pedido da temporária, via email, junto da decisão.",
+                "4. Subir o mandado e o comprovante de envio nos autos",
+                "5. Encaminhar processo para a fila \"Ag. Decurso de Prazo\"  com prazo de 25 dias (contados no calendário e incluindo a data da expedição), com a observação \"Ag. Prisão Temporária\"."
             ]
         },
         "Sentença": {
@@ -2068,8 +2289,22 @@
             ]
         },
         "Apensamento": {
-            "-": [
-                "-"
+            "Apensamento": [
+                "I. No processo a ser apensado",
+                "1. Na aba \"Andamento\", selecionar \"Apensamento/Desapensamento\"",
+                "1.1. Na janela que abrir, no canto esquerdo deverá ser selecionado o processo onde os autos em questão serão apensados",
+                "1.2. No canto direito, deverá ser selecionado o processo a ser apensado",
+                "1.3. Clicar em \"salvar\".",
+                "2. Expedir uma certidão de cartório informado do procedimento realizado",
+                "2.1. Sugestão de Redação: \"Certifico e dou fé que apensei estes autos aos autos de número XXXXXXXX-XX.XXXX.8.26.XXXX\"",
+                "3. Verificar se há outras determinações no despacho ou na decisão de apensamento.",
+                "4. O processo apensado sempre deverá ser arquivado",
+                "4.1. Na aba \"Movimentação Unitária\", digitar o código 61615",
+                "4.2. Encaminhar o processo para a fila de \"Processos Arquivados\"",
+                "II. No Processo Principal",
+                "1. Certificar no processo o procedimento realizado",
+                "1.1. Sugestão de Redação: \"Certifico e dou fé que apensei a estes autos os autos de número XXXXXXX-XX.XXXX.8.26.XXXX",
+                "2. Caso o final seja de outro escrevente, oportuno avisá-lo, para dar andamento às eventuais determinações contidas no despacho ou na decisão de apensamento."
             ]
         },
         "Arquivamento": {
@@ -2092,11 +2327,6 @@
                 "I. Ocorre quando o familiar da parte se manifesta CONTRARIAMENTE ao Arquivamento",
                 "1. Encaminhar à Procuradoria Geral do Estado através do link: https://sis.mpsp.mp.br/atendimentocidadao/OrgaoExterno/Manifestacao/IncluirNovaManifestacao",
                 "1.1. O preenchimento é o mesmo quando ocorre conflito de competência. Vide Conflito de Competência - Remessa à PGE"
-            ]
-        },
-        "Redistribuição": {
-            "Habeas Corpus": [
-                "1. Cadastro deve ser via DISTRIBUIDOR."
             ]
         },
         "IMESC": {
@@ -2134,6 +2364,11 @@
                 "1. Encaminhar para a fila \"Conclusos-Minuta\"",
                 "2. A partir do despacho expedir o oficio (CONTINUAR DAQUI)"
             ]
+        },
+        "Redistribuição": {
+            "Habeas Corpus": [
+                "1. Cadastro deve ser via DISTRIBUIDOR."
+            ]
         }
     },
     "3. Diversos": {
@@ -2165,45 +2400,17 @@
                 "4. A resposta da Procuradoria Geral do Estado virá como petição nos próprios autos."
             ]
         },
-        "": {
-            "": [
-                "-"
-            ]
-        },
-        "Provimentos": {
-            "Prov. 32/00": [
-                "-"
-            ],
-            "Prov. 770/02": [
-                "IMPORTANTE: expedir a Carta apenas se houver condenação do réu",
-                "I. Se vítima fatal - Modelo SAJ: 507455",
-                "1. Procurar nos autos o endereço de algum familiar",
-                "2. O destinatário deverá ser o familiar da vítima - \"Ao Familiar da Vítima....\"",
-                "3. Assinar, finalizar e subir nos autos",
-                "II. Se vítima não-fatal - Modelo SAJ: 507455",
-                "1. Procurar o endereço da vítima",
-                "2. O destinatário será a própria vítima",
-                "3. Assinar, finalizar e subir nos autos"
-            ]
-        },
-        "Suspensão Condicional do Processo (L 9099/95)": {
-            "-": [
-                "-"
-            ]
-        },
         "Editais": {
-            "Intimação": [],
             "Citação": [
                 "Modelo SAJ: 1000022",
                 "IMPORTANTE: Deve ser expedido apenas quando determinado expressamente e esgotadas as tentativas de localização"
-            ]
-        },
-        "Prazos": {
-            "Recursos/Apelações": [],
-            "Cartas Precatórias": []
+            ],
+            "Intimação": []
         },
         "Jurados": {
+            "Atestados de Jurados": [],
             "Cadastro de Jurados": [],
+            "Comprovante de Jurado": [],
             "Dispensa de Jurados": [],
             "Exclusão de Jurados": [],
             "Lista de Jurados": [
@@ -2213,9 +2420,35 @@
                 "3. A Liste de Jurados de um plenário depende das atualizões do plenário anterior.",
                 "4. Qualquer dúvida em relação aos jurados, deve-se procurar o responsável pelos Jurados da 2ª Vara do Júri",
                 "5. As listas de jurados podem ser consultadas no seguinte link: https://tjsp-my.sharepoint.com/:f:/r/personal/alexmaia_tjsp_jus_br/Documents/J%C3%BAri?d=w599f222f1d11415e9a0a6b65c85436ce&csf=1&web=1&e=xcuapF"
+            ]
+        },
+        "Prazos": {
+            "Cartas Precatórias": [],
+            "Recursos/Apelações": []
+        },
+        "Provimentos": {
+            "Prov. 32/00": [
+                "-"
             ],
-            "Comprovante de Jurado": [],
-            "Atestados de Jurados": []
+            "Prov. 770/02": [
+                "IMPORTANTE: expedir a Carta apenas se houver condenação do réu",
+                "I. Se vítima fatal",
+                "1. Modelo SAJ - 507455",
+                "2. Procurar nos autos o endereço de algum familiar",
+                "3. O destinatário deverá ser o familiar da vítima - \"Ao Familiar da Vítima....\"",
+                "4. Assinar, finalizar e subir nos autos",
+                "II. Se vítima não-fatal",
+                "1. Modelo SAJ - 507455",
+                "2. Procurar o endereço da vítima nos autos",
+                "2.1 Sugestão: buscar no último mandado com cumprimento Positivo.",
+                "3. O destinatário será a própria vítima",
+                "4. Assinar, finalizar e subir nos autos"
+            ]
+        },
+        "Suspensão Condicional do Processo (L 9099/95)": {
+            "-": [
+                "-"
+            ]
         },
         "Varas de Execução": {
             "DEECRIM": [
@@ -2225,57 +2458,6 @@
     },
     "4. Balcão": {
         "Atendimento balcão": {
-            "Réu - Alvará de Soltura": [
-                "I. Termo de Comparecimento - Sem Medidas Cautelares Diversas da Prisão - Modelo SAJ: 607",
-                "1. IMEDIATAMENTE dar cumprimento ao Alvará de Soltura no BNMP (vide tópico Peças BNMP - Alvará de Soltura)",
-                "2. Colher o endereço, número de telefone e email do réu",
-                "3. Atualizar a aba Partes e Representantes com as novas informações",
-                "4. Expedir o Termo de Comparecimento",
-                "4.1. No Termo deverá constar as informações atualizadas conforme declarado pelo réu em balcão",
-                "4.2. No Termo deverá constar a síntese da decisão que determinou a expedição do Alvará de Soltura",
-                "5. IMEDIATAMENTE informar ao magistrado que o Termo está finalizado e aguardando assinatura.",
-                "6. Verificar se é necessário intimar o réu de eventual sentença",
-                "6.1. Caso seja necessário, proceder-se-á à intimação da sentença",
-                "7. Após assinatura do Termo de Comparecimento pelo magistrado, deverá ser impressa duas cópias.",
-                "7.1 IMPORTANTE: caso seja necessário intimar o réu da sentença, deverá ser impressa cópia da Sentença e expedida Certidão de Intimação (vide tópico Atendimento Balcão -  Intimação/Citação em Balcão)",
-                "8. Entregar a cópia do Termo de Comparecimento para assinatura do réu (e entregar eventuais peças)",
-                "8.1 O réu ficará com uma cópia do Termpo de Comparecimento",
-                "9. Subir a certidão de cumprimento do Alvará no BNMP",
-                "10. Digitalizar o Termo de Comparecimento assinado e subir nos autos.",
-                "11. O Termo de Comparecimento assinado deverá ser colocado em pasta própria no cartório",
-                "12. IMPORTANTE: Verificar o andamento do processo, para analisar questões de prazo e filas.",
-                "II. Termo de Comparecimento - Com Medidas Cautelares Diversas da Prisão - Modelo SAJ: 607",
-                "1. IMEDIATAMENTE dar cumprimento ao Alvará de Soltura no BNMP (vide tópico Peças BNMP - Alvará de Soltura)",
-                "2. IMEDIATAMENTE dar cumprimento ao Mandado de Medidas Cautelares Diversas da Prisão no BNMP (vide tópico Peças BNMP - Mandados de Medidas Cautelares Diversas da Prisão)",
-                "2.1 Caso o Mandado de Medidas Cautelares Diversas de Prisão não tenha sido expedido, deverá ser expedido IMEDIATAMENTO (vide tópico Peças BNMP - Mandados de Medidas Cautelares Diversas da Prisão)",
-                "3. Colher o endereço, o número de telefone e o email do réu",
-                "4. Atualizar a aba Partes e Representantes com as novas informações",
-                "5. Expedir o Termo de Comparecimento",
-                "5.1. No Termo deverá constar as informações atualizadas conforme declaro pelo réu em balcão",
-                "5.2. No Termo deverá constar a síntese da decisão que determinou a expedição do Alvará de Soltura e determinou as Medidas Cautelares",
-                "5.3. No Termo deverá constar, expressamente, as medidas impostas ao réu",
-                "6. IMEDIATAMENTE informar ao magistrado que o Termo está finalizado e aguardando assinatura.",
-                "7. Verificar se é necessário intimar o réu de eventual sentença e se está ciente das cautelares impostas",
-                "7.1. Caso seja necessário, proceder-se-á à intimação da sentença",
-                "8. Após assinatura do Termo de Comparecimento pelo magistrado, deverá ser impressa duas cópias.",
-                "8.1 IMPORTANTE: caso seja necessário intimar o réu da sentença, deverá ser impressa cópia da Sentença e expedida Certidão de Intimação (vide tópico Atendimento Balcão -  Intimação/Citação em Balcão)",
-                "9. Entregar duas cópias do Termo de Comparecimento para assinatura do réu (e entregar eventuais peças)",
-                "9.1 O réu ficará com uma cópia do Termo de Comparecimento",
-                "10. Subir a certidão de cumprimento do Alvará no BNMP, o Mandado de Medidas Cautelares Diversas da Prisão (caso ainda não conste nos autos ou tenha sido expedido nesta oportunidade) e sua certidão de cumprimento",
-                "11. Digitalizar o Termo de Comparecimento assinado e subir nos autos.",
-                "12. O Termo de Comparecimento assinado deverá ser colocado em pasta própria no cartório",
-                "12.3 Outra cópia deverá ser usada para montar a pasta de cautelares.",
-                "12.3.1 Deverá ser montada uma pasta de comparecimento periódico para o réu (caso haja essa medida entre as medidas cautelares)",
-                "12.3.2 Deverá ser impressa Etiqueta de identificação da Pasta (vide tópico Serviços Cartorários - Etiquetas do Processo)",
-                "12.3.3 A primeira assinatura do réu será a do Termo de Comparcimento",
-                "13. Copiar expediente para a fila \"Acompanhamento de Medidas Cautelares\", com a observação \"Rever Cautelares\" no prazo de 1 ano a contar da decisão que determinou as medidas.",
-                "14. IMPORTANTE: Vertificar Históricos de Parte, para verificar se as medidas cautelares estão corretamente cadastradas.",
-                "15. IMPORTANTE: Verificar o andamento do processo, para analisar questões de prazo e filas."
-            ],
-            "Réu - Comparecimento Mensal": [
-                "-"
-            ],
-            "Jurados": [],
             "Intimação/Citação em balcão": [
                 "I. Parte ou Testemunha para Audiência",
                 "1. Modelo SAJ: 50",
@@ -2331,13 +2513,61 @@
                 "10. Caso não haja outras pendências e prazos no processo, encaminhar para a fila Ag. Decurso de Prazo, com o prazo de 10 (dez) dias, com a observação \"Ag. Resposta à Acusação\"",
                 "11. Caso o réu tenha optado pela Defensoria Pública, o prazo será em dobro."
             ],
-            "Pedido de Certidão de Objeto e Pé": []
+            "Jurados": [],
+            "Pedido de Certidão de Objeto e Pé": [],
+            "Réu - Alvará de Soltura": [
+                "I. Termo de Comparecimento - Sem Medidas Cautelares Diversas da Prisão - Modelo SAJ: 607",
+                "1. IMEDIATAMENTE dar cumprimento ao Alvará de Soltura no BNMP (vide tópico Peças BNMP - Alvará de Soltura)",
+                "2. Colher o endereço, número de telefone e email do réu",
+                "3. Atualizar a aba Partes e Representantes com as novas informações",
+                "4. Expedir o Termo de Comparecimento",
+                "4.1. No Termo deverá constar as informações atualizadas conforme declarado pelo réu em balcão",
+                "4.2. No Termo deverá constar a síntese da decisão que determinou a expedição do Alvará de Soltura",
+                "5. IMEDIATAMENTE informar ao magistrado que o Termo está finalizado e aguardando assinatura.",
+                "6. Verificar se é necessário intimar o réu de eventual sentença",
+                "6.1. Caso seja necessário, proceder-se-á à intimação da sentença",
+                "7. Após assinatura do Termo de Comparecimento pelo magistrado, deverá ser impressa duas cópias.",
+                "7.1 IMPORTANTE: caso seja necessário intimar o réu da sentença, deverá ser impressa cópia da Sentença e expedida Certidão de Intimação (vide tópico Atendimento Balcão -  Intimação/Citação em Balcão)",
+                "8. Entregar a cópia do Termo de Comparecimento para assinatura do réu (e entregar eventuais peças)",
+                "8.1 O réu ficará com uma cópia do Termpo de Comparecimento",
+                "9. Subir a certidão de cumprimento do Alvará no BNMP",
+                "10. Digitalizar o Termo de Comparecimento assinado e subir nos autos.",
+                "11. O Termo de Comparecimento assinado deverá ser colocado em pasta própria no cartório",
+                "12. IMPORTANTE: Verificar o andamento do processo, para analisar questões de prazo e filas.",
+                "II. Termo de Comparecimento - Com Medidas Cautelares Diversas da Prisão - Modelo SAJ: 607",
+                "1. IMEDIATAMENTE dar cumprimento ao Alvará de Soltura no BNMP (vide tópico Peças BNMP - Alvará de Soltura)",
+                "2. IMEDIATAMENTE dar cumprimento ao Mandado de Medidas Cautelares Diversas da Prisão no BNMP (vide tópico Peças BNMP - Mandados de Medidas Cautelares Diversas da Prisão)",
+                "2.1 Caso o Mandado de Medidas Cautelares Diversas de Prisão não tenha sido expedido, deverá ser expedido IMEDIATAMENTO (vide tópico Peças BNMP - Mandados de Medidas Cautelares Diversas da Prisão)",
+                "3. Colher o endereço, o número de telefone e o email do réu",
+                "4. Atualizar a aba Partes e Representantes com as novas informações",
+                "5. Expedir o Termo de Comparecimento",
+                "5.1. No Termo deverá constar as informações atualizadas conforme declaro pelo réu em balcão",
+                "5.2. No Termo deverá constar a síntese da decisão que determinou a expedição do Alvará de Soltura e determinou as Medidas Cautelares",
+                "5.3. No Termo deverá constar, expressamente, as medidas impostas ao réu",
+                "6. IMEDIATAMENTE informar ao magistrado que o Termo está finalizado e aguardando assinatura.",
+                "7. Verificar se é necessário intimar o réu de eventual sentença e se está ciente das cautelares impostas",
+                "7.1. Caso seja necessário, proceder-se-á à intimação da sentença",
+                "8. Após assinatura do Termo de Comparecimento pelo magistrado, deverá ser impressa duas cópias.",
+                "8.1 IMPORTANTE: caso seja necessário intimar o réu da sentença, deverá ser impressa cópia da Sentença e expedida Certidão de Intimação (vide tópico Atendimento Balcão -  Intimação/Citação em Balcão)",
+                "9. Entregar duas cópias do Termo de Comparecimento para assinatura do réu (e entregar eventuais peças)",
+                "9.1 O réu ficará com uma cópia do Termo de Comparecimento",
+                "10. Subir a certidão de cumprimento do Alvará no BNMP, o Mandado de Medidas Cautelares Diversas da Prisão (caso ainda não conste nos autos ou tenha sido expedido nesta oportunidade) e sua certidão de cumprimento",
+                "11. Digitalizar o Termo de Comparecimento assinado e subir nos autos.",
+                "12. O Termo de Comparecimento assinado deverá ser colocado em pasta própria no cartório",
+                "12.3 Outra cópia deverá ser usada para montar a pasta de cautelares.",
+                "12.3.1 Deverá ser montada uma pasta de comparecimento periódico para o réu (caso haja essa medida entre as medidas cautelares)",
+                "12.3.2 Deverá ser impressa Etiqueta de identificação da Pasta (vide tópico Serviços Cartorários - Etiquetas do Processo)",
+                "12.3.3 A primeira assinatura do réu será a do Termo de Comparcimento",
+                "13. Copiar expediente para a fila \"Acompanhamento de Medidas Cautelares\", com a observação \"Rever Cautelares\" no prazo de 1 ano a contar da decisão que determinou as medidas.",
+                "14. IMPORTANTE: Vertificar Históricos de Parte, para verificar se as medidas cautelares estão corretamente cadastradas.",
+                "15. IMPORTANTE: Verificar o andamento do processo, para analisar questões de prazo e filas."
+            ],
+            "Réu - Comparecimento Mensal": [
+                "-"
+            ]
         }
     },
     "5. Processos Físicos": {
-        "Desarquivamento": {
-            "": []
-        },
         "Arquivamento": {
             "": []
         },
@@ -2347,24 +2577,10 @@
         "Conclusão": {
             "": []
         },
+        "Desarquivamento": {
+            "": []
+        },
         "Digitalização": {
-            "Sistema IRON (Download)": [
-                "1. No sistema SGDAU, clicar na aba REQUISIÇÕES",
-                "2. Clicar em Painel de Controle",
-                "3. Em \"Forma de Entrega\", selecionar DIGITAL e colocar o período em que o desarquivamento foi solicitado (o intervalo deve ser menor que 90 dias)",
-                "4. Em \"Ação\", aparecerá uma imagem, que é o link para download do processo digitalizado.",
-                "5. Após o clique, no campo \"Tipo de Download\", em \"Multi Paginado\" para que o arquivo venha em APENAS UM ÚNICO PDF. (IMPORTANTE)",
-                "6. Clicar em download.",
-                "Importante: TODOS os pedidos ficam disponíveis àqueles que tiverem acesso ao SGDAU, não sendo restrito ao solicitante"
-            ],
-            "SAJ": [
-                "IMPORTANTE: Após tornar o processo digital no SAJ, o número de ordem mudará. Apenas será de responsabilidade do novo final APÓS toda a categorização do processo.",
-                "IMPORTANTE: O processo a ser tornado digital no SAJ deverá estar na base BARRA FUNDA. Caso não esteja, informar o coordenador para regularizaão.",
-                "1. No SAJ, página inicial, seguir o caminho CADASTRO > TORNAR PROCESSO DIGITAL",
-                "2. Digitar o processo físico a ser digitalizado.",
-                "3. O processo irá ficar na fila: 9001 - Ag. Digitalização.",
-                "4. Após, deve-se iniciar o processo de subir peças e recategorização do arquivo digitalizado referente ao processo físico."
-            ],
             "Recategorização": [
                 "IMPORTANTE: É necessário ter o arquivo em PDF do Processo Físico que foi digitalizado.",
                 "1. Recomenda-se subir um volume por vez",
@@ -2383,6 +2599,23 @@
                 "7.4.3 Certificar sobre as mídias: se não há mídias, ou se houver.",
                 "7.4.4. Avisar por e-mail o setor de revisão criminal que os autos se encontram disponíveis e juntar o e-mail.",
                 "7.4.5. Encaminhar o processo para a fila de \"Processo Arquivado\"."
+            ],
+            "SAJ": [
+                "IMPORTANTE: Após tornar o processo digital no SAJ, o número de ordem mudará. Apenas será de responsabilidade do novo final APÓS toda a categorização do processo.",
+                "IMPORTANTE: O processo a ser tornado digital no SAJ deverá estar na base BARRA FUNDA. Caso não esteja, informar o coordenador para regularizaão.",
+                "1. No SAJ, página inicial, seguir o caminho CADASTRO > TORNAR PROCESSO DIGITAL",
+                "2. Digitar o processo físico a ser digitalizado.",
+                "3. O processo irá ficar na fila: 9001 - Ag. Digitalização.",
+                "4. Após, deve-se iniciar o processo de subir peças e recategorização do arquivo digitalizado referente ao processo físico."
+            ],
+            "Sistema IRON (Download)": [
+                "1. No sistema SGDAU, clicar na aba REQUISIÇÕES",
+                "2. Clicar em Painel de Controle",
+                "3. Em \"Forma de Entrega\", selecionar DIGITAL e colocar o período em que o desarquivamento foi solicitado (o intervalo deve ser menor que 90 dias)",
+                "4. Em \"Ação\", aparecerá uma imagem, que é o link para download do processo digitalizado.",
+                "5. Após o clique, no campo \"Tipo de Download\", em \"Multi Paginado\" para que o arquivo venha em APENAS UM ÚNICO PDF. (IMPORTANTE)",
+                "6. Clicar em download.",
+                "Importante: TODOS os pedidos ficam disponíveis àqueles que tiverem acesso ao SGDAU, não sendo restrito ao solicitante"
             ]
         },
         "Editais": {
@@ -2392,32 +2625,42 @@
                 "2. Na configuração do documento:",
                 "2.1 Colocar o prazo conforme tabela: vide Prazos - Editais",
                 "2.2. Caso seja processo com múltiplos réus, verificar se foi corretamente selecionado",
-                "2.3. Selecionar corretamente a sentença"
+                "2.3. Selecionar corretamente a sentença",
+                "3. Na edição, basta copiar todo o Edital e colar no corpo de E-mail",
+                "3.1. Deverá ser impresso a página de edição (SEM SALVAR) e afixado na frente do cartório.",
+                "4. O email deverá ser enviado para o responsável pelo envio",
+                "4.1. Vide: Atribuições do Cartório - Editais",
+                "II. Após a Publicação",
+                "1. Para saber quando houve a publicação, deverá ser consultado o DJEN: https://comunica.pje.jus.br/",
+                "2. Após a publicação, deverá ser impressa a página do edital publicado",
+                "2.1. A página deverá ser numerada e incomporada ao processo físico.",
+                "3. Após deverá ser colocado os autos no prazo",
+                "3.1. No SAJ, deverá ser realizado na Movimentação Unitária",
+                "3.1.1. O código da movimentação será 60978 - Autos no Prazo",
+                "3.1.2. Local Físico: Cód. 50",
+                "3.1.3. Em prazo, colocar o prazo (vide Prazos - Editais)",
+                "3.1.3.1. O prazo de início será o dia útil seguinte do da publicação.",
+                "3.1.4. Em Complemento do Local Físico, deverá ser colocado \"prazo: data do vencimento\"",
+                "3.1.5. Em Complemento da Movimentação, deverá ser colocado \"prazo: data do vencimento\"",
+                "4. No processo físico, no verso, escrever a data do vencimento e colocar no armário físico do prazo."
             ]
+        },
+        "Movimentação Unitária": {
+            "Prazos": []
         },
         "": {
             "": [
                 "1. Modelo SAJ -"
             ]
-        },
-        "Movimentação Unitária": {
-            "Prazos": []
         }
     },
     "6. Orientações Gerais": {
-        "Prazos": {
-            "Editais": [
-                "1. Citação: 15 dias (art. 361 do CPP)",
-                "2. Intimações",
-                "2.1. Sentença Condenatória igual ou superior a 1 anos: 90 dias (art. 392, §1º)",
-                "2.2. Sentença Condenatória em outros casos: 60 dias",
-                "2.3. Sentenas Diversas (Pronúncia, Impronúncia, Extinção de Punibilidade): 15 dias (base HC STJ 552108/MS)",
-                "3. Outras Intimações",
-                "3.1. Se não houver determinação expressa do magistrado, considerar 15 dias.",
-                "4. Intimação para Audiência (réu revel): 15 dias."
-            ],
-            "Processuais": [],
-            "Ofícios": []
+        "Atribuições do Cartório": {
+            "Devolução de Precatória": [],
+            "Editais": [],
+            "Finais": [],
+            "Jurados": [],
+            "Malote": []
         },
         "Audiências Virtuais": {
             "Link e QRCode": [
@@ -2436,10 +2679,39 @@
                 "5. Recomendável que o link que constar no mandado esteja na fonte CONSOLAS."
             ]
         },
+        "Cadastros": {
+            "Google LERS": [],
+            "Infoseg/SINESP": []
+        },
+        "Devolução/Destruição de Armas/Objetos": {
+            "Armas": [],
+            "Objetos Pessoais": [],
+            "Veículos": []
+        },
+        "Editais": {
+            "Prazos": []
+        },
+        "OneDrive": {
+            "Gerar link para envio": []
+        },
+        "Prazos": {
+            "Editais": [
+                "1. Citação: 15 dias (art. 361 do CPP)",
+                "2. Intimações",
+                "2.1. Sentença Condenatória igual ou superior a 1 anos: 90 dias (art. 392, §1º)",
+                "2.2. Sentença Condenatória em outros casos: 60 dias",
+                "2.3. Sentenas Diversas (Pronúncia, Impronúncia, Extinção de Punibilidade): 15 dias (base HC STJ 552108/MS)",
+                "3. Outras Intimações",
+                "3.1. Se não houver determinação expressa do magistrado, considerar 15 dias.",
+                "4. Intimação para Audiência (réu revel): 15 dias."
+            ],
+            "Ofícios": [],
+            "Processuais": []
+        },
         "Retorno de Mandados de Intimação": {
             "Retorno de Mandados de Intimação": [
                 "- Caso retornem negativos:",
-                "1. Se testemunha do Ministério Público: vista ao MP e encaminhar para a fila Ag. Decurso de Prazo, pelo prazo de 05 (cinco) dias com a observação \"Ag. MP\"",
+                "1. Se testemunha do Ministério Público: vista ao MP e encaminhar para a fila Ag. Decurso de Prazo, pelo prazo de 05 (cinco) dias com a observação \"Ag. MP\".",
                 "2. Se testemunha da Defensoria Pública: encaminhar para a fila \"Conclusos-Minuta\"",
                 "3. Se testemunha de Advogado Constituído: encaminhar para a fila \"Conclusos-Minuta\"",
                 "4. Se testemunha do Assistente de Acusação: encaminhar para a fila \"Conclusos-Minuta\"",
@@ -2449,23 +2721,8 @@
             ]
         },
         "Serviços Cartorários (pensar nome melhor)": {
-            "Senhas do Processo": [],
-            "Etiquetas do Processo": []
-        },
-        "Devolução/Destruição de Armas/Objetos": {
-            "Armas": [],
-            "Veículos": [],
-            "Objetos Pessoais": []
-        },
-        "OneDrive": {
-            "Gerar link para envio": []
-        },
-        "Cadastros": {
-            "Google LERS": [],
-            "Infoseg/SINESP": []
-        },
-        "Editais": {
-            "Prazos": []
+            "Etiquetas do Processo": [],
+            "Senhas do Processo": []
         }
     },
     "A PARTIR DAQUI SERÁ ALIMENTADO COM ROTINA ESPECIFICA": {
@@ -2474,7 +2731,6 @@
         }
     }
 };
-
     const selectA = document.getElementById('selectA');
     const selectB = document.getElementById('selectB');
     const selectC = document.getElementById('selectC');
@@ -2488,6 +2744,7 @@
     const modalTitle = document.getElementById('modalTitle');
     const modalItems = document.getElementById('modalItems');
 
+    // Função Exclusiva para mostrar os Detalhes do SAJ na Janela Modal
     function showSajInfo(modelNum, procedimentos) {
       modalTitle.textContent = "Modelo SAJ: " + modelNum;
       modalItems.innerHTML = '<p style="font-weight:600; color:var(--secondary); margin-bottom:10px;">Este modelo é utilizado nas seguintes rotinas:</p>';
@@ -2509,6 +2766,7 @@
       videModal.style.display = 'flex';
     }
 
+    // Extrator Dinâmico de SAJ e Operadoras de Telefonia
     function extractDynamicData() {
       let sajMap = new Map();
       let telefoniaSet = new Set();
@@ -2523,6 +2781,8 @@
             for (let c in data[a][b]) {
               if (Array.isArray(data[a][b][c])) {
                 data[a][b][c].forEach(item => {
+                  
+                  // Extrair Modelos SAJ
                   let sajMatch = item.match(/SAJ\s*(?:n[º°]|nr|:|-)?\s*(\d+)/i);
                   if (sajMatch) {
                     let modelNum = sajMatch[1];
@@ -2532,6 +2792,7 @@
                     sajMap.get(modelNum).add(`${a} &rsaquo; ${b} &rsaquo; ${c}`);
                   }
 
+                  // Extrair Operadoras de Telefonia
                   let upperItem = item.toUpperCase();
                   if (telefoniaKeywords.some(kw => upperItem.includes(kw))) {
                     let emails = item.match(emailRegex);
@@ -2549,6 +2810,7 @@
                       });
                     }
                   }
+
                 });
               }
             }
@@ -2558,6 +2820,7 @@
         console.error("Erro ao ler data para extração dinâmica:", e);
       }
 
+      // Renderizar SAJ na UI
       const sajContainer = document.getElementById('sajContent');
       if (sajMap.size > 0) {
         sajContainer.innerHTML = '';
@@ -2591,6 +2854,7 @@
         sajContainer.innerHTML = '<div class="email-list-item"><span style="color:#7f8c8d; font-style:italic; font-size: 11px;">Nenhum modelo SAJ detectado na base de dados.</span></div>';
       }
 
+      // Renderizar Telefonia na UI
       const telContainer = document.getElementById('telefoniaContent');
       if (telefoniaData.length > 0) {
         telContainer.innerHTML = '';
@@ -2606,12 +2870,15 @@
     }
 
     window.onload = function() {
+      // Popular Menus Cascata
       for (let a in data) {
         let option = document.createElement('option');
         option.value = a;
         option.textContent = a;
         selectA.appendChild(option);
       }
+      
+      // Inicializar extratores dinâmicos
       extractDynamicData();
     };
 
@@ -2747,7 +3014,6 @@
       return formatted;
     }
 
-    // FUNÇÃO VIDE CORRIGIDA E ROBUSTA PARA BUSCAR QUALQUER CHAVE DO OBJETO
     function openVideModal(bQuery, cQuery) {
       modalItems.innerHTML = '';
       let foundItems = [];
@@ -2759,12 +3025,8 @@
       for (let a in data) {
         for (let b in data[a]) {
           for (let c in data[a][b]) {
-            let bLower = b.toLowerCase();
-            let cLower = c.toLowerCase();
-            
-            // Verifica correspondência flexível (contém parte do texto em qualquer direção)
-            let matchB = bLower.includes(bClean) || bClean.includes(bLower);
-            let matchC = !cClean || cLower.includes(cClean) || cClean.includes(cLower);
+            let matchB = b.toLowerCase().includes(bClean) || bClean.includes(b.toLowerCase());
+            let matchC = !cClean || c.toLowerCase().includes(cClean) || cClean.includes(c.toLowerCase());
             
             if (matchB && matchC) {
               matchedTitle = `${b} - ${c}`;
@@ -2904,7 +3166,7 @@
           });
         }
       } else {
-        modalItems.innerHTML = '<p style="color:#7f8c8d; text-align:center; padding: 20px;">Nenhum item encontrado para esta referência.</p>';
+        modalItems.innerHTML = '<p style="color:#7f8c8d; text-align:center;">Nenhum item encontrado para esta referência.</p>';
       }
       
       videModal.style.display = 'flex';
@@ -3026,7 +3288,7 @@
           checkbox.id = 'chk_' + index;
           
           let label = document.createElement('label');
-label.htmlFor = 'chk_' + index;
+          label.htmlFor = 'chk_' + index;
           label.innerHTML = ' ' + formatItemText(item);
           
           let upperItem = item.toUpperCase();

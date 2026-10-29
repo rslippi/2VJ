@@ -532,6 +532,203 @@
       .roman-content:not([style*="display: block"]) { display: none !important; }
       .roman-content[style*="display: block"] { display: block !important; }
     }
+    /* ============================================================
+       [NOVO] 1. BOTÕES DAS ABAS COM FUNDO CINZA (mais cara de botão)
+       ============================================================ */
+    .tabs .tab-btn {
+      background-color: #f3f5f7;
+      border: none;
+    }
+    .tabs .tab-btn:hover {
+      background-color: #e9edf1;
+      color: var(--accent);
+    }
+    .tabs .tab-btn.active {
+      background-color: #eef6fc;
+      color: var(--accent);
+    }
+
+    /* ============================================================
+       [NOVO] 2. UTILITÁRIOS COMO HEADER (card com logo, busca e atalhos)
+       ============================================================ */
+    #utilHeader {
+      position: sticky;
+      top: 0;
+      z-index: 1600;
+      margin: -20px -20px 24px;
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    }
+    .util-top {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 28px;
+      padding: 12px 28px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .util-brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .util-logo { flex: 0 0 auto; width: 17px; height: 20px; }
+    .util-brand-title { font-size: 16px; font-weight: 700; color: #fff; line-height: 1.25; }
+    .util-brand-sub { font-size: 12px; color: #b9c7d4; line-height: 1.3; }
+    .util-search-wrap { position: relative; flex: 0 1 560px; min-width: 0; }
+    #utilHeader .email-search-input {
+      margin: 0;
+      width: 100%;
+      height: 40px;
+      padding: 0 20px 0 48px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      font-size: 16px;
+      background: #fff;
+      color: var(--text);
+      box-sizing: border-box;
+      transition: border-color .15s ease, box-shadow .15s ease, background-color .15s ease;
+    }
+    #utilHeader .email-search-input::placeholder { color: #6b7f92; }
+    #utilHeader .email-search-input:focus {
+      outline: none; background: #fff; border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(52,152,219,0.15);
+    }
+    .util-search-icon {
+      position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+      color: #5d7286; pointer-events: none; display: flex;
+    }
+
+    .util-chips {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 28px 12px;
+    }
+    .util-chip {
+      flex: 1 1 0;
+      min-width: 92px;
+      max-width: 145px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 4px;
+      min-height: 0;
+      padding: 6px 6px 7px;
+      background: rgba(255,255,255,0.06);
+      color: #eef3f7;
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.25;
+      text-align: center;
+      cursor: pointer;
+      transition: background-color .15s ease, border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+    }
+    .util-chip:hover { background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.3); color: #fff; transform: translateY(-1px); }
+    .util-chip:focus-visible { outline: 3px solid rgba(52,152,219,0.5); outline-offset: 2px; }
+    .util-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .util-chip-icon {
+      width: 30px; height: 30px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.7);
+      color: var(--c);
+      flex: 0 0 auto;
+      transition: all .2s ease;
+    }
+    .util-chip-icon svg { width: 18px; height: 18px; }
+
+    /* Ao rolar a página o header fica compacto (só os nomes), para não ocupar a tela */
+    #utilHeader.compact .util-top { padding: 8px 28px; }
+    #utilHeader.compact .util-brand-sub { display: none; }
+    #utilHeader.compact #utilHeader .email-search-input,
+    #utilHeader.compact .email-search-input { height: 36px; }
+    #utilHeader.compact .util-chips { display: flex; flex-wrap: wrap; justify-content: center; padding: 8px 28px 10px; gap: 8px; }
+    #utilHeader.compact .util-chip { flex: 0 0 auto; max-width: none; min-height: 0; padding: 7px 12px; flex-direction: row; gap: 6px; font-size: 14px; white-space: nowrap; }
+    #utilHeader.compact .util-chip-icon { width: 24px; height: 24px; }
+    #utilHeader.compact .util-chip-icon svg { width: 15px; height: 15px; }
+
+    /* Painel que abre abaixo do header */
+    .util-panel {
+      display: none;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: calc(100% + 8px);
+      width: min(1160px, calc(100vw - 32px));
+      max-height: calc(100vh - 160px);
+      overflow-y: auto;
+      background: #fff;
+      color: var(--text);
+      border: 1px solid #e6ebf0;
+      border-radius: 14px;
+      box-shadow: 0 18px 40px rgba(44,62,80,0.18);
+      box-sizing: border-box;
+    }
+    #utilHeader.open .util-panel { display: block; }
+    .util-panel-head {
+      position: sticky; top: 0; z-index: 1;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid #e2e8f0;
+      font-weight: 700; color: var(--primary); font-size: 18px;
+    }
+    .util-panel-head small { font-weight: 500; color: #64748b; font-size: 13px; margin-left: 8px; }
+    .util-panel-close {
+      background: #e9edf1; border: none; border-radius: 6px; cursor: pointer;
+      font-size: 14px; font-weight: 600; padding: 7px 12px; color: var(--secondary); font-family: inherit;
+    }
+    .util-panel-close:hover { background: #dfe5ec; }
+    .util-panel-body { padding: 14px 20px 20px; }
+    .util-empty { color: #64748b; font-style: italic; font-size: 15px; padding: 10px 0; }
+
+    .util-panel .email-category-item { border: none; margin-bottom: 14px; }
+    #utilHeader.mode-chip .util-panel .email-category-title { display: none; }
+    .util-panel .email-category-title { background: none; padding: 4px 0 8px; font-size: 15px; border-bottom: 2px solid #e2e8f0; border-radius: 0; }
+    .util-panel .email-category-title span:last-child { display: none; }
+    .util-panel .email-category-content { border-top: none; padding: 6px 0 !important; background: #fff !important; font-size: 14.5px; }
+    .util-panel .email-list-item { gap: 12px; padding: 7px 4px; break-inside: avoid; }
+    .util-panel .email-list-item:hover { background: #f8fafc; }
+    .util-panel .email-address { font-size: 14px; }
+    .util-panel .email-category-content:not(:has(.sub-category-content)),
+    .util-panel .sub-category-content:not(:has(.sub-category-content)) {
+      columns: 2 420px;
+      column-gap: 32px;
+    }
+
+    #utilBackdrop {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(15,23,42,0.3);
+      z-index: 1400;
+    }
+    #utilBackdrop.show { display: block; }
+
+    @media (max-width: 900px) {
+      .util-top { flex-direction: column; align-items: stretch; gap: 10px; padding: 12px 16px; }
+      .util-search-wrap { flex: 0 0 auto; }
+      #utilHeader.compact .util-top { padding: 10px 16px; }
+      #utilHeader.compact .util-brand { display: none; }
+      .util-chips { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; padding: 10px 16px 12px; }
+      #utilHeader.compact .util-chips { padding: 8px 16px 10px; }
+      .util-chip { flex: 0 0 100px; max-width: none; }
+      #utilHeader.compact .util-chip { flex: 0 0 auto; padding: 8px 12px; }
+    }
+    @media (max-width: 640px) {
+      #utilHeader { margin: -20px -20px 16px; }
+      .util-panel { width: 100vw; border-radius: 0; max-height: calc(100vh - 120px); top: 100%; }
+    }
+    @media print { #utilHeader, #utilBackdrop { display: none !important; } }
+    /* [NOVO] Widget flutuante de Utilitários oculto (o conteúdo continua sendo a fonte do header) */
+    #emailRoutineWidget { display: none !important; }
+    /* [NOVO] Botões de link dentro das categorias */
+    .util-links { display: flex; flex-wrap: wrap; gap: 8px; margin: 2px 0 12px; column-span: all; }
+    .util-link-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--accent); color: #fff !important; text-decoration: none;
+      font-weight: 600; font-size: 14px; padding: 8px 14px; border-radius: 6px;
+      transition: background-color .15s ease;
+    }
+    .util-link-btn:hover { background: #2980b9; }
   </style>
 </head>
 <body>
@@ -539,6 +736,32 @@
   <!-- APLICAÇÃO PRINCIPAL (SEM SENHA) -->
   <div id="copyToast" class="no-print"></div>
   <div id="mainApp" style="display: block;">
+    <!-- [NOVO] HEADER DE UTILITÁRIOS -->
+    <div id="utilBackdrop" class="no-print" onclick="utilClose()"></div>
+    <header id="utilHeader" class="no-print">
+      <div class="util-top">
+        <div class="util-brand">
+          <div>
+            <div class="util-brand-title">Procedimentos da 2ª Vara do Júri</div>
+            <div class="util-brand-sub">2º Ofício do Júri da Comarca da Capital</div>
+          </div>
+        </div>
+        <div class="util-search-wrap" id="utilSearchSlot">
+          <span class="util-search-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7.5"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+          <input type="text" id="utilSearchInput" class="email-search-input" placeholder="Buscar por e-mail, órgão, estado ou categoria..." autocomplete="off" aria-label="Buscar nos utilitários">
+        </div>
+      </div>
+      <nav class="util-chips" id="utilChips" aria-label="Categorias dos utilitários"></nav>
+      <div class="util-panel" id="utilPanel">
+        <div class="util-panel-head">
+          <span id="utilPanelTitle">Utilitários</span>
+          <button type="button" class="util-panel-close" onclick="utilClose()">✖ Fechar <small style="margin:0">Esc</small></button>
+        </div>
+        <div class="util-panel-body" id="utilPanelBody">
+          <div class="util-empty" id="utilEmpty" style="display:none;">Nada encontrado para essa busca.</div>
+        </div>
+      </div>
+    </header>
     
     <!-- UTILITÁRIOS WIDGET FLUTUANTE -->
     <div id="emailRoutineWidget" class="no-print">
@@ -560,6 +783,7 @@
               <span>▼</span>
             </div>
             <div class="email-category-content" style="padding: 10px 6px; background-color: #f8fafc;">
+              <div class="util-links"><a class="util-link-btn" href="https://www.google.com/maps/d/viewer?hl=pt-BR&amp;mid=1Cn5198YTPrwcJEoVW4B1RIkr1Sc&amp;ll=-23.56405202724826%2C-46.69251439576419&amp;z=13" target="_blank" rel="noopener noreferrer">🔗 Áreas DPs <span aria-hidden="true">↗</span></a></div>
               
               <!-- DPs -->
               <div style="margin-bottom: 10px; border: 1px solid #cbd5e1; border-left: 4px solid var(--accent); border-radius: 6px; overflow: hidden; background: #fff;">
@@ -731,6 +955,18 @@
                 </div>
               </div>
 
+              <!-- POLÍCIA MILITAR -->
+              <div style="margin-bottom: 10px; border: 1px solid #cbd5e1; border-left: 4px solid var(--accent); border-radius: 6px; overflow: hidden; background: #fff;">
+                <div onclick="toggleSubCategory(this)" style="padding: 8px 10px; font-weight: 700; font-size: 11px; color: var(--secondary); cursor: pointer; background: #e2e8f0; display: flex; justify-content: space-between; align-items: center; text-transform: uppercase;">
+                  <span>👮 Polícia Militar</span>
+                  <span>▼</span>
+                </div>
+                <div class="sub-category-content" style="display: none; padding: 6px 10px; border-top: 1px solid #e2e8f0;">
+                  <div class="util-links" style="margin-top: 6px;"><a class="util-link-btn" href="https://cop.pmesp.br.evm.online/app/incidents/search?newlyShared=true&amp;apply=true" target="_blank" rel="noopener noreferrer">🔗 COPs <span aria-hidden="true">↗</span></a><a class="util-link-btn" href="https://sisaj.policiamilitar.sp.gov.br/login/index" target="_blank" rel="noopener noreferrer">🔗 Requisição PMs <span aria-hidden="true">↗</span></a></div>
+                  <div class="email-list-item"><span>COPOM</span><a href="#" data-email="copomcertidoes@policiamilitar.sp.gov.br" class="email-address" title="Clique para copiar">copomcertidoes@policiamilitar.sp.gov.br</a></div>
+                </div>
+              </div>
+
             </div>
           </div>
 
@@ -741,13 +977,18 @@
               <span>▼</span>
             </div>
             <div class="email-category-content" style="padding: 10px 6px; background-color: #f8fafc;">
+              <div class="util-links"><a class="util-link-btn" href="https://laudos-tjsp.msappproxy.net/SegundaViaDeLaudos/" target="_blank" rel="noopener noreferrer">🔗 2ª via de Laudos <span aria-hidden="true">↗</span></a></div>
               <div style="margin-bottom: 10px; border: 1px solid #cbd5e1; border-left: 4px solid var(--accent); border-radius: 6px; overflow: hidden; background: #fff;">
                 <div onclick="toggleSubCategory(this)" style="padding: 8px 10px; font-weight: 700; font-size: 11px; color: var(--secondary); cursor: pointer; background: #e2e8f0; display: flex; justify-content: space-between; align-items: center; text-transform: uppercase;">
                   <span>🏙️ Capital</span>
                   <span>▼</span>
                 </div>
                 <div class="sub-category-content" style="display: none; padding: 6px 10px; border-top: 1px solid #e2e8f0;">
-                  <div class="email-list-item"><span>IML Capital (Exemplo)</span><a href="#" data-email="capital@iml.sp.gov.br" class="email-address" title="Clique para copiar">capital@iml.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>Laudos gerais</span><a href="#" data-email="solicitalaudoiml@policiacientifica.sp.gov.br" class="email-address" title="Clique para copiar">solicitalaudoiml@policiacientifica.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>Laudos indiretos</span><a href="#" data-email="laudos.indiretos@policiacientifica.sp.gov.br" class="email-address" title="Clique para copiar">laudos.indiretos@policiacientifica.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>Centro</span><a href="#" data-email="centro.iml@policiacientifica.sp.gov.br" class="email-address" title="Clique para copiar">centro.iml@policiacientifica.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>Sul</span><a href="#" data-email="sul.iml@policiacientifica.sp.gov.br" class="email-address" title="Clique para copiar">sul.iml@policiacientifica.sp.gov.br</a></div>
+                  <div class="email-list-item"><span>Bem-Me-Quer</span><a href="#" data-email="bemmequer.iml@policiacientifica.sp.gov.br" class="email-address" title="Clique para copiar">bemmequer.iml@policiacientifica.sp.gov.br</a></div>
                 </div>
               </div>
               <div style="margin-bottom: 10px; border: 1px solid #cbd5e1; border-left: 4px solid var(--accent); border-radius: 6px; overflow: hidden; background: #fff;">
@@ -780,7 +1021,8 @@
               <span>▼</span>
             </div>
             <div class="email-category-content">
-               <div class="email-list-item"><span>Ofícios SAP (Exemplo)</span><a href="#" data-email="oficios@sap.sp.gov.br" class="email-address" title="Clique para copiar">oficios@sap.sp.gov.br</a></div>
+               <div class="util-links"><a class="util-link-btn" href="https://www1.sap.sp.gov.br/sp/unidades-prisionais/complexos-penais.html" target="_blank" rel="noopener noreferrer">🔗 Complexos Penais (SAP) <span aria-hidden="true">↗</span></a><a class="util-link-btn" href="https://portal.sap.sp.gov.br/formularios/paradeiro" target="_blank" rel="noopener noreferrer">🔗 Paradeiros <span aria-hidden="true">↗</span></a></div>
+               <div class="email-list-item"><span>Informações de saúde</span><a href="#" data-email="coordenadoriadesaudesap@sp.gov.br" class="email-address" title="Clique para copiar">coordenadoriadesaudesap@sp.gov.br</a></div>
             </div>
           </div>
 
@@ -813,9 +1055,21 @@
               <span>▼</span>
             </div>
             <div class="email-category-content">
-              <div class="email-list-item">
-                <span>IIRGD Geral</span>
-                <a href="#" data-email="alvaras.iirgd@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">alvaras.iirgd@policiacivil.sp.gov.br</a>
+              <div class="email-list-item" style="gap: 8px;">
+                <span style="white-space:nowrap;">IIRGD Geral</span>
+                <span style="text-align:right; overflow-wrap:anywhere;"><a href="#" data-email="iirgd.dipol@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">iirgd.dipol@policiacivil.sp.gov.br</a></span>
+              </div>
+              <div class="email-list-item" style="gap: 8px;">
+                <span style="white-space:nowrap;">Alvarás</span>
+                <span style="text-align:right; overflow-wrap:anywhere;"><a href="#" data-email="alvara.iirgd@sp.gov.br" class="email-address" title="Clique para copiar">alvara.iirgd@sp.gov.br</a></span>
+              </div>
+              <div class="email-list-item" style="gap: 8px;">
+                <span style="white-space:nowrap;">Folha de antecedentes</span>
+                <span style="text-align:right; overflow-wrap:anywhere;"><a href="#" data-email="iirgd.fa@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">iirgd.fa@policiacivil.sp.gov.br</a></span>
+              </div>
+              <div class="email-list-item" style="gap: 8px;">
+                <span style="white-space:nowrap;">Mandados</span>
+                <span style="text-align:right; overflow-wrap:anywhere;"><a href="#" data-email="mandados.iirgd@sp.gov.br" class="email-address" title="Clique para copiar">mandados.iirgd@sp.gov.br</a></span>
               </div>
             </div>
           </div>
@@ -827,9 +1081,14 @@
               <span>▼</span>
             </div>
             <div class="email-category-content">
-              <div class="email-list-item">
-                <span>Hospital Exemplo</span>
-                <a href="#" data-email="hospital@saude.sp.gov.br" class="email-address" title="Clique para copiar">hospital@saude.sp.gov.br</a>
+              <div class="util-links"><a class="util-link-btn" href="https://cnes.datasus.gov.br/pages/estabelecimentos/consulta.jsp" target="_blank" rel="noopener noreferrer">🔗 Cadastro de hospitais <span aria-hidden="true">↗</span></a></div>
+              <div class="email-list-item" style="gap: 8px;">
+                <span style="white-space:normal; min-width:0;">Hospital Municipal Dr. Arthur Ribeiro de Saboya</span>
+                <span style="text-align:right; overflow-wrap:anywhere;"><a href="#" data-email="susanagoncalves@prefeitura.sp.gov.br" class="email-address" title="Clique para copiar">susanagoncalves@prefeitura.sp.gov.br</a>, <a href="#" data-email="fscsilva@prefeitura.sp.gov.br" class="email-address" title="Clique para copiar">fscsilva@prefeitura.sp.gov.br</a>, <a href="#" data-email="asimbara@prefeitura.sp.gov.br" class="email-address" title="Clique para copiar">asimbara@prefeitura.sp.gov.br</a>, <a href="#" data-email="dulcineiaribeiro@prefeitura.sp.gov.br" class="email-address" title="Clique para copiar">dulcineiaribeiro@prefeitura.sp.gov.br</a></span>
+              </div>
+              <div class="email-list-item" style="gap: 8px;">
+                <span style="white-space:normal; min-width:0;">Hospital Municipal Tide Setúbal</span>
+                <span style="text-align:right; overflow-wrap:anywhere;"><a href="#" data-email="cavelucci@prefeitura.sp.gov.br" class="email-address" title="Clique para copiar">cavelucci@prefeitura.sp.gov.br</a>, <a href="#" data-email="mairaffnogueira@prefeitura.sp.gov.br" class="email-address" title="Clique para copiar">mairaffnogueira@prefeitura.sp.gov.br</a></span>
               </div>
             </div>
           </div>
@@ -902,6 +1161,16 @@
                 </div>
               </div>
 
+            </div>
+          </div>
+<!-- 10.1 TJSP (LINKS) -->
+          <div class="email-category-item" data-category="TJSP">
+            <div class="email-category-title" onclick="toggleEmailCategory(this)">
+              <span>⚖️ TJSP</span>
+              <span>▼</span>
+            </div>
+            <div class="email-category-content">
+              <div class="util-links"><a class="util-link-btn" href="https://suporte.tjsp.jus.br/idm-service/idm/v0/login?tenant=213963628&amp;code=d2b3139a-a1aa-4b1e-bddb-d2754e65214d&amp;tryLocal=true" target="_blank" rel="noopener noreferrer">🔗 Abrir chamado <span aria-hidden="true">↗</span></a><a class="util-link-btn" href="https://www.tjsp.jus.br/jud/envioseeu/" target="_blank" rel="noopener noreferrer">🔗 SEEU <span aria-hidden="true">↗</span></a><a class="util-link-btn" href="https://apps.powerapps.com/play/e/98c9177a-56c9-4700-b399-91d21c88f93b/a/880c8aa3-24b7-4306-bea8-54709d6c4528?tenantId=3590422d-8e59-4036-9245-d6edd8cc0f7a&amp;hint=fa9b7bb3-9301-47a4-b34b-f30477ee36b6&amp;source=sharebutton&amp;sourcetime=1699478038988" target="_blank" rel="noopener noreferrer">🔗 FA Dipol <span aria-hidden="true">↗</span></a><a class="util-link-btn" href="https://tjsp.sharepoint.com/sites/CentraldeMandadosCompartilhada/Lists/CONSULTA%20DE%20ZONAS%20E%20CEPs/AllItems.aspx?viewid=c3aa8f0f%2De6a0%2D4cd5%2D99c5%2D8a8ddaa34585" target="_blank" rel="noopener noreferrer">🔗 Central de mandados <span aria-hidden="true">↗</span></a></div>
             </div>
           </div>
 <!-- 11. INFORMAÇÕES DO CARTÓRIO -->
@@ -1013,7 +1282,6 @@
                       <span>▼</span>
                     </div>
                     <div class="sub-category-content" style="display: none; padding: 4px 8px; border-top: 1px solid #e2e8f0;">
-                      <div class="email-list-item"><span><strong>Bia Juhas</strong></span></div>
                     </div>
                   </div>
 
@@ -3977,6 +4245,232 @@ const data = {
       checklistContainer.style.display = 'none';
       notes.value = '';
     }
+  </script>
+  <!-- [NOVO] SCRIPT DA BARRA DE UTILITÁRIOS (usa uma CÓPIA do conteúdo do widget original) -->
+  <script>
+    (function () {
+      const P = 'fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"';
+      const ICONES = {
+        pasta: `<svg ${P}><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>`,
+        frasco: `<svg ${P}><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/><path d="M7.5 15h9"/></svg>`,
+        cracha: `<svg ${P}><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M6 16a3 3 0 0 1 6 0M14 10h4M14 13h4"/></svg>`,
+        predio: `<svg ${P}><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2M10 21v-3h4v3"/></svg>`,
+        celular: `<svg ${P}><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M11 18h2"/></svg>`,
+        doc: `<svg ${P}><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>`,
+        lupa: `<svg ${P}><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>`,
+        hospital: `<svg ${P}><rect x="3" y="6" width="18" height="15" rx="2"/><path d="M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2M12 10v7M8.5 13.5h7"/></svg>`,
+        balanca: `<svg ${P}><path d="M12 4v16M8 20h8M5 7h14M12 4l-1 3M12 4l1 3"/><path d="M5 7l-3 6a3 3 0 0 0 6 0zM19 7l-3 6a3 3 0 0 0 6 0z"/></svg>`,
+        martelo: `<svg ${P}><path d="M14.5 3.5l6 6M12 6l6 6M13.25 4.75l-4.5 4.5 6 6 4.5-4.5M10.5 10.5L3 18l3 3 7.5-7.5M3 21h9"/></svg>`,
+        tribunal: `<svg ${P}><path d="M3 9l9-5 9 5M4 9h16M6 9v8M10 9v8M14 9v8M18 9v8M3 20h18M4 17h16"/></svg>`,
+        item: `<svg ${P}><circle cx="12" cy="12" r="8"/></svg>`
+      };
+      const CATEGORIAS_CFG = {
+        "Delegacias": { nome: "Delegacias", icone: "pasta", cor: "#3b82f6" },
+        "IML": { nome: "IML", icone: "frasco", cor: "#7c5cc4" },
+        "Identificação": { nome: "Ident. Outros Estados", icone: "cracha", cor: "#0f9b8e" },
+        "SAP": { nome: "SAP", icone: "predio", cor: "#f2711c" },
+        "Telefonia": { nome: "Telefonia", icone: "celular", cor: "#6366f1" },
+        "SAJ": { nome: "Modelos SAJ", icone: "doc", cor: "#e0458b" },
+        "Institutos de Identificação": { nome: "IIRGD", icone: "lupa", cor: "#1a9be0" },
+        "Hospitais": { nome: "Hospitais", icone: "hospital", cor: "#e53e3e" },
+        "Outros": { nome: "Outros", icone: "pasta", cor: "#0891b2" },
+        "Varas de Execução": { nome: "Varas de Execução", icone: "balanca", cor: "#d48806" },
+        "TJSP": { nome: "TJSP", icone: "martelo", cor: "#9f1239" },
+        "Informações do Cartório Servidores Estagiários Varal Balcão Virtual": { nome: "Info. Cartório", icone: "tribunal", cor: "#2952b3" }
+      };
+
+      const header = document.getElementById('utilHeader');
+      const panel = document.getElementById('utilPanel');
+      const panelBody = document.getElementById('utilPanelBody');
+      const chipsBox = document.getElementById('utilChips');
+      const titleEl = document.getElementById('utilPanelTitle');
+      const backdrop = document.getElementById('utilBackdrop');
+      const emptyEl = document.getElementById('utilEmpty');
+      const search = document.getElementById('utilSearchInput');
+      const widget = document.getElementById('emailRoutineWidget');
+      let categorias = [];
+      let categoriaAtiva = null;
+
+      // Mantém o widget flutuante original logo abaixo da barra (sem cobrir a busca)
+      function posicionarWidget() {
+        if (widget) widget.style.top = (header.getBoundingClientRect().bottom + 12) + 'px';
+      }
+      posicionarWidget();
+      window.addEventListener('resize', posicionarWidget);
+
+      // Header compacto ao rolar a página
+      function checarRolagem() {
+        const compacto = window.scrollY > 80;
+        if (compacto !== header.classList.contains('compact')) {
+          header.classList.toggle('compact', compacto);
+        }
+        posicionarWidget();
+      }
+      window.addEventListener('scroll', checarRolagem, { passive: true });
+
+      function tituloDe(cat) {
+        const span = cat.querySelector('.email-category-title span');
+        return span ? span.textContent.trim() : cat.dataset.category;
+      }
+
+      // Monta a cópia depois que o conteúdo automático (Telefonia, SAJ, Identificação) foi carregado
+      function montar() {
+        const original = document.getElementById('emailCategoriesContainer');
+
+        // E-mails extras de Telefonia (além dos extraídos automaticamente da base), em ordem alfabética
+        const telefoniaExtra = [{ nome: 'Apple', email: 'lawenforcement@apple.com' }];
+        const telBox = document.getElementById('telefoniaContent');
+        if (telBox) {
+          telBox.querySelectorAll('.email-list-item').forEach(it => { if (!it.querySelector('.email-address')) it.remove(); });
+          telefoniaExtra.forEach(t => {
+            const div = document.createElement('div');
+            div.className = 'email-list-item';
+            div.innerHTML = `<span>${t.nome}</span> <a href="#" data-email="${t.email}" class="email-address" title="Clique para copiar">${t.email}</a>`;
+            telBox.appendChild(div);
+          });
+          Array.from(telBox.children)
+            .sort((a, b) => a.textContent.trim().localeCompare(b.textContent.trim(), 'pt-BR'))
+            .forEach(el => telBox.appendChild(el));
+        }
+        // botões criados por script (ex.: "Ver Detalhes" do SAJ) não são copiados com o clique,
+        // então a cópia aciona o botão original correspondente
+        original.querySelectorAll('button').forEach((b, i) => b.dataset.utilRef = i);
+        const copia = original.cloneNode(true);
+        copia.id = 'utilCategoriesContainer';
+        copia.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
+        panelBody.appendChild(copia);
+        categorias = Array.from(copia.querySelectorAll(':scope > .email-category-item'));
+
+        copia.addEventListener('click', e => {
+          const b = e.target.closest('button[data-util-ref]');
+          if (!b) return;
+          const orig = original.querySelector('button[data-util-ref="' + b.dataset.utilRef + '"]');
+          if (orig) { e.stopPropagation(); utilClose(); orig.click(); }
+        });
+
+        chipsBox.innerHTML = '';
+        const SEM_BOTAO = ['SAJ']; // categorias que não aparecem como botão no header (continuam na busca)
+        categorias.forEach(cat => {
+          if (SEM_BOTAO.includes(cat.dataset.category)) return;
+          const chip = document.createElement('button');
+          chip.type = 'button';
+          chip.className = 'util-chip';
+          const cfg = CATEGORIAS_CFG[cat.dataset.category] ||
+            { nome: tituloDe(cat).replace(/^[^\wÀ-ú]+/, ''), icone: 'item', cor: '#3498db' };
+          chip.style.setProperty('--c', cfg.cor);
+          chip.innerHTML = '<span class="util-chip-icon">' + ICONES[cfg.icone] + '</span><span>' + cfg.nome + '</span>';
+          chip.addEventListener('click', () => {
+            if (categoriaAtiva === cat && header.classList.contains('open')) { utilClose(); return; }
+            abrirCategoria(cat, chip);
+          });
+          chipsBox.appendChild(chip);
+        });
+        posicionarWidget();
+      }
+      window.addEventListener('load', () => setTimeout(montar, 0));
+
+      function marcarChip(chip) {
+        chipsBox.querySelectorAll('.util-chip').forEach(c => c.classList.toggle('active', c === chip));
+      }
+
+      function abrir() {
+        header.classList.add('open');
+        backdrop.classList.add('show');
+      }
+
+      function resetarItens() {
+        panelBody.querySelectorAll('.email-list-item').forEach(i => i.style.display = 'flex');
+        panelBody.querySelectorAll('.util-link-btn').forEach(i => i.style.display = '');
+        panelBody.querySelectorAll('.sub-category-content').forEach(sc => sc.style.display = 'none');
+      }
+
+      function abrirCategoria(cat, chip) {
+        search.value = '';
+        resetarItens();
+        categoriaAtiva = cat;
+        header.classList.add('mode-chip');
+        categorias.forEach(c => {
+          const ativa = c === cat;
+          c.style.display = ativa ? 'block' : 'none';
+          c.querySelector('.email-category-content').style.display = ativa ? 'block' : 'none';
+        });
+        emptyEl.style.display = 'none';
+        titleEl.textContent = tituloDe(cat);
+        marcarChip(chip);
+        panel.scrollTop = 0;
+        abrir();
+      }
+
+      // Mesma lógica da busca do widget original, mas só dentro do painel da barra
+      function filtrarPainel(termo) {
+        resetarItens();
+        let visiveis = 0;
+        categorias.forEach(cat => {
+          const nomeCat = (cat.dataset.category || '').toLowerCase();
+          let algum = false;
+          cat.querySelectorAll('.email-list-item, .util-link-btn').forEach(item => {
+            if (item.textContent.toLowerCase().includes(termo) || nomeCat.includes(termo)) {
+              item.style.display = item.classList.contains('util-link-btn') ? '' : 'flex';
+              algum = true;
+              let sub = item.closest('.sub-category-content');
+              while (sub) { sub.style.display = 'block'; sub = sub.parentElement.closest('.sub-category-content'); }
+            } else {
+              item.style.display = 'none';
+            }
+          });
+          const mostra = algum || nomeCat.includes(termo);
+          cat.style.display = mostra ? 'block' : 'none';
+          cat.querySelector('.email-category-content').style.display = mostra ? 'block' : 'none';
+          if (mostra) visiveis++;
+        });
+        return visiveis;
+      }
+
+      search.addEventListener('input', () => {
+        const termo = search.value.trim().toLowerCase();
+        categoriaAtiva = null;
+        marcarChip(null);
+        header.classList.remove('mode-chip');
+        if (!termo) { utilClose(); return; }
+        const visiveis = filtrarPainel(termo);
+        emptyEl.style.display = visiveis ? 'none' : 'block';
+        titleEl.innerHTML = 'Resultados para "' + search.value.trim().replace(/</g, '&lt;') + '"<small>' +
+          visiveis + (visiveis === 1 ? ' categoria' : ' categorias') + '</small>';
+        panel.scrollTop = 0;
+        abrir();
+      });
+
+      window.utilClose = function () {
+        header.classList.remove('open', 'mode-chip');
+        backdrop.classList.remove('show');
+        categoriaAtiva = null;
+        marcarChip(null);
+      };
+
+      // Atalhos: "/" foca a busca da barra, Esc fecha o painel
+      document.addEventListener('keydown', e => {
+        const tag = (document.activeElement && document.activeElement.tagName) || '';
+        if (e.key === '/' && !/INPUT|TEXTAREA|SELECT/.test(tag)) {
+          e.preventDefault();
+          search.focus();
+        } else if (e.key === 'Escape' && header.classList.contains('open')) {
+          utilClose();
+          search.blur();
+        }
+      });
+    })();
+
+    // [NOVO] Busca Livre: clicar em qualquer parte do card do resultado = clicar em "Buscar"
+    (function () {
+      const results = document.getElementById('searchResults');
+      if (!results) return;
+      results.addEventListener('click', e => {
+        const card = e.target.closest('.search-result-item');
+        if (!card || e.target.closest('.search-btn-mini')) return;
+        const btn = card.querySelector('.search-btn-mini');
+        if (btn) btn.click();
+      });
+    })();
   </script>
 </body>
 </html>

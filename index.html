@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Procedimentos da 2ª Vara do Júri</title>
+  <!-- [NOVO] Favicon: balança da justiça -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%232c3e50%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23f1c40f%22%20stroke-width%3D%223.2%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M32%2012v38M21%2050h22M14%2020h36M32%2012l-2%204M32%2012l2%204%22/%3E%3Cpath%20d%3D%22M14%2020l-7%2014a7%205%200%200%200%2014%200zM50%2020l-7%2014a7%205%200%200%200%2014%200z%22/%3E%3C/g%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2212%22%20r%3D%223%22%20fill%3D%22%23f1c40f%22/%3E%3C/svg%3E">
   <style>
     /* [NOVO] Fonte Roboto embutida no arquivo (funciona sem internet) */
     @font-face { font-family: 'Roboto'; font-style: normal; font-weight: 400; font-display: swap;
@@ -763,6 +765,19 @@
     .util-links-tjsp .util-tile-icon { display: flex; color: #64748b; }
     .util-links-tjsp .util-tile-icon svg { width: 32px; height: 32px; }
     /* [NOVO] Barra de busca fina dentro das DPs */
+    /* [NOVO] Institutos de Identificação: nome em cima, e-mails embaixo */
+    .ident-item { flex-direction: column; align-items: flex-start !important; gap: 4px; padding: 10px 4px 14px !important; }
+    .ident-nome { white-space: normal; line-height: 1.3; }
+    .ident-emails { font-size: 12px; overflow-wrap: anywhere; }
+    .ident-oculto { display: none; }
+    /* [NOVO] Barras de busca fixas ao rolar o painel */
+    .util-panel .email-category-item { overflow: visible; }
+    .util-panel div:has(> .sub-category-content > .dp-filter-wrap) { overflow: visible !important; }
+    .util-panel .dp-filter-wrap {
+      position: sticky; top: var(--util-head-h, 56px); z-index: 2;
+      background: #fff; padding: 8px 0; margin: 0 0 6px;
+      box-shadow: 0 6px 8px -8px rgba(15,23,42,0.25);
+    }
     .dp-filter-wrap { column-span: all; margin: 2px 0 6px; }
     .dp-filter {
       width: 100%; box-sizing: border-box; height: 30px; padding: 0 10px;
@@ -772,6 +787,29 @@
     /* [NOVO] Consulta de CEPs (Central de Mandados) */
     .util-links-tjsp button.util-link-btn, .util-cep-open { cursor: pointer; font-family: inherit; }
     .util-panel .email-category-content.cep-content { columns: auto !important; }
+    /* [NOVO] Recebimento de CP e Telefones importantes */
+    .cp-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .cp-card { border: 1.5px solid rgba(52,152,219,0.45); border-radius: 10px; overflow: hidden; background: #fff; }
+    .cp-card h4 { margin: 0; padding: 12px 14px; background: rgba(52,152,219,0.1); color: var(--primary); font-size: 15px; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+    .cp-card h4 small { font-size: 12px; font-weight: 600; color: #64748b; white-space: nowrap; }
+    .cp-card .email-list-item { padding: 8px 14px !important; justify-content: flex-start; gap: 10px; }
+    .cp-sigla { display: inline-block; min-width: 54px; font-weight: 700; color: var(--primary); }
+    .cp-uf { color: var(--text); }
+    @media (max-width: 900px) { .cp-grid { grid-template-columns: 1fr; } }
+    .cep-tool .cep-back { display: block; }
+    .util-inline-link { color: var(--accent); font-weight: 700; text-decoration: none; }
+    .util-inline-link:hover { text-decoration: underline; }
+    .tel-search { display: block; width: 100%; height: 44px; box-sizing: border-box; padding: 0 14px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 17px; font-family: inherit; color: var(--primary); }
+    .tel-search:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(52,152,219,0.15); }
+    .tel-list { margin-top: 14px; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; column-gap: 32px; padding: 0 14px; }
+    .tel-vazio { grid-column: 1 / -1; }
+    @media (max-width: 760px) { .tel-list { grid-template-columns: 1fr; } }
+    .tel-list .email-list-item { padding: 10px 0 !important; border-bottom: 1px solid #eef2f6; gap: 16px; }
+    .tel-nome { font-weight: 600; color: var(--primary); }
+    .tel-nums { text-align: right; white-space: nowrap; }
+    .tel-nums .email-address { font-size: 15px; font-weight: 600; margin-left: 10px; }
+    .tel-vazio { padding: 14px; color: #64748b; font-style: italic; display: none; }
+
     .cep-tool { max-width: 860px; margin: 0 auto; }
     .cep-back { background: none; border: none; color: var(--accent); font: 600 14px inherit; font-family: inherit; cursor: pointer; padding: 0; margin-bottom: 12px; }
     .cep-back:hover { text-decoration: underline; }
@@ -799,6 +837,16 @@
     .cep-count { font-size: 12px; color: #64748b; margin: 0 0 6px; }
     @media (max-width: 640px) { .cep-card { grid-template-columns: 1fr 1fr; } .cep-card div:nth-child(3) { border-left: none; } }
     .dp-filter:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(52,152,219,0.15); }
+    /* [NOVO] Rodapé fixo (mesmo estilo do site do plantão) */
+    #siteFooter {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 98;
+      text-align: center;
+      padding: 4px 16px; font-size: 11px; color: #94a3b8;
+      background: var(--bg); border-top: 1px solid var(--border);
+    }
+    #footerVersao:not(:empty)::before { content: ' · '; }
+    @media print { #siteFooter { display: none !important; } }
+    .btn-floating-print { bottom: 38px; }
   </style>
 </head>
 <body>
@@ -1042,6 +1090,196 @@
                 </div>
               </div>
 
+              <!-- OUTROS E-MAILS POLICIAIS -->
+              <div style="margin-bottom: 10px; border: 1px solid #cbd5e1; border-left: 4px solid var(--accent); border-radius: 6px; overflow: hidden; background: #fff;">
+                <div onclick="toggleSubCategory(this)" style="padding: 8px 10px; font-weight: 700; font-size: 11px; color: var(--secondary); cursor: pointer; background: #e2e8f0; display: flex; justify-content: space-between; align-items: center; text-transform: uppercase;">
+                  <span>🛡️ Outros e-mails policiais</span>
+                  <span>▼</span>
+                </div>
+                <div class="sub-category-content" style="display: none; padding: 6px 10px; border-top: 1px solid #e2e8f0;">
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">1ª Seccional</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="1sec.cs@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">1sec.cs@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">2ª Seccional</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="2sec.cs@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">2sec.cs@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">3ª Seccional</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="3sec.decap@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">3sec.decap@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">4ª Seccional</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="sec04.decap@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">sec04.decap@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">5ª Seccional</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="leste.decap@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">leste.decap@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">6ª Seccional</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="salademeios.sec06@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">salademeios.sec06@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">7ª Seccional</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="itaquera.decap@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">itaquera.decap@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">8ª Seccional</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="sec08.decap@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">sec08.decap@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">DP do Idoso – 1ª Seccional</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="idoso.sec01@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">idoso.sec01@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">DP do Idoso – 2ª Seccional</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="idoso.sec02@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">idoso.sec02@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">DP do Idoso – 3ª Seccional</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="idoso.sec03@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">idoso.sec03@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">DP do Idoso – 4ª Seccional</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="idoso.sec04@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">idoso.sec04@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">DP do Idoso – 5ª Seccional</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="idoso.sec05@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">idoso.sec05@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">DP do Idoso – 6ª Seccional</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="idoso.sec06@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">idoso.sec06@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">DP do Idoso – 7ª Seccional</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="idoso.sec07@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">idoso.sec07@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">DP do Idoso – 8ª Seccional</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="idoso.sec08@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">idoso.sec08@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">1ª DISE</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="denarc.dise01@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">denarc.dise01@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">3ª DISE</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="denarc.dise03@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">denarc.dise03@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">5ª DISE</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="denarc.dise05@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">denarc.dise05@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">6ª DISE</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="denarc.dise06@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">denarc.dise06@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">DISE Santo André</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="dise.andre@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">dise.andre@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">1ª DIVECAR – Roubo e Furto de Veículos</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="1divcar.deic@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">1divcar.deic@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">2ª DIVECAR – Roubo e Furto</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="2divecar.deic@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">2divecar.deic@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">4ª DIVECAR – Fraude c/ Seguro</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="4divecar.deic@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">4divecar.deic@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">1ª DISCCPAT (Patrimônio) – Roubo e Extorsões – DEIC</span>
+                    <span style="text-align:right; overflow-wrap:anywhere;"><a href="#" data-email="1patrimonio.deic@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">1patrimonio.deic@policiacivil.sp.gov.br</a>, <a href="#" data-email="2patrimonio.deic@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">2patrimonio.deic@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">3ª DISCCPAT (Patrimônio) – DEIC</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="3patrimonio.deic@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">3patrimonio.deic@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">6ª DISCCPAT (Patrimônio) – DEIC</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="6patrimonio.deic@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">6patrimonio.deic@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">4ª Fraudes por Meios Eletrônicos – DEIC</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="4dig.deic@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">4dig.deic@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">DEIC – Diretoria</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="deic.diretoria@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">deic.diretoria@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">DEIC São Bernardo do Campo</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="deic.sbcampo@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">deic.sbcampo@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">DECAP</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="decap@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">decap@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">DENARC – Departamento</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="denarc@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">denarc@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">DPPC / DIMA – 1ª Delegacia</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="dppc@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">dppc@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">DPPC – Contra a Administração – 2ª Delegacia</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="dppc.dicca02@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">dppc.dicca02@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">DPPC – Contra o Consumidor – 2ª Delegacia</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="dppc.diicc02@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">dppc.diicc02@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">DPPC – Infrações contra a Saúde Pública e Medicamentos</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="dppc.diisp02@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">dppc.diisp02@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">5ª Delegacia de Crimes Funcionais</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="correge.dcf05@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">correge.dcf05@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">Corregedoria Geral da Polícia Civil</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="cartoriocentral.corregedoria@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">cartoriocentral.corregedoria@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">Corregepol</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="dap.cgpc.assistencua@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">dap.cgpc.assistencua@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">DELPOM – Delegacia de Polícia do Metropolitano</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="delpom@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">delpom@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">56º DP – contato alternativo</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="maria.nascimento4@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">maria.nascimento4@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">Delegacia de Barueri</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="barueri.dpm@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">barueri.dpm@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">4º DP de Guarulhos</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="dp04.guarulhos@policia.sp.gov.br" class="email-address" title="Clique para copiar">dp04.guarulhos@policia.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">Seccional de São José dos Campos – (12) 3931-3801</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="seccional.sjcampos@policiacivil.sp.gov.br" class="email-address" title="Clique para copiar">seccional.sjcampos@policiacivil.sp.gov.br</a></span>
+                  </div>
+                  <div class="email-list-item" style="gap: 8px;">
+                    <span style="white-space:normal; min-width:0;">Crimes Fazendários – Polícia Federal</span>
+                    <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="nutel-srsp@dpf.gov.br" class="email-address" title="Clique para copiar">nutel-srsp@dpf.gov.br</a></span>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
 
@@ -1167,6 +1405,14 @@
             </div>
             <div class="email-category-content">
               <div class="email-list-item" style="gap: 8px;">
+                <span style="white-space:normal; min-width:0;">5ª Vara do Júri</span>
+                <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="sp5juri@tjsp.jus.br" class="email-address" title="Clique para copiar">sp5juri@tjsp.jus.br</a></span>
+              </div>
+              <div class="email-list-item" style="gap: 8px;">
+                <span style="white-space:normal; min-width:0;">Banco do Brasil – Agência 5938 (ofícios)</span>
+                <span style="text-align:right; overflow-wrap:anywhere;"><a href="#" data-email="5938@bb.com.br" class="email-address" title="Clique para copiar">5938@bb.com.br</a>, <a href="#" data-email="age5938@bb.com.br" class="email-address" title="Clique para copiar">age5938@bb.com.br</a></span>
+              </div>
+              <div class="email-list-item" style="gap: 8px;">
                 <span style="white-space:normal; min-width:0;">Bombeiros</span>
                 <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="gabinetebombeiros@policiamilitar.sp.gov.br" class="email-address" title="Clique para copiar">gabinetebombeiros@policiamilitar.sp.gov.br</a></span>
               </div>
@@ -1179,16 +1425,48 @@
                 <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="gju@cetsp.com.br" class="email-address" title="Clique para copiar">gju@cetsp.com.br</a></span>
               </div>
               <div class="email-list-item" style="gap: 8px;">
+                <span style="white-space:normal; min-width:0;">CFM – Conselho Federal de Medicina</span>
+                <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="cfm@portalmedico.org.br" class="email-address" title="Clique para copiar">cfm@portalmedico.org.br</a><br><a href="#" data-email="(61) 3445-5900" class="email-address" title="Clique para copiar">(61) 3445-5900</a></span>
+              </div>
+              <div class="email-list-item" style="gap: 8px;">
+                <span style="white-space:normal; min-width:0;">CREMESP</span>
+                <span style="text-align:right; overflow-wrap:anywhere;"><a href="#" data-email="grp@cremesp.org.br" class="email-address" title="Clique para copiar">grp@cremesp.org.br</a>, <a href="#" data-email="dir@cremesp.org.br" class="email-address" title="Clique para copiar">dir@cremesp.org.br</a>, <a href="#" data-email="ssi@cremesp.org.br" class="email-address" title="Clique para copiar">ssi@cremesp.org.br</a></span>
+              </div>
+              <div class="email-list-item" style="gap: 8px;">
                 <span style="white-space:normal; min-width:0;">DETRAN</span>
                 <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="protocolo.judicial@detran.sp.gov.br" class="email-address" title="Clique para copiar">protocolo.judicial@detran.sp.gov.br</a></span>
               </div>
               <div class="email-list-item" style="gap: 8px;">
-                <span style="white-space:normal; min-width:0;">GCM SP - Capital</span>
+                <span style="white-space:normal; min-width:0;">DIPO 2</span>
+                <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="dipo22@tjsp.jus.br" class="email-address" title="Clique para copiar">dipo22@tjsp.jus.br</a></span>
+              </div>
+              <div class="email-list-item" style="gap: 8px;">
+                <span style="white-space:normal; min-width:0;">GAECO</span>
+                <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="gaeco.santos@mpsp.mp.br" class="email-address" title="Clique para copiar">gaeco.santos@mpsp.mp.br</a></span>
+              </div>
+              <div class="email-list-item" style="gap: 8px;">
+                <span style="white-space:normal; min-width:0;">GCM São Caetano do Sul<span class="ident-oculto"> guarda civil municipal metropolitana</span></span>
+                <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="comandante.gcm@saocaetanodosul.sp.gov.br" class="email-address" title="Clique para copiar">comandante.gcm@saocaetanodosul.sp.gov.br</a></span>
+              </div>
+              <div class="email-list-item" style="gap: 8px;">
+                <span style="white-space:normal; min-width:0;">GCM SP - Capital<span class="ident-oculto"> guarda civil municipal metropolitana</span></span>
                 <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="smsudrhconvocacoes@prefeitura.sp.gov.br" class="email-address" title="Clique para copiar">smsudrhconvocacoes@prefeitura.sp.gov.br</a></span>
               </div>
               <div class="email-list-item" style="gap: 8px;">
-                <span style="white-space:normal; min-width:0;">Localização de Preso (SP)</span>
+                <span style="white-space:normal; min-width:0;">JECRIM</span>
+                <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="spjecrim@tjsp.jus.br" class="email-address" title="Clique para copiar">spjecrim@tjsp.jus.br</a></span>
+              </div>
+              <div class="email-list-item" style="gap: 8px;">
+                <span style="white-space:normal; min-width:0;">JUCESP – Junta Comercial de SP</span>
+                <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="aasp.jucesp@aasp.org.br" class="email-address" title="Clique para copiar">aasp.jucesp@aasp.org.br</a></span>
+              </div>
+              <div class="email-list-item" style="gap: 8px;">
+                <span style="white-space:normal; min-width:0;">Localização de Preso (SP) - paradeiro</span>
                 <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="dcep-cic@sp.gov.br" class="email-address" title="Clique para copiar">dcep-cic@sp.gov.br</a></span>
+              </div>
+              <div class="email-list-item" style="gap: 8px;">
+                <span style="white-space:normal; min-width:0;">Polícia Militar do Rio de Janeiro<span class="ident-oculto"> patrulha maria da penha</span></span>
+                <span style="text-align:right; white-space:nowrap;"><a class="util-inline-link" href="https://tjsp-my.sharepoint.com/shared?listurl=https%3A%2F%2Ftjsp%2Dmy%2Esharepoint%2Ecom%2Fpersonal%2Fisaiasn%5Ftjsp%5Fjus%5Fbr%2FDocuments&amp;id=%2Fpersonal%2Fisaiasn%5Ftjsp%5Fjus%5Fbr%2FDocuments%2FArquivos%20de%20Chat%20do%20Microsoft%20Teams%2Fabrangencia%2Dpatrulha%2Dmaria%2Dpenha%5Fatualizado%2Epdf&amp;parent=%2Fpersonal%2Fisaiasn%5Ftjsp%5Fjus%5Fbr%2FDocuments%2FArquivos%20de%20Chat%20do%20Microsoft%20Teams&amp;shareLink=1&amp;ga=1" target="_blank" rel="noopener noreferrer">Clique aqui para acessar ↗</a></span>
               </div>
               <div class="email-list-item" style="gap: 8px;">
                 <span style="white-space:normal; min-width:0;">ROTA</span>
@@ -1199,7 +1477,11 @@
                 <span style="text-align:right; overflow-wrap:anywhere;"><a href="#" data-email="samudiretoria@prefeitura.sp.gov.br" class="email-address" title="Clique para copiar">samudiretoria@prefeitura.sp.gov.br</a>, <a href="#" data-email="samurm192@prefeitura.sp.gov.br" class="email-address" title="Clique para copiar">samurm192@prefeitura.sp.gov.br</a></span>
               </div>
               <div class="email-list-item" style="gap: 8px;">
-                <span style="white-space:normal; min-width:0;">Solicitação de Laudos ao IC</span>
+                <span style="white-space:normal; min-width:0;">Santander</span>
+                <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="gerenciaoficios@santander.com.br" class="email-address" title="Clique para copiar">gerenciaoficios@santander.com.br</a></span>
+              </div>
+              <div class="email-list-item" style="gap: 8px;">
+                <span style="white-space:normal; min-width:0;">Solicitação de Laudos ao IC<span class="ident-oculto"> instituto de criminalística</span></span>
                 <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="protocoloicsede@policiacientifica.sp.gov.br" class="email-address" title="Clique para copiar">protocoloicsede@policiacientifica.sp.gov.br</a></span>
               </div>
               <div class="email-list-item" style="gap: 8px;">
@@ -1209,6 +1491,10 @@
               <div class="email-list-item" style="gap: 8px;">
                 <span style="white-space:normal; min-width:0;">Tribunal de Justiça Militar</span>
                 <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="distribuicao@tjmsp.jus.br" class="email-address" title="Clique para copiar">distribuicao@tjmsp.jus.br</a></span>
+              </div>
+              <div class="email-list-item" style="gap: 8px;">
+                <span style="white-space:normal; min-width:0;">Vara da Infância e Juventude</span>
+                <span style="text-align:right; white-space:nowrap;"><a href="#" data-email="brasinfdistribuicao@tjsp.jus.br" class="email-address" title="Clique para copiar">brasinfdistribuicao@tjsp.jus.br</a></span>
               </div>
             </div>
           </div>
@@ -1276,7 +1562,7 @@
               <span>▼</span>
             </div>
             <div class="email-category-content">
-              <div class="util-links util-links-tjsp"><a class="util-link-btn" href="https://www.tjsp.jus.br/jud/envioseeu/" target="_blank" rel="noopener noreferrer"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3M8 7l4-4 4 4"/><path d="M4 13v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/></svg></span><span>SEEU</span></a><a class="util-link-btn" href="https://apps.powerapps.com/play/e/98c9177a-56c9-4700-b399-91d21c88f93b/a/880c8aa3-24b7-4306-bea8-54709d6c4528?tenantId=3590422d-8e59-4036-9245-d6edd8cc0f7a&amp;hint=fa9b7bb3-9301-47a4-b34b-f30477ee36b6&amp;source=sharebutton&amp;sourcetime=1699478038988" target="_blank" rel="noopener noreferrer"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 10h6M9 14h6M9 18h4"/></svg></span><span>FA Dipol</span></a><a class="util-link-btn" href="https://tinyurl.com" target="_blank" rel="noopener noreferrer"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4L8.1 15.9M14.5 14.5L20 20M8.1 8.1L12 12"/></svg></span><span>Encurtador de links</span></a><a class="util-link-btn" href="https://infoseg.sinesp.gov.br/infoseg2/" target="_blank" rel="noopener noreferrer"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span><span>Infoseg</span></a><a class="util-link-btn" href="https://www.tjsp.jus.br/atj/sicce/auth/login" target="_blank" rel="noopener noreferrer"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><span>SICCE</span></a><a class="util-link-btn util-cep-open" href="#" role="button"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="2.6"/></svg></span><span>CEPs São Paulo</span></a><a class="util-link-btn" href="https://www.tjsp.jus.br/jud/comunicacao-tre/" target="_blank" rel="noopener noreferrer"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="1.5"/><path d="M8.5 10V4h7v6"/><path d="M10.5 7h3M8 14.5h8"/></svg></span><span>TRE</span></a><a class="util-link-btn" href="https://zap.tjsp.jus.br/" target="_blank" rel="noopener noreferrer"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/></svg></span><span>WhatsApp TJ</span></a><a class="util-link-btn" href="https://suporte.tjsp.jus.br/homepage" target="_blank" rel="noopener noreferrer"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="2.5" y="14" width="4" height="6" rx="1.5"/><rect x="17.5" y="14" width="4" height="6" rx="1.5"/><path d="M19.5 20a3 3 0 0 1-3 2H13"/></svg></span><span>Abrir chamado</span></a><a class="util-link-btn" href="https://prod.ironmountain.com.br/tjsp" target="_blank" rel="noopener noreferrer"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="5" rx="1"/><path d="M5 9v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9M10 13h4"/></svg></span><span>Iron</span></a><a class="util-link-btn" href="https://tjsp-my.sharepoint.com/shared?id=%2Fpersonal%2Falexmaia%5Ftjsp%5Fjus%5Fbr%2FDocuments%2FJ%C3%BAri%2FListas%20de%20Plen%C3%A1rio&amp;listurl=%2Fpersonal%2Falexmaia%5Ftjsp%5Fjus%5Fbr%2FDocuments&amp;sharingv2=true&amp;fromShare=true&amp;at=9&amp;CT=1781535680170&amp;OR=OWA%2DNT%2DMail&amp;SI=NonSentItems&amp;clickParams=eyJYLUFwcE5hbWUiOiJNaWNyb3NvZnQgT3V0bG9vayBXZWIgQXBwIiwiWC1BcHBWZXJzaW9uIjoiMjAyNjA2MDgwMDguMTAiLCJPUyI6IldpbmRvd3MgMTEifQ%3D%3D&amp;cidOR=Client&amp;FolderCTID=0x01200035FC62C2425CD74B962041CBCAC6D8E1" target="_blank" rel="noopener noreferrer"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6.5 6.5 0 0 1 3.5 6"/></svg></span><span>Lista de jurados</span></a><a class="util-link-btn" href="https://tjsp-my.sharepoint.com/shared?listurl=https%3A%2F%2Ftjsp%2Dmy%2Esharepoint%2Ecom%2Fpersonal%2Falexmaia%5Ftjsp%5Fjus%5Fbr%2FDocuments&amp;csf=1&amp;web=1&amp;e=qOhBjI&amp;id=%2Fpersonal%2Falexmaia%5Ftjsp%5Fjus%5Fbr%2FDocuments%2FProvimento%2032%2E00%20%2D%202%C2%AA%20Vara%20do%20J%C3%BAri&amp;FolderCTID=0x01200035FC62C2425CD74B962041CBCAC6D8E1" target="_blank" rel="noopener noreferrer"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h4"/><path d="M14 3v5h5v3"/><circle cx="17" cy="16" r="3"/><path d="M15.5 18.5L15 22l2-1 2 1-.5-3.5"/></svg></span><span>Provimento 32/00</span></a><a class="util-link-btn" href="https://tjsp.sharepoint.com/:u:/r/teams/GRP_Modelar-Jri/Documentos%20Compartilhados/General/Foragidos.url?d=wc9f0793ea9b14c27b90f177998f50ce1&amp;csf=1&amp;web=1&amp;e=pZKOyh" target="_blank" rel="noopener noreferrer"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 4.9.8c0 1.7-2.4 2.2-2.4 3.7"/><path d="M12 17h.01"/></svg></span><span>Foragidos</span></a><a class="util-link-btn" href="https://tjsp.sharepoint.com/sites/CentraldeMandadosCompartilhada/Lists/CONSULTA%20DE%20ZONAS%20E%20CEPs/AllItems.aspx?viewid=c3aa8f0f%2De6a0%2D4cd5%2D99c5%2D8a8ddaa34585" target="_blank" rel="noopener noreferrer"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/></svg></span><span>Central de mandados</span></a></div><div class="util-links-sep" aria-hidden="true"></div><div class="util-links util-links-tjsp util-links-docs"><a class="util-link-btn" href="https://tjsp.sharepoint.com/:w:/r/teams/GRP_Modelar-Jri/Documentos%20Compartilhados/General/Utilit%C3%A1rios/Declara%C3%A7%C3%A3o%20de%20comparecimento.docx?d=w89c6cc4ffff842908f6bafba70c8d2e3&amp;csf=1&amp;web=1&amp;e=zqBfTG" target="_blank" rel="noopener noreferrer"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 14l2 2 4-4"/></svg></span><span>Declaração de comparecimento</span></a><a class="util-link-btn" href="https://tjsp.sharepoint.com/:w:/r/teams/GRP_Modelar-Jri/Documentos%20Compartilhados/General/Utilit%C3%A1rios/Declara%C3%A7%C3%A3o%20JURADOS.docx?d=w2cec99dc67c843eb96e70324dafc4dfc&amp;csf=1&amp;web=1&amp;e=qmcuPI" target="_blank" rel="noopener noreferrer"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><circle cx="10" cy="13" r="1.6"/><circle cx="14.5" cy="13" r="1.6"/><path d="M7.5 18.5a2.6 2.6 0 0 1 5 0M12 18.5a2.6 2.6 0 0 1 5 0"/></svg></span><span>Declaração jurados</span></a><a class="util-link-btn" href="https://tjsp.sharepoint.com/:w:/r/teams/GRP_Modelar-Jri/Documentos%20Compartilhados/General/Utilit%C3%A1rios/Declara%C3%A7%C3%A3o%20TESTEMUNHA.docx?d=wba7f139eab534f42a8578a6c12765a5b&amp;csf=1&amp;web=1&amp;e=Q1G9Bc" target="_blank" rel="noopener noreferrer"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><circle cx="12" cy="12.5" r="2"/><path d="M8.5 18.5a3.5 3.5 0 0 1 7 0"/></svg></span><span>Declaração testemunha</span></a><a class="util-link-btn" href="https://tjsp.sharepoint.com/:x:/r/teams/GRP_Modelar-Jri/Documentos%20Compartilhados/General/Utilit%C3%A1rios/PEDIDO%20DE%20CERTID%C3%83O%20DE%20OBJETO%20E%20P%C3%89.xlsx?d=wdc6f25f5af224f5da856cc623bd34a76&amp;csf=1&amp;web=1&amp;e=BAobno" target="_blank" rel="noopener noreferrer"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4" width="17" height="16" rx="2"/><path d="M3.5 9h17M3.5 14.5h17M9.5 9v11"/></svg></span><span>Certidão de objeto e pé</span></a></div>
+              <div class="util-links util-links-tjsp"><a class="util-link-btn" href="https://www.tjsp.jus.br/jud/envioseeu/" target="_blank" rel="noopener noreferrer"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3M8 7l4-4 4 4"/><path d="M4 13v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/></svg></span><span>SEEU</span></a><a class="util-link-btn" href="https://apps.powerapps.com/play/e/98c9177a-56c9-4700-b399-91d21c88f93b/a/880c8aa3-24b7-4306-bea8-54709d6c4528?tenantId=3590422d-8e59-4036-9245-d6edd8cc0f7a&amp;hint=fa9b7bb3-9301-47a4-b34b-f30477ee36b6&amp;source=sharebutton&amp;sourcetime=1699478038988" target="_blank" rel="noopener noreferrer"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 10h6M9 14h6M9 18h4"/></svg></span><span>FA Dipol</span></a><a class="util-link-btn" href="https://tinyurl.com" target="_blank" rel="noopener noreferrer"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4L8.1 15.9M14.5 14.5L20 20M8.1 8.1L12 12"/></svg></span><span>Encurtador de links</span></a><a class="util-link-btn" href="https://infoseg.sinesp.gov.br/infoseg2/" target="_blank" rel="noopener noreferrer"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span><span>Infoseg</span></a><a class="util-link-btn" href="https://www.tjsp.jus.br/atj/sicce/auth/login" target="_blank" rel="noopener noreferrer"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><span>SICCE</span></a><a class="util-link-btn util-cep-open" href="#" role="button"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="2.6"/></svg></span><span>CEPs São Paulo</span></a><a class="util-link-btn" href="https://www.tjsp.jus.br/jud/comunicacao-tre/" target="_blank" rel="noopener noreferrer"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="1.5"/><path d="M8.5 10V4h7v6"/><path d="M10.5 7h3M8 14.5h8"/></svg></span><span>TRE</span></a><a class="util-link-btn" href="https://zap.tjsp.jus.br/" target="_blank" rel="noopener noreferrer"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/></svg></span><span>WhatsApp TJ</span></a><a class="util-link-btn" href="https://suporte.tjsp.jus.br/homepage" target="_blank" rel="noopener noreferrer"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="2.5" y="14" width="4" height="6" rx="1.5"/><rect x="17.5" y="14" width="4" height="6" rx="1.5"/><path d="M19.5 20a3 3 0 0 1-3 2H13"/></svg></span><span>Abrir chamado</span></a><a class="util-link-btn" href="https://prod.ironmountain.com.br/tjsp" target="_blank" rel="noopener noreferrer"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="5" rx="1"/><path d="M5 9v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9M10 13h4"/></svg></span><span>Iron</span></a><a class="util-link-btn" href="https://tjsp-my.sharepoint.com/shared?id=%2Fpersonal%2Falexmaia%5Ftjsp%5Fjus%5Fbr%2FDocuments%2FJ%C3%BAri%2FListas%20de%20Plen%C3%A1rio&amp;listurl=%2Fpersonal%2Falexmaia%5Ftjsp%5Fjus%5Fbr%2FDocuments&amp;sharingv2=true&amp;fromShare=true&amp;at=9&amp;CT=1781535680170&amp;OR=OWA%2DNT%2DMail&amp;SI=NonSentItems&amp;clickParams=eyJYLUFwcE5hbWUiOiJNaWNyb3NvZnQgT3V0bG9vayBXZWIgQXBwIiwiWC1BcHBWZXJzaW9uIjoiMjAyNjA2MDgwMDguMTAiLCJPUyI6IldpbmRvd3MgMTEifQ%3D%3D&amp;cidOR=Client&amp;FolderCTID=0x01200035FC62C2425CD74B962041CBCAC6D8E1" target="_blank" rel="noopener noreferrer"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6.5 6.5 0 0 1 3.5 6"/></svg></span><span>Lista de jurados</span></a><a class="util-link-btn" href="https://tjsp-my.sharepoint.com/shared?listurl=https%3A%2F%2Ftjsp%2Dmy%2Esharepoint%2Ecom%2Fpersonal%2Falexmaia%5Ftjsp%5Fjus%5Fbr%2FDocuments&amp;csf=1&amp;web=1&amp;e=qOhBjI&amp;id=%2Fpersonal%2Falexmaia%5Ftjsp%5Fjus%5Fbr%2FDocuments%2FProvimento%2032%2E00%20%2D%202%C2%AA%20Vara%20do%20J%C3%BAri&amp;FolderCTID=0x01200035FC62C2425CD74B962041CBCAC6D8E1" target="_blank" rel="noopener noreferrer"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h4"/><path d="M14 3v5h5v3"/><circle cx="17" cy="16" r="3"/><path d="M15.5 18.5L15 22l2-1 2 1-.5-3.5"/></svg></span><span>Provimento 32/00</span></a><a class="util-link-btn" href="https://tjsp.sharepoint.com/:u:/r/teams/GRP_Modelar-Jri/Documentos%20Compartilhados/General/Foragidos.url?d=wc9f0793ea9b14c27b90f177998f50ce1&amp;csf=1&amp;web=1&amp;e=pZKOyh" target="_blank" rel="noopener noreferrer"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 4.9.8c0 1.7-2.4 2.2-2.4 3.7"/><path d="M12 17h.01"/></svg></span><span>Foragidos</span></a><a class="util-link-btn util-open" href="#" role="button" data-open="CPs"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.5 5.1L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.5-6.9A2 2 0 0 0 16.7 4H7.3a2 2 0 0 0-1.8 1.1z"/></svg></span><span>Recebimento de Precatória</span></a><a class="util-link-btn util-open" href="#" role="button" data-open="Telefones"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span><span>Telefones</span></a><a class="util-link-btn" href="https://tjsp.sharepoint.com/sites/CentraldeMandadosCompartilhada/Lists/CONSULTA%20DE%20ZONAS%20E%20CEPs/AllItems.aspx?viewid=c3aa8f0f%2De6a0%2D4cd5%2D99c5%2D8a8ddaa34585" target="_blank" rel="noopener noreferrer"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/></svg></span><span>Central de mandados</span></a></div><div class="util-links-sep" aria-hidden="true"></div><div class="util-links util-links-tjsp util-links-docs"><a class="util-link-btn" href="https://tjsp.sharepoint.com/:w:/r/teams/GRP_Modelar-Jri/Documentos%20Compartilhados/General/Utilit%C3%A1rios/Declara%C3%A7%C3%A3o%20de%20comparecimento.docx?d=w89c6cc4ffff842908f6bafba70c8d2e3&amp;csf=1&amp;web=1&amp;e=zqBfTG" target="_blank" rel="noopener noreferrer"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 14l2 2 4-4"/></svg></span><span>Declaração de comparecimento</span></a><a class="util-link-btn" href="https://tjsp.sharepoint.com/:w:/r/teams/GRP_Modelar-Jri/Documentos%20Compartilhados/General/Utilit%C3%A1rios/Declara%C3%A7%C3%A3o%20JURADOS.docx?d=w2cec99dc67c843eb96e70324dafc4dfc&amp;csf=1&amp;web=1&amp;e=qmcuPI" target="_blank" rel="noopener noreferrer"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><circle cx="10" cy="13" r="1.6"/><circle cx="14.5" cy="13" r="1.6"/><path d="M7.5 18.5a2.6 2.6 0 0 1 5 0M12 18.5a2.6 2.6 0 0 1 5 0"/></svg></span><span>Declaração jurados</span></a><a class="util-link-btn" href="https://tjsp.sharepoint.com/:w:/r/teams/GRP_Modelar-Jri/Documentos%20Compartilhados/General/Utilit%C3%A1rios/Declara%C3%A7%C3%A3o%20TESTEMUNHA.docx?d=wba7f139eab534f42a8578a6c12765a5b&amp;csf=1&amp;web=1&amp;e=Q1G9Bc" target="_blank" rel="noopener noreferrer"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><circle cx="12" cy="12.5" r="2"/><path d="M8.5 18.5a3.5 3.5 0 0 1 7 0"/></svg></span><span>Declaração testemunha</span></a><a class="util-link-btn" href="https://tjsp.sharepoint.com/:x:/r/teams/GRP_Modelar-Jri/Documentos%20Compartilhados/General/Utilit%C3%A1rios/PEDIDO%20DE%20CERTID%C3%83O%20DE%20OBJETO%20E%20P%C3%89.xlsx?d=wdc6f25f5af224f5da856cc623bd34a76&amp;csf=1&amp;web=1&amp;e=BAobno" target="_blank" rel="noopener noreferrer"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4" width="17" height="16" rx="2"/><path d="M3.5 9h17M3.5 14.5h17M9.5 9v11"/></svg></span><span>Certidão de objeto e pé</span></a><a class="util-link-btn" href="https://outlook.cloud.microsoft/host/377c982d-9686-450e-9a7c-22aeaf1bc162/7211f19f-262a-42eb-a02e-289956491741" target="_blank" rel="noopener noreferrer"><span class="util-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 12h6M9 15.5h6M9 19h3.5"/></svg></span><span>Textos em geral da vara</span></a></div>
             </div>
           </div>
 <!-- 11. INFORMAÇÕES DO CARTÓRIO -->
@@ -1533,7 +1819,7 @@
       { uf: "AM", email: "protocoloiiacm@gmail.com" },
       { uf: "AM", email: "gecriminal.dptc@gmail.com" },
       { uf: "BA", email: "antecedentecriminal.ispe@pcivil.ba.gov.br" },
-      { uf: "CE", email: "nucce.cihpb2@pefoce.ce.gov.br" },
+      { uf: "CE", email: "nucce.cihpb@pefoce.ce.gov.br" },
       { uf: "DF", email: "ii@pcdf.df.gov.br" },
       { uf: "DF", email: "carlosscsaraiva@gmail.com" },
       { uf: "ES", email: "gab.dei@pc.es.gov.br" },
@@ -1551,8 +1837,9 @@
       { uf: "PI", email: "iijdm@pc.pi.gov.br" },
       { uf: "RJ", email: "saa.ifp@gmail.com" },
       { uf: "RN", email: "ntdistcri@tjrn.jus.br" },
-      { uf: "SC", email: "dicc@policiacientifica.sc.gov.br" },
-      { uf: "SE", email: "solicita.atestado.iiwsg@ssp.se.gov.br" }
+      { uf: "SC", email: "cgj.auxiliar@tjsc.jus.br" },
+      { uf: "SE", email: "solicita.atestado.iiwsg@ssp.se.gov.br" },
+      { uf: "TO", email: "identificacao@ssp.to.gov.br" }
     ];
 
     function renderIdentificacao() {
@@ -1566,25 +1853,59 @@
         porEstado[item.uf].push(item.email);
       });
 
-      // Nome exibido de cada estado ("Inst. Acre"); nomes muito longos usam a sigla
+      // Nome do instituto de cada estado (lista "Institutos de Identificação")
+      const institutos = {
+        AC: "Instituto de Identificação “Raimundo Herminio de Melo”",
+        AL: "Instituto de Identificação Delegado Mário Pedro dos Santos",
+        AP: "Instituto de Identificação",
+        AM: "Instituto de Identificação Anderson Conceição de Melo",
+        BA: "Instituto de Identificação Pedro Mello",
+        CE: "Instituto de Identificação Milton Barbosa de Souza",
+        DF: "Instituto de Identificação",
+        ES: "Departamento de Identificação / STPC / SSP-ES",
+        GO: "Instituto de Identificação",
+        MA: "Superintendência de Polícia Técnica",
+        MT: "Coordenadoria de Identificação",
+        MS: "Instituto de Identificação Gonçalo Pereira",
+        MG: "Instituto de Identificação",
+        PA: "Diretoria de Identificação",
+        PB: "Gerência Executiva de Identificação Civil e Criminal",
+        PR: "Instituto de Identificação",
+        PE: "Instituto de Identificação Tavares Buril",
+        PI: "Instituto de Identificação João de Deus Martins – SSP/PI",
+        RJ: "Instituto de Identificação Félix Pacheco",
+        RN: "Instituto de Identificação",
+        RS: "Departamento de Identificação",
+        RO: "Instituto de Identificação Civil e Criminal Engrácia da Costa Francisco – IIC",
+        RR: "Instituto de Identificação",
+        SC: "Instituto de Identificação - Instituto Cetro",
+        SE: "Instituto de Identificação Carlos Menezes",
+        TO: "Instituto de Identificação"
+      };
+      // Nome do estado por extenso (não aparece, mas permite buscar por "Acre", "Paraná" etc.)
       const nomesEstados = {
         AC: "Acre", AL: "Alagoas", AP: "Amapá", AM: "Amazonas", BA: "Bahia", CE: "Ceará",
-        DF: "Distrito Federal", ES: "Espírito Santo", GO: "Goiás", MA: "Maranhão",
-        MT: "Mato Grosso", MS: "MS", MG: "Minas Gerais", PA: "Pará", PB: "Paraíba",
-        PR: "Paraná", PE: "Pernambuco", PI: "Piauí", RJ: "Rio de Janeiro", RN: "RN",
-        RS: "RS", RO: "Rondônia", RR: "Roraima", SC: "Santa Catarina", SP: "São Paulo",
+        DF: "Distrito Federal Brasília", ES: "Espírito Santo", GO: "Goiás", MA: "Maranhão",
+        MT: "Mato Grosso", MS: "Mato Grosso do Sul", MG: "Minas Gerais", PA: "Pará", PB: "Paraíba",
+        PR: "Paraná", PE: "Pernambuco", PI: "Piauí", RJ: "Rio de Janeiro", RN: "Rio Grande do Norte",
+        RS: "Rio Grande do Sul", RO: "Rondônia", RR: "Roraima", SC: "Santa Catarina", SP: "São Paulo",
         SE: "Sergipe", TO: "Tocantins"
       };
-      const nomeUF = uf => "Inst. " + (nomesEstados[uf] || uf);
 
-      Object.keys(porEstado).sort((a, b) => nomeUF(a).localeCompare(nomeUF(b), 'pt-BR')).forEach(uf => {
+      // Barra de busca da lista
+      const busca = document.createElement('div');
+      busca.className = 'dp-filter-wrap';
+      busca.innerHTML = '<input type="search" class="dp-filter" placeholder="🔍 Buscar por estado, sigla, instituto ou e-mail..." aria-label="Buscar instituto" autocomplete="off">';
+      container.appendChild(busca);
+
+      Object.keys(porEstado).sort().forEach(uf => {
         let div = document.createElement('div');
-        div.className = 'email-list-item';
-        div.style.gap = '8px';
+        div.className = 'email-list-item ident-item';
         const links = porEstado[uf]
           .map(em => `<a href="#" data-email="${em}" class="email-address" title="Clique para copiar">${em}</a>`)
           .join(', ');
-        div.innerHTML = `<span style="white-space:nowrap;" title="${uf}">${nomeUF(uf)}</span> <span style="text-align:right; word-break:break-all; font-size:11px;">${links}</span>`;
+        div.innerHTML = `<span class="ident-nome"><b>${uf}</b> – ${institutos[uf] || 'Instituto de Identificação'}<span class="ident-oculto">${nomesEstados[uf] || ''}</span></span>` +
+                        `<span class="ident-emails">${links}</span>`;
         container.appendChild(div);
       });
     }
@@ -1740,7 +2061,6 @@
         }
       });
     }
-
 
 const data = {
     "1. Por Fase": {
@@ -2082,7 +2402,7 @@ const data = {
                 "6. Após juntado o protocolo de precatória, encaminhar para a fila \"Ag. Decurso de Prazo\" pelo prazo definido na Carta Precatória, com a observação \"Ag. Intimação (CP)\"",
                 "II. Para Audiência Virtual",
                 "1. Modelo SAJ: 1185",
-                "1.1. IMPORTANTE: O modelo não consta se tratar de processo digital, sendo necessário incluir essa informação.",
+                "1.1. IMPORTANTE: O modelo não consta se tratar de processo digital, sendo necessário incluir essa informação. (VERIFICAR COM O ALEX SE PODEMOS CRIAR MODELO ESPECÍFICO)",
                 "1.2. Copiar os dizeres igual ao Mandado de Intimação para Audiência Virtual.",
                 "2. Durante a edição da Carta Precatória",
                 "2.1. Incluir os dados da Comarca a ser deprecada.",
@@ -2092,7 +2412,7 @@ const data = {
                 "3.1. Réu Preso: 20 dias (se comarca deprecada dentro de Estado de São Paulo) e 30 dias (se comarca deprecada em outro Estado)",
                 "3.2. Réu Solto: 30 dias (se comarca deprecada dentro de Estado de São Paulo) e 60 dias (se comarca deprecada em outro Estado)",
                 "4. Gerar Link e QR Code:",
-                "4.1. Vide Audiências Virtuais - Link e QR Code",
+                "4.1. Vide: Audiências Virtuais - Link e QRCode",
                 "5. IMPORTANTE: Constar na Carta Precatória, expressamente, que a Audiência Virtual será via aplicativo Microsoft Teams.",
                 "6. Aguardar a Assinatura do Magistrado e do Coordenador",
                 "7. Após as assinaturas, verificar a forma correta de protocolar a precatória no Estado deprecado",
@@ -2487,7 +2807,7 @@ const data = {
                 "3.1. Se audiência virtual",
                 "3.1.1. Mencionar claramente, sem a necessidade de link para presos no Estado de São Paulo",
                 "3.1.2. Incluir o link para audiência, bem como o aplicativo utilizando (Microsoft TEAMS), sem prejuízo do QR Code para acesso à solenidade.",
-                "3.1.3. Vide Audiências Virtuais - Link e QR Code",
+                "3.1.3. Vide: Audiências Virtuais - Link e QR Code",
                 "3.2. Se audiência de Plenário:",
                 "3.2.1. Constar, expressamente, que a apresentação do réu será às 08h00 para audiências de Júri realizadas pela manhã.",
                 "4. Após assinado o ofício",
@@ -2507,7 +2827,7 @@ const data = {
                 "4. Na edição do Mandado:",
                 "4.1. Confirmar os dados de qualificação e da audiência",
                 "4.2. Fazer alterações no corpo do mandado para constar \"Comparecimento PESSOAL em PLENÁRIO (ou audiência de Instrução, caso seja presencial)\"",
-                "4.3. Constar o link e o QR Code em caso de Audiência de Instrução na modalidade virtual (Vide Audiências Virtuais - Link e QR Code)",
+                "4.3. Constar o link e o QR Code em caso de Audiência de Instrução na modalidade virtual (Vide: Audiências Virtuais - Link e QR Code)",
                 "5. Caso a poximidade do ato seja inferior a 30 dias, imediatamente informar ao coordenadro para assinatura do mandado.",
                 "6. Encaminhar para a fila \"Ag. Decurso de Prazo\", pelo prazo da classificação do mandado, com a observação \"Ag. Mandado\""
             ],
@@ -2554,7 +2874,7 @@ const data = {
                 "3.1. Verificar, quando da seleção do réu, se há apenas um endereço selecionado",
                 "3.2. Confirmar se a Zona do mandado foi automaticamente selecionada pelo SAJ",
                 "4. Inseir Link e QR Code",
-                "4.1. Vide Audiências Virtuais - Link e QR Code",
+                "4.1. Vide: Audiências Virtuais - Link e QR Code",
                 "5. Caso a proximidade do ato seja inferior a 30 dias, imediatamente informar o Coordenador.",
                 "6. Encaminhar para a fila \"Ag. Decurso de Prazo\", pelo prazo da classificação do mandado, com a observação \"Ag. Mandado"
             ],
@@ -2567,7 +2887,7 @@ const data = {
                 "3.1. Se audiência virtual",
                 "3.1.1. Mencionar claramente, sem a necessidade de link para presos no Estado de São Paulo",
                 "3.1.2. Incluir o link para audiência, bem como o aplicativo utilizando (Microsoft TEAMS), sem prejuízo do QR Code para acesso à solenidade.",
-                "3.1.3. Vide Audiências Virtuais - Link e QR Code",
+                "3.1.3. Vide: Audiências Virtuais - Link e QR Code",
                 "3.2. Se audiência de Plenário:",
                 "3.2.1. Constar, expressamente, que a apresentação do réu será às 08h00 para audiências de Júri realizadas pela manhã.",
                 "4. Após assinado o ofício",
@@ -2598,7 +2918,7 @@ const data = {
                 "3.3. O mandado deverá ser classificado como \"Cumprimento Remoto\".",
                 "4. Na edição do Mandado:",
                 "4.1. Confirmar os dados de qualificação e da audiência",
-                "4.2. Constar o link e o QR Code em caso de Audiência de Instrução na modalidade virtual (Vide Audiências Virtuais - Link e QR Code)",
+                "4.2. Constar o link e o QR Code em caso de Audiência de Instrução na modalidade virtual (Vide: Audiências Virtuais - Link e QR Code)",
                 "5. Caso a poximidade do ato seja inferior a 30 dias, imediatamente informar ao coordenadro para assinatura do mandado.",
                 "6. Encaminhar para a fila \"Ag. Decurso de Prazo\", pelo prazo da classificação do mandado, com a observação \"Ag. Mandado\""
             ],
@@ -2620,7 +2940,7 @@ const data = {
                 "4. Incluir o tipo de cumprimento: \"Réu Preso\", se réu preso ou \"Audiência\" se réu solto",
                 "5. No Calendário do Outlook, procurar a Audiência Virtual em questão e copiar o link",
                 "6. Gerar Link e QR Code",
-                "6.1. Vide Audiências Virtuais - Link e QR Code",
+                "6.1. Vide: Audiências Virtuais - Link e QRCode",
                 "7. Finalizar o mandado e verificar se o código de barras foi gerado",
                 "8. Caso haja a expedição de mais de um mandado à uma mesma pessoa, procurar despacho contendo o artigo 1.012, §3°, inciso I, das NSCGJ do TJSP",
                 "9. Caso a proximidade do ato seja inferior a 30 dias, imediatamente informar ao coordenador para assinatura."
@@ -3747,7 +4067,7 @@ const data = {
     },
     "6. Orientações Gerais": {
         "Audiências Virtuais": {
-            "Link e QR Code": [
+            "Link e QRCode": [
                 "1. No Calendário do Outlook, procurar a Audiência Virtual em questão e copiar o link",
                 "2. Encurtar o link através do site: https://tinyurl.com/",
                 "2.1 Basta colar o link",
@@ -3755,10 +4075,10 @@ const data = {
                 "2.1.1.1. Ex.: Processo 1234567-89.2026.8.26.1234 com audiência designada para 10 de outubro de 2026 ficaria: \"1234567892026-101026\"",
                 "2.2. Clicar em Shorten Link e copiar o link",
                 "3. Gerar o QR code",
-                "3.1. Colar o link encurtado (já servindo como teste de funcionalidade) e, ao abrir, clicar com o botão direito do mouse e em \"GERAR QR Code\".",
-                "3.2. O QR Code gerado será oficial do navegador, qual seja, Edge ou Chrome",
-                "4. Inserir QR Code no mandado:",
-                "4.1. Baixar QR Code através da opção do navegador, o que ensejará na redução do tamanho e em eventuais distorções nos pixels quando inserido no mandado (através do menu INSERIR > IMAGEM).",
+                "3.1. Colar o link encurtado (já servindo como teste de funcionalidade) e, ao abrir, clicar com o botão direito do mouse e em \"GERAR QRCODE\".",
+                "3.2. O QRCODE gerado será oficial do navegador, qual seja, Edge ou Chrome",
+                "4. Inserir QRCODE no mandado:",
+                "4.1. Baixar QRCODE através da opção do navegador, o que ensejará na redução do tamanho e em eventuais distorções nos pixels quando inserido no mandado (através do menu INSERIR > IMAGEM).",
                 "4.2. Quando incluir, selecionar tamanho da resolução ORIGINAL (100%)",
                 "4.3. Após inserir, reduzir o QR CODE a um tamanho razoável (aproximadamente 6x6 na régua de edição)",
                 "4.4. Importante: SEMPRE testar o QR CODE antes de finalizar o mandado.",
@@ -4152,23 +4472,21 @@ const data = {
                 data[a][b][c].forEach(item => {
                   
                   // Extrair Operadoras de Telefonia
+                  // [NOVO] Operadora reconhecida pelo domínio do e-mail (ex.: @timbrasil, @claro) ou pela palavra
+                  // inteira no texto — evita achar "OI" em "oitiva" ou "TIM" em "último"
                   let upperItem = item.toUpperCase();
-                  if (telefoniaKeywords.some(kw => upperItem.includes(kw))) {
-                    let emails = item.match(emailRegex);
-                    if (emails) {
-                      emails.forEach(em => {
-                        let emLower = em.toLowerCase();
-                        if (!telefoniaSet.has(emLower)) {
-                          telefoniaSet.add(emLower);
-                          let opName = "Operadora";
-                          telefoniaKeywords.forEach(kw => {
-                            if (upperItem.includes(kw)) opName = kw.charAt(0) + kw.slice(1).toLowerCase();
-                          });
-                          telefoniaData.push({ nome: opName, email: emLower });
-                        }
-                      });
+                  const temOperadora = kw => new RegExp('(^|[^A-ZÀ-Ü0-9])' + kw + '([^A-ZÀ-Ü0-9]|$)').test(upperItem);
+                  let emailsItem = item.match(emailRegex) || [];
+                  emailsItem.forEach(em => {
+                    let emLower = em.toLowerCase();
+                    let dominio = emLower.split('@')[1] || '';
+                    let kw = telefoniaKeywords.find(k => dominio.split(/[.\-]/).some(parte => parte.startsWith(k.toLowerCase())))
+                          || telefoniaKeywords.find(temOperadora);
+                    if (kw && !telefoniaSet.has(emLower)) {
+                      telefoniaSet.add(emLower);
+                      telefoniaData.push({ nome: kw.charAt(0) + kw.slice(1).toLowerCase(), email: emLower });
                     }
-                  }
+                  });
 
                 });
               }
@@ -4424,7 +4742,7 @@ const data = {
                 label.innerHTML = ' ' + formatItemText(subItem);
                 
                 let upperItem = subItem.toUpperCase();
-                let isBoldRed = upperItem.includes("IMEDIATAMENTE") || upperItem.includes("URGENTE");
+                let isBoldRed = upperItem.includes("IMEDIATAMENTE") || upperItem.includes("URGENTE") || upperItem.includes("IMPORTANTE");
                 let isSaj = upperItem.includes("SAJ");
                 let isRom = /^(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.\-\s]/i.test(subItem.trim());
                 
@@ -4467,7 +4785,7 @@ const data = {
             label.innerHTML = ' ' + formatItemText(subItem);
             
             let upperItem = subItem.toUpperCase();
-            let isBoldRed = upperItem.includes("IMEDIATAMENTE") || upperItem.includes("URGENTE");
+            let isBoldRed = upperItem.includes("IMEDIATAMENTE") || upperItem.includes("URGENTE") || upperItem.includes("IMPORTANTE");
             let isSaj = upperItem.includes("SAJ");
             let isRoman = /^(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.\-\s]/i.test(subItem.trim());
             
@@ -4575,7 +4893,7 @@ const data = {
               label.innerHTML = ' ' + formatItemText(subItem);
               
               let upperItem = subItem.toUpperCase();
-              let isBoldRed = upperItem.includes("IMEDIATAMENTE") || upperItem.includes("URGENTE");
+              let isBoldRed = upperItem.includes("IMEDIATAMENTE") || upperItem.includes("URGENTE") || upperItem.includes("IMPORTANTE");
               let isSaj = upperItem.includes("SAJ");
               let isRom = /^(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.\-\s]/i.test(subItem.trim());
               
@@ -4618,7 +4936,7 @@ const data = {
           label.innerHTML = ' ' + formatItemText(item);
           
           let upperItem = item.toUpperCase();
-          let isBoldRed = upperItem.includes("IMEDIATAMENTE") || upperItem.includes("URGENTE");
+          let isBoldRed = upperItem.includes("IMEDIATAMENTE") || upperItem.includes("URGENTE") || upperItem.includes("IMPORTANTE");
           let isSaj = upperItem.includes("SAJ");
           let isRoman = /^(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.\-\s]/i.test(item.trim());
           
@@ -4771,12 +5089,45 @@ const data = {
         panelBody.appendChild(copia);
         categorias = Array.from(copia.querySelectorAll(':scope > .email-category-item'));
 
+        // Barras de busca fixas nas listas maiores
+        function addBusca(box, texto) {
+          if (!box || box.querySelector(':scope > .dp-filter-wrap')) return;
+          const w = document.createElement('div');
+          w.className = 'dp-filter-wrap';
+          w.innerHTML = '<input type="search" class="dp-filter" placeholder="🔍 ' + texto + '" aria-label="Buscar" autocomplete="off">';
+          box.insertBefore(w, box.firstChild);
+        }
+        const conteudo = cat => copia.querySelector('.email-category-item[data-category="' + cat + '"] > .email-category-content');
+        addBusca(conteudo('Telefonia'), 'Buscar operadora ou e-mail...');
+        addBusca(conteudo('Hospitais'), 'Buscar hospital ou e-mail...');
+        addBusca(conteudo('Outros'), 'Buscar órgão ou e-mail...');
+        const dhpp = Array.from(copia.querySelectorAll('.sub-category-content'))
+          .find(sc => /DHPP/.test(sc.previousElementSibling ? sc.previousElementSibling.textContent : ''));
+        addBusca(dhpp, 'Buscar no DHPP...');
+        const policiais = Array.from(copia.querySelectorAll('.sub-category-content'))
+          .find(sc => /Outros e-mails policiais/i.test(sc.previousElementSibling ? sc.previousElementSibling.textContent : ''));
+        addBusca(policiais, 'Buscar delegacia, departamento ou e-mail...');
+
         // Categoria de consulta de CEPs (aberta pelo botão "CEPs São Paulo" do TJSP)
         catCep = montarConsultaCep();
         copia.appendChild(catCep);
         categorias.push(catCep);
 
+        // Recebimento de CP e Telefones importantes (abertos pelos botões do TJSP)
+        catCp = montarRecebimentoCp();
+        catTel = montarTelefones();
+        copia.appendChild(catCp); categorias.push(catCp);
+        copia.appendChild(catTel); categorias.push(catTel);
+
         copia.addEventListener('click', e => {
+          const abrirTool = e.target.closest('.util-open');
+          if (abrirTool) {
+            e.preventDefault();
+            const alvo = abrirTool.dataset.open === 'CPs' ? catCp : catTel;
+            abrirCategoria(alvo, catTjsp() && catTjsp()._chip);
+            if (alvo === catTel) { telInput.value = ''; filtrarTelefones(); setTimeout(() => telInput.focus(), 50); }
+            return;
+          }
           if (e.target.closest('.util-cep-open')) {
             e.preventDefault();
             abrirCategoria(catCep, catTjsp() && catTjsp()._chip);
@@ -4794,7 +5145,7 @@ const data = {
         });
 
         chipsBox.innerHTML = '';
-        const SEM_BOTAO = ['CEPs']; // categorias que não aparecem como botão no header (continuam na busca)
+        const SEM_BOTAO = ['CEPs', 'CPs', 'Telefones']; // categorias que não aparecem como botão no header (continuam na busca)
         categorias.forEach(cat => {
           if (SEM_BOTAO.includes(cat.dataset.category)) return;
           const chip = document.createElement('button');
@@ -4891,12 +5242,124 @@ const data = {
         cepCount.textContent = bruto ? visiveis + ' de ' + CEPS.length + ' faixas' : CEPS.length + ' faixas cadastradas';
       }
 
+      // ---------- Recebimento de Cartas Precatórias por tribunal ----------
+      const RECEBIMENTO_CP = [
+        { titulo: 'Malote Digital', itens: [
+          ['TJES', 'Espírito Santo'], ['TJPR', 'Paraná'], ['TJRJ', 'Rio de Janeiro'], ['TJRS', 'Rio Grande do Sul'],
+          ['TJSC', 'Santa Catarina'], ['TJSE', 'Sergipe'], ['TJTO', 'Tocantins'], ['TJRR', 'Roraima'] ] },
+        { titulo: 'PJe', itens: [
+          ['TJAP', 'Amapá'], ['TJDFT', 'Distrito Federal e Territórios'], ['TJMA', 'Maranhão'], ['TJMG', 'Minas Gerais'],
+          ['TJMT', 'Mato Grosso'], ['TJPA', 'Pará'], ['TJPB', 'Paraíba'], ['TJPE', 'Pernambuco'], ['TJRN', 'Rio Grande do Norte'],
+          ['TJRO', 'Rondônia'], ['TJBA', 'Bahia'], ['TJPI', 'Piauí'], ['TJCE', 'Ceará'] ] },
+        { titulo: 'e-SAJ e/ou outros sistemas', itens: [
+          ['TJAC', 'Acre'], ['TJAL', 'Alagoas'], ['TJAM', 'Amazonas'], ['TJMS', 'Mato Grosso do Sul'],
+          ['TJSP', 'São Paulo'], ['TJGO', 'Goiás'] ] }
+      ];
+
+      // ---------- Telefones importantes ----------
+      const TELEFONES = [
+        { nome: '1ª Vara do Júri', nums: ['2868-7015', '2868-7243'] },
+        { nome: '2ª Vara do Júri', nums: ['2868-7555', '2868-7550'] },
+        { nome: '3ª Vara do Júri', nums: ['2868-7265', '2868-7024'] },
+        { nome: '4ª Vara do Júri', nums: ['2868-7491', '2868-7328'] },
+        { nome: '5ª Vara do Júri', nums: ['2868-7557'], extra: '5º Tribunal do Júri' },
+        { nome: 'Ambulatório Médico', nums: ['2868-7532', '2868-7586', '2868-7736'], extra: 'médico saúde enfermaria' },
+        { nome: 'Carceragem', nums: ['2868-7697'], extra: 'presos cela' },
+        { nome: 'Cartório de Audiência de Custódia', nums: ['2868-7036'] },
+        { nome: 'Central de Mandados', nums: ['2868-7003'], extra: 'Seção Administrativa de Mandados oficial de justiça' },
+        { nome: 'Defensoria Pública', nums: ['3392-3729'], extra: 'defensor DPE' },
+        { nome: 'Limpeza', nums: ['2868-7116'], extra: 'faxina' },
+        { nome: 'Ministério Público', nums: ['3392-6406', '3119-7127', '3318-6832'], extra: 'MP promotoria promotor' },
+        { nome: 'Polícia Militar interna do TJ', nums: ['2868-7213', '2868-7331'], extra: 'PM PMs segurança' },
+        { nome: 'SAP', nums: ['2868-7446'], extra: 'Secretaria da Administração Penitenciária' },
+        { nome: 'Solicitar água', nums: ['2868-7478'], extra: 'pedir pedido agua galão bebedouro' }
+      ];
+      let catCp = null, catTel = null, telInput = null, telVazio = null;
+
+      // Normaliza texto para a busca: sem acentos, "ª/º" fora, ordinais por extenso viram número e "01" vira "1"
+      const ORDINAIS = { primeira: '1', primeiro: '1', segunda: '2', segundo: '2', terceira: '3', terceiro: '3',
+                         quarta: '4', quarto: '4', quinta: '5', quinto: '5', sexta: '6', sexto: '6' };
+      function normBusca(t) {
+        return t.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+          .replace(/(\d+)\s*[ºª°oa]?\b/g, (m, n) => ' ' + String(Number(n)) + ' ')
+          .replace(/[ºª°]/g, ' ')
+          .replace(/[a-z]+/g, w => ORDINAIS[w] || w)
+          .replace(/[^a-z0-9]+/g, ' ').trim();
+      }
+
+      function montarRecebimentoCp() {
+        const cat = document.createElement('div');
+        cat.className = 'email-category-item';
+        cat.dataset.category = 'CPs';
+        cat.style.display = 'none';
+        cat.innerHTML =
+          '<div class="email-category-title"><span>📥 Recebimento de Cartas Precatórias</span><span>▼</span></div>' +
+          '<div class="email-category-content cep-content" style="display:none;"><div class="cep-tool" style="max-width:1080px;">' +
+            '<button type="button" class="cep-back">← Voltar para TJSP</button>' +
+            '<div class="cp-grid">' + RECEBIMENTO_CP.map(g =>
+              '<div class="cp-card"><h4>' + escH(g.titulo) + '<small>' + g.itens.length + ' tribunais</small></h4>' +
+              g.itens.map(t => '<div class="email-list-item"><span class="cp-sigla">' + t[0] + '</span><span class="cp-uf">' + escH(t[1]) + '</span></div>').join('') +
+              '</div>').join('') + '</div>' +
+          '</div></div>';
+        return cat;
+      }
+
+      function montarTelefones() {
+        const cat = document.createElement('div');
+        cat.className = 'email-category-item';
+        cat.dataset.category = 'Telefones';
+        cat.style.display = 'none';
+        cat.innerHTML =
+          '<div class="email-category-title"><span>📞 Telefones</span><span>▼</span></div>' +
+          '<div class="email-category-content cep-content" style="display:none;"><div class="cep-tool" style="max-width:none;">' +
+            '<button type="button" class="cep-back">← Voltar para TJSP</button>' +
+            '<input type="search" class="tel-search" placeholder="Buscar setor, vara ou número (ex.: 2, segunda, MP...)" aria-label="Buscar telefone" autocomplete="off">' +
+            '<div class="tel-list">' + TELEFONES.map((t, i) =>
+              '<div class="email-list-item" data-tel="' + i + '"><span class="tel-nome">' + escH(t.nome) + '</span><span class="tel-nums">' +
+              t.nums.map(n => '<a href="#" data-email="' + n + '" class="email-address" title="Clique para copiar">' + n + '</a>').join('') +
+              '</span></div>').join('') +
+            '<div class="tel-vazio">Nenhum telefone encontrado.</div></div>' +
+          '</div></div>';
+        telInput = cat.querySelector('.tel-search');
+        telVazio = cat.querySelector('.tel-vazio');
+        TELEFONES.forEach(t => {
+          t._nome = ' ' + normBusca(t.nome + ' ' + (t.extra || '')) + ' ';
+          t._nums = t.nums.join(' ').replace(/\D/g, ' ');
+        });
+        telInput.addEventListener('input', filtrarTelefones);
+        return cat;
+      }
+
+      // Cada palavra digitada precisa aparecer: números curtos valem como palavra inteira (2 = 2ª),
+      // números com 3+ dígitos procuram dentro dos telefones
+      function filtrarTelefones() {
+        const termos = normBusca(telInput.value).split(' ').filter(Boolean);
+        let n = 0;
+        catTel.querySelectorAll('[data-tel]').forEach(el => {
+          const t = TELEFONES[el.dataset.tel];
+          const ok = termos.every(q => {
+            if (/^\d+$/.test(q)) {
+              // 1 dígito = número da vara; 2 ou mais também procuram dentro dos telefones
+              return t._nome.includes(' ' + q + ' ') || (q.length >= 2 && t._nums.replace(/ /g, '').includes(q));
+            }
+            // Palavra pela metade: vale o começo de qualquer palavra ("pri" → "primeira" → 1ª, "carc" → Carceragem)
+            const ordinais = Object.keys(ORDINAIS).filter(w => w.startsWith(q)).map(w => ORDINAIS[w]);
+            return t._nome.includes(' ' + q) || ordinais.some(d => t._nome.includes(' ' + d + ' '));
+          });
+          el.style.display = ok ? 'flex' : 'none';
+          if (ok) n++;
+        });
+        telVazio.style.display = n ? 'none' : 'block';
+      }
+
       function marcarChip(chip) {
         chipsBox.querySelectorAll('.util-chip').forEach(c => c.classList.toggle('active', c === chip));
       }
 
       function abrir() {
         header.classList.add('open');
+        const cab = panel.querySelector('.util-panel-head');
+        if (cab) panel.style.setProperty('--util-head-h', cab.offsetHeight + 'px');
         backdrop.classList.add('show');
       }
 
@@ -4904,10 +5367,22 @@ const data = {
       const norm = t => t.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[ºª°]/g, '').toLowerCase();
       document.addEventListener('input', e => {
         if (!e.target.classList || !e.target.classList.contains('dp-filter')) return;
-        const termo = norm(e.target.value.trim());
-        const box = e.target.closest('.sub-category-content');
-        box.querySelectorAll(':scope > .email-list-item').forEach(item => {
-          item.style.display = !termo || norm(item.textContent).includes(termo) ? 'flex' : 'none';
+        // Cada palavra digitada precisa ser o começo de alguma palavra do item ("vila m" acha "Vila Matilde")
+        const termos = norm(e.target.value.trim()).split(/[^a-z0-9]+/).filter(Boolean);
+        const box = e.target.closest('.sub-category-content, .email-category-content');
+        const itens = Array.from(box.querySelectorAll(':scope > .email-list-item'));
+        const palavras = t => norm(t).split(/[^a-z0-9]+/).filter(Boolean);
+        const bate = txt => { const ps = palavras(txt); return termos.every(q => ps.some(w => w.startsWith(q))); };
+        // Primeiro procura só no nome (Institutos: sigla/nome do estado, "a" → AC, AL, AM, AP);
+        // se nenhum nome bater, procura também nos e-mails
+        const ident = itens.length && itens[0].classList.contains('ident-item');
+        const doNome = it => ident
+          ? it.querySelector('b').textContent + ' ' + it.querySelector('.ident-oculto').textContent
+          : (it.querySelector('span') || it).textContent;
+        const usarNome = termos.length && itens.some(it => bate(doNome(it)));
+        itens.forEach(item => {
+          const ok = !termos.length || bate(usarNome ? doNome(item) : item.textContent);
+          item.style.display = ok ? 'flex' : 'none';
         });
       });
 
@@ -5005,6 +5480,49 @@ const data = {
         const btn = card.querySelector('.search-btn-mini');
         if (btn) btn.click();
       });
+    })();
+  </script>
+  <!-- [NOVO] RODAPÉ -->
+  <footer id="siteFooter" class="no-print">
+    Desenvolvido por 2ª Vara do Júri - Fórum Central da Barra Funda<span id="footerVersao"></span>
+  </footer>
+  <script>
+    // [NOVO] "Versão atualizada em ...": data do último commit no GitHub (todo PR aceito gera um commit na branch principal)
+    (function () {
+      // Repositório do projeto no GitHub (https://github.com/rslippi/2VJ)
+      const REPO = 'rslippi/2VJ';
+      const el = document.getElementById('footerVersao');
+      const fmt = d => d.toLocaleDateString('pt-BR', { timeZone: 'America/Sao_Paulo' });
+      const mostrar = d => { if (d && !isNaN(d)) el.textContent = 'Versão atualizada em ' + fmt(d); };
+
+      let repo = REPO;
+      const gh = location.hostname.match(/^([^.]+)\.github\.io$/i);
+      if (!repo && gh) {
+        const pasta = location.pathname.split('/').filter(Boolean)[0];
+        repo = gh[1] + '/' + (pasta && !/\.html?$/i.test(pasta) ? pasta : gh[1] + '.github.io');
+      }
+
+      // Plano B: a data de publicação que o próprio servidor informa (o GitHub Pages informa)
+      const lm = new Date(document.lastModified);
+      if (!isNaN(lm) && Date.now() - lm.getTime() > 60000) mostrar(lm);
+      if (!repo) return;
+
+      // Guarda a resposta por 30 min, para não estourar o limite de consultas do GitHub (60 por hora por rede)
+      const CHAVE = 'versaoGithub:' + repo;
+      try {
+        const salvo = JSON.parse(localStorage.getItem(CHAVE) || 'null');
+        if (salvo && Date.now() - salvo.em < 30 * 60 * 1000) { mostrar(new Date(salvo.data)); return; }
+      } catch (e) {}
+
+      fetch('https://api.github.com/repos/' + repo + '/commits?per_page=1')
+        .then(r => r.ok ? r.json() : null)
+        .then(j => {
+          if (!j || !j[0]) return;
+          const data = j[0].commit.committer.date;
+          mostrar(new Date(data));
+          try { localStorage.setItem(CHAVE, JSON.stringify({ data, em: Date.now() })); } catch (e) {}
+        })
+        .catch(() => {});
     })();
   </script>
 </body>
